@@ -4,7 +4,13 @@ The command line for M3O
 
 ## Install
 
-Building from source
+Quick install
+
+```sh
+curl -fssl https://install.m3o.com/cli | /bin/bash
+```
+
+From source
 
 ```
 go get github.com/m3o/m3o-cli/cmd/m3o
