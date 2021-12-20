@@ -225,21 +225,6 @@ var (
 
 // generate a list of commands from the public cli
 func generateCLI() []*cobra.Command {
-	/*
-	   	// check the local cache first
-	   	dirname, err := os.UserHomeDir()
-	           if err != nil {
-	   		dirname = "."
-	   	}
-
-	   	basedir := filepath.Join(dirname, ".m3o")
-	   	err := os.MkdirAll(basedir, 0700)
-
-	   	if err == nil || err == err.ErrExist {
-
-
-	   	}
-	*/
 	rsp, err := http.Get("https://api.m3o.com/publicapi/explore/index")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error listing services: %v\n", err)
