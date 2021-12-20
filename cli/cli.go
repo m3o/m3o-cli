@@ -26,6 +26,12 @@ var rootCmd = &cobra.Command{
 	Long:  `M3O is a next generation cloud platform. A single place to explore, discover and consume public APIs. See https://m3o.com for more info.`,
 }
 
+var clientCmd = &cobra.Command{
+	Use:   "client",
+	Short: "Command line client",
+	Long:  `Command line client. Call or stream from any service directly.`,
+}
+
 var callCmd = &cobra.Command{
 	Use:   "call",
 	Short: "Call a service",
@@ -443,10 +449,13 @@ func Execute() {
 	exploreCmd.AddCommand(exploreListCmd)
 	exploreCmd.AddCommand(exploreSearchCmd)
 
+	// client command
+	clientCmd.AddCommand(callCmd)
+	clientCmd.AddCommand(streamCmd)
+
 	// add the commands
-	rootCmd.AddCommand(callCmd)
+	rootCmd.AddCommand(clientCmd)
 	rootCmd.AddCommand(exploreCmd)
-	rootCmd.AddCommand(streamCmd)
 
 	// add the dynamic cli
 	commands := generateCLI()
