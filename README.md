@@ -43,22 +43,35 @@ m3o explore list
 ### Search services
 
 ```
-m3o explore search --query=db
+m3o explore search --query=helloworld
 ```
 
-### Call service
+### Query service
+
+Usage
 
 ```
-$ m3o call helloworld Call '{"name": "Alice"}'
+m3o [service] [endpoint] --[param]=value
+```
+
+Example
+```
+m3o helloworld call --name=Alice
+```
+
+### Client Call
+
+```
+$ m3o client call helloworld Call '{"name": "Alice"}'
 {
  "message": "Hello Alice"
 }
 ```
 
-### Stream response
+### Client Stream
 
 ```
-m3o stream notes Subscribe '{}'
+m3o client stream notes Subscribe '{}'
 ```
 
 
