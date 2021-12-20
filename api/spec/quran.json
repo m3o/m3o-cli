@@ -1,0 +1,982 @@
+{
+  "components": {
+    "requestBodies": {
+      "QuranChaptersRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ChaptersRequest"
+            }
+          }
+        },
+        "description": "QuranChaptersRequest"
+      },
+      "QuranSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "QuranSearchRequest"
+      },
+      "QuranSummaryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SummaryRequest"
+            }
+          }
+        },
+        "description": "QuranSummaryRequest"
+      },
+      "QuranVersesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VersesRequest"
+            }
+          }
+        },
+        "description": "QuranVersesRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "QuranChaptersResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ChaptersResponse"
+            }
+          }
+        },
+        "description": "QuranChaptersResponse"
+      },
+      "QuranSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "QuranSearchResponse"
+      },
+      "QuranSummaryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SummaryResponse"
+            }
+          }
+        },
+        "description": "QuranSummaryResponse"
+      },
+      "QuranVersesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VersesResponse"
+            }
+          }
+        },
+        "description": "QuranVersesResponse"
+      }
+    },
+    "schemas": {
+      "Chapter": {
+        "properties": {
+          "arabic_name": {
+            "description": "The arabic name of the chapter",
+            "type": "string"
+          },
+          "complex_name": {
+            "description": "The complex name of the chapter",
+            "type": "string"
+          },
+          "id": {
+            "description": "The id of the chapter as a number e.g 1",
+            "format": "int32",
+            "type": "number"
+          },
+          "name": {
+            "description": "The simple name of the chapter",
+            "type": "string"
+          },
+          "pages": {
+            "description": "The pages from and to e.g 1, 1",
+            "format": "int32",
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "prefix_bismillah": {
+            "description": "Should the chapter start with bismillah",
+            "type": "boolean"
+          },
+          "revelation_order": {
+            "description": "The order in which it was revealed",
+            "format": "int32",
+            "type": "number"
+          },
+          "revelation_place": {
+            "description": "The place of revelation",
+            "type": "string"
+          },
+          "translated_name": {
+            "description": "The translated name",
+            "type": "string"
+          },
+          "verses": {
+            "description": "The number of verses in the chapter",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Chapter",
+        "type": "object"
+      },
+      "ChaptersRequest": {
+        "description": "List the Chapters (surahs) of the Quran",
+        "properties": {
+          "language": {
+            "description": "Specify the language e.g en",
+            "type": "string"
+          }
+        },
+        "title": "ChaptersRequest",
+        "type": "object"
+      },
+      "ChaptersResponse": {
+        "properties": {
+          "chapters": {
+            "items": {
+              "properties": {
+                "arabic_name": {
+                  "description": "The arabic name of the chapter",
+                  "type": "string"
+                },
+                "complex_name": {
+                  "description": "The complex name of the chapter",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "The id of the chapter as a number e.g 1",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "name": {
+                  "description": "The simple name of the chapter",
+                  "type": "string"
+                },
+                "pages": {
+                  "description": "The pages from and to e.g 1, 1",
+                  "format": "int32",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "prefix_bismillah": {
+                  "description": "Should the chapter start with bismillah",
+                  "type": "boolean"
+                },
+                "revelation_order": {
+                  "description": "The order in which it was revealed",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "revelation_place": {
+                  "description": "The place of revelation",
+                  "type": "string"
+                },
+                "translated_name": {
+                  "description": "The translated name",
+                  "type": "string"
+                },
+                "verses": {
+                  "description": "The number of verses in the chapter",
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ChaptersResponse",
+        "type": "object"
+      },
+      "Interpretation": {
+        "properties": {
+          "id": {
+            "description": "The unique id of the interpretation",
+            "format": "int32",
+            "type": "number"
+          },
+          "source": {
+            "description": "The source of the interpretation",
+            "type": "string"
+          },
+          "text": {
+            "description": "The translated text",
+            "type": "string"
+          }
+        },
+        "title": "Interpretation",
+        "type": "object"
+      },
+      "Result": {
+        "properties": {
+          "text": {
+            "description": "The associated arabic text",
+            "type": "string"
+          },
+          "translations": {
+            "description": "The related translations to the text",
+            "items": {
+              "properties": {
+                "id": {
+                  "description": "The unique id of the translation",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "source": {
+                  "description": "The source of the translation",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "The translated text",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "verse_id": {
+            "description": "The unique verse id across the Quran",
+            "format": "int32",
+            "type": "number"
+          },
+          "verse_key": {
+            "description": "The verse key e.g 1:1",
+            "type": "string"
+          }
+        },
+        "title": "Result",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search the Quran for any form of query or questions",
+        "properties": {
+          "language": {
+            "description": "The language for translation",
+            "type": "string"
+          },
+          "limit": {
+            "description": "The number of results to return",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The pagination number",
+            "format": "int32",
+            "type": "number"
+          },
+          "query": {
+            "description": "The query to ask",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "page": {
+            "description": "The current page",
+            "format": "int32",
+            "type": "number"
+          },
+          "query": {
+            "description": "The question asked",
+            "type": "string"
+          },
+          "results": {
+            "description": "The results for the query",
+            "items": {
+              "properties": {
+                "text": {
+                  "description": "The associated arabic text",
+                  "type": "string"
+                },
+                "translations": {
+                  "description": "The related translations to the text",
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "description": "The unique id of the translation",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "source": {
+                        "description": "The source of the translation",
+                        "type": "string"
+                      },
+                      "text": {
+                        "description": "The translated text",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "verse_id": {
+                  "description": "The unique verse id across the Quran",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "verse_key": {
+                  "description": "The verse key e.g 1:1",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "total_pages": {
+            "description": "The total pages",
+            "format": "int32",
+            "type": "number"
+          },
+          "total_results": {
+            "description": "The total results returned",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "SummaryRequest": {
+        "description": "Get a summary for a given chapter (surah)",
+        "properties": {
+          "chapter": {
+            "description": "The chapter id e.g 1",
+            "format": "int32",
+            "type": "number"
+          },
+          "language": {
+            "description": "Specify the language e.g en",
+            "type": "string"
+          }
+        },
+        "title": "SummaryRequest",
+        "type": "object"
+      },
+      "SummaryResponse": {
+        "properties": {
+          "chapter": {
+            "description": "The chapter id",
+            "format": "int32",
+            "type": "number"
+          },
+          "source": {
+            "description": "The source of the summary",
+            "type": "string"
+          },
+          "summary": {
+            "description": "The short summary for the chapter",
+            "type": "string"
+          },
+          "text": {
+            "description": "The full description for the chapter",
+            "type": "string"
+          }
+        },
+        "title": "SummaryResponse",
+        "type": "object"
+      },
+      "Translation": {
+        "properties": {
+          "id": {
+            "description": "The unique id of the translation",
+            "format": "int32",
+            "type": "number"
+          },
+          "source": {
+            "description": "The source of the translation",
+            "type": "string"
+          },
+          "text": {
+            "description": "The translated text",
+            "type": "string"
+          }
+        },
+        "title": "Translation",
+        "type": "object"
+      },
+      "Verse": {
+        "properties": {
+          "id": {
+            "description": "The unique id of the verse in the whole book",
+            "format": "int32",
+            "type": "number"
+          },
+          "interpretations": {
+            "description": "The interpretations of the verse",
+            "items": {
+              "properties": {
+                "id": {
+                  "description": "The unique id of the interpretation",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "source": {
+                  "description": "The source of the interpretation",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "The translated text",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "key": {
+            "description": "The key of this verse (chapter:verse) e.g 1:1",
+            "type": "string"
+          },
+          "number": {
+            "description": "The verse number in this chapter",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page of the Quran this verse is on",
+            "format": "int32",
+            "type": "number"
+          },
+          "text": {
+            "description": "The arabic text for this verse",
+            "type": "string"
+          },
+          "translated_text": {
+            "description": "The basic translation of the verse",
+            "type": "string"
+          },
+          "translations": {
+            "description": "The alternative translations for the verse",
+            "items": {
+              "properties": {
+                "id": {
+                  "description": "The unique id of the translation",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "source": {
+                  "description": "The source of the translation",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "The translated text",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "transliteration": {
+            "description": "The phonetic transliteration from arabic",
+            "type": "string"
+          },
+          "words": {
+            "description": "The individual words within the verse (Ayah)",
+            "items": {
+              "properties": {
+                "char_type": {
+                  "description": "The character type e.g word, end",
+                  "type": "string"
+                },
+                "code": {
+                  "description": "The QCF v2 font code",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "The id of the word within the verse",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "line": {
+                  "description": "The line number",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "page": {
+                  "description": "The page number",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "position": {
+                  "description": "The position of the word",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "text": {
+                  "description": "The arabic text for this word",
+                  "type": "string"
+                },
+                "translation": {
+                  "description": "The translated text",
+                  "type": "string"
+                },
+                "transliteration": {
+                  "description": "The transliteration text",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "Verse",
+        "type": "object"
+      },
+      "VersesRequest": {
+        "description": "Lookup the verses (ayahs) for a chapter including \n translation, interpretation and breakdown by individual\n words.",
+        "properties": {
+          "chapter": {
+            "description": "The chapter id to retrieve",
+            "format": "int32",
+            "type": "number"
+          },
+          "interpret": {
+            "description": "Return the interpretation (tafsir)",
+            "type": "boolean"
+          },
+          "language": {
+            "description": "The language of translation",
+            "type": "string"
+          },
+          "limit": {
+            "description": "The verses per page",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page number to request",
+            "format": "int32",
+            "type": "number"
+          },
+          "translate": {
+            "description": "Return alternate translations",
+            "type": "boolean"
+          },
+          "words": {
+            "description": "Return the individual words with the verses",
+            "type": "boolean"
+          }
+        },
+        "title": "VersesRequest",
+        "type": "object"
+      },
+      "VersesResponse": {
+        "properties": {
+          "chapter": {
+            "description": "The chapter requested",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page requested",
+            "format": "int32",
+            "type": "number"
+          },
+          "total_pages": {
+            "description": "The total pages",
+            "format": "int32",
+            "type": "number"
+          },
+          "verses": {
+            "description": "The verses on the page",
+            "items": {
+              "properties": {
+                "id": {
+                  "description": "The unique id of the verse in the whole book",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "interpretations": {
+                  "description": "The interpretations of the verse",
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "description": "The unique id of the interpretation",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "source": {
+                        "description": "The source of the interpretation",
+                        "type": "string"
+                      },
+                      "text": {
+                        "description": "The translated text",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "key": {
+                  "description": "The key of this verse (chapter:verse) e.g 1:1",
+                  "type": "string"
+                },
+                "number": {
+                  "description": "The verse number in this chapter",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "page": {
+                  "description": "The page of the Quran this verse is on",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "text": {
+                  "description": "The arabic text for this verse",
+                  "type": "string"
+                },
+                "translated_text": {
+                  "description": "The basic translation of the verse",
+                  "type": "string"
+                },
+                "translations": {
+                  "description": "The alternative translations for the verse",
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "description": "The unique id of the translation",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "source": {
+                        "description": "The source of the translation",
+                        "type": "string"
+                      },
+                      "text": {
+                        "description": "The translated text",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "transliteration": {
+                  "description": "The phonetic transliteration from arabic",
+                  "type": "string"
+                },
+                "words": {
+                  "description": "The individual words within the verse (Ayah)",
+                  "items": {
+                    "properties": {
+                      "char_type": {
+                        "description": "The character type e.g word, end",
+                        "type": "string"
+                      },
+                      "code": {
+                        "description": "The QCF v2 font code",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "The id of the word within the verse",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "line": {
+                        "description": "The line number",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "page": {
+                        "description": "The page number",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "position": {
+                        "description": "The position of the word",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "text": {
+                        "description": "The arabic text for this word",
+                        "type": "string"
+                      },
+                      "translation": {
+                        "description": "The translated text",
+                        "type": "string"
+                      },
+                      "transliteration": {
+                        "description": "The transliteration text",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "VersesResponse",
+        "type": "object"
+      },
+      "Word": {
+        "properties": {
+          "char_type": {
+            "description": "The character type e.g word, end",
+            "type": "string"
+          },
+          "code": {
+            "description": "The QCF v2 font code",
+            "type": "string"
+          },
+          "id": {
+            "description": "The id of the word within the verse",
+            "format": "int32",
+            "type": "number"
+          },
+          "line": {
+            "description": "The line number",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page number",
+            "format": "int32",
+            "type": "number"
+          },
+          "position": {
+            "description": "The position of the word",
+            "format": "int32",
+            "type": "number"
+          },
+          "text": {
+            "description": "The arabic text for this word",
+            "type": "string"
+          },
+          "translation": {
+            "description": "The translated text",
+            "type": "string"
+          },
+          "transliteration": {
+            "description": "The transliteration text",
+            "type": "string"
+          }
+        },
+        "title": "Word",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Quran",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/quran/Quran/Chapters": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/QuranChaptersRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/QuranChaptersResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Quran.Chapters(ChaptersRequest)"
+      }
+    },
+    "/quran/Quran/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/QuranSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/QuranSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Quran.Search(SearchRequest)"
+      }
+    },
+    "/quran/Quran/Summary": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/QuranSummaryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/QuranSummaryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Quran.Summary(SummaryRequest)"
+      }
+    },
+    "/quran/Quran/Verses": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/QuranVersesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/QuranVersesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Quran.Verses(VersesRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

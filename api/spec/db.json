@@ -1,0 +1,744 @@
+{
+  "components": {
+    "requestBodies": {
+      "DbCountRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CountRequest"
+            }
+          }
+        },
+        "description": "DbCountRequest"
+      },
+      "DbCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "DbCreateRequest"
+      },
+      "DbDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "DbDeleteRequest"
+      },
+      "DbDropTableRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DropTableRequest"
+            }
+          }
+        },
+        "description": "DbDropTableRequest"
+      },
+      "DbListTablesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListTablesRequest"
+            }
+          }
+        },
+        "description": "DbListTablesRequest"
+      },
+      "DbReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "DbReadRequest"
+      },
+      "DbRenameTableRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RenameTableRequest"
+            }
+          }
+        },
+        "description": "DbRenameTableRequest"
+      },
+      "DbTruncateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TruncateRequest"
+            }
+          }
+        },
+        "description": "DbTruncateRequest"
+      },
+      "DbUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "DbUpdateRequest"
+      }
+    },
+    "responses": {
+      "DbCountResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CountResponse"
+            }
+          }
+        },
+        "description": "DbCountResponse"
+      },
+      "DbCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "DbCreateResponse"
+      },
+      "DbDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "DbDeleteResponse"
+      },
+      "DbDropTableResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DropTableResponse"
+            }
+          }
+        },
+        "description": "DbDropTableResponse"
+      },
+      "DbListTablesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListTablesResponse"
+            }
+          }
+        },
+        "description": "DbListTablesResponse"
+      },
+      "DbReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "DbReadResponse"
+      },
+      "DbRenameTableResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RenameTableResponse"
+            }
+          }
+        },
+        "description": "DbRenameTableResponse"
+      },
+      "DbTruncateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TruncateResponse"
+            }
+          }
+        },
+        "description": "DbTruncateResponse"
+      },
+      "DbUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "DbUpdateResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "CountRequest": {
+        "description": "Count records in a table",
+        "properties": {
+          "table": {
+            "description": "specify the table name",
+            "type": "string"
+          }
+        },
+        "title": "CountRequest",
+        "type": "object"
+      },
+      "CountResponse": {
+        "properties": {
+          "count": {
+            "description": "the number of records in the table",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "CountResponse",
+        "type": "object"
+      },
+      "CreateRequest": {
+        "description": "Create a record in the database. Optionally include an \"id\" field otherwise it's set automatically.",
+        "properties": {
+          "id": {
+            "description": "optional record id to use",
+            "type": "string"
+          },
+          "record": {
+            "description": "JSON encoded record or records (can be array or object)",
+            "type": "object"
+          },
+          "table": {
+            "description": "Optional table name. Defaults to 'default'",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "id": {
+            "description": "The id of the record (either specified or automatically created)",
+            "type": "string"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a record in the database by id.",
+        "properties": {
+          "id": {
+            "description": "id of the record",
+            "type": "string"
+          },
+          "table": {
+            "description": "Optional table name. Defaults to 'default'",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "DropTableRequest": {
+        "description": "Drop a table in the DB",
+        "properties": {
+          "table": {
+            "type": "string"
+          }
+        },
+        "title": "DropTableRequest",
+        "type": "object"
+      },
+      "DropTableResponse": {
+        "title": "DropTableResponse",
+        "type": "object"
+      },
+      "ListTablesRequest": {
+        "description": "List tables in the DB",
+        "title": "ListTablesRequest",
+        "type": "object"
+      },
+      "ListTablesResponse": {
+        "properties": {
+          "tables": {
+            "description": "list of tables",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListTablesResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read data from a table. Lookup can be by ID or via querying any field in the record.",
+        "properties": {
+          "id": {
+            "description": "Read by id. Equivalent to 'id == \"your-id\"'",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Maximum number of records to return. Default limit is 25.\n Maximum limit is 1000. Anything higher will return an error.",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "format": "int32",
+            "type": "number"
+          },
+          "order": {
+            "description": "'asc' (default), 'desc'",
+            "type": "string"
+          },
+          "orderBy": {
+            "description": "field name to order by",
+            "type": "string"
+          },
+          "query": {
+            "description": "Examples: 'age \u003e= 18', 'age \u003e= 18 and verified == true'\n Comparison operators: '==', '!=', '\u003c', '\u003e', '\u003c=', '\u003e='\n Logical operator: 'and'\n Dot access is supported, eg: 'user.age == 11'\n Accessing list elements is not supported yet.",
+            "type": "string"
+          },
+          "table": {
+            "description": "Optional table name. Defaults to 'default'",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "records": {
+            "description": "JSON encoded records",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "RenameTableRequest": {
+        "description": "Rename a table",
+        "properties": {
+          "from": {
+            "description": "current table name",
+            "type": "string"
+          },
+          "to": {
+            "description": "new table name",
+            "type": "string"
+          }
+        },
+        "title": "RenameTableRequest",
+        "type": "object"
+      },
+      "RenameTableResponse": {
+        "title": "RenameTableResponse",
+        "type": "object"
+      },
+      "TruncateRequest": {
+        "description": "Truncate the records in a table",
+        "properties": {
+          "table": {
+            "type": "string"
+          }
+        },
+        "title": "TruncateRequest",
+        "type": "object"
+      },
+      "TruncateResponse": {
+        "title": "TruncateResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update a record in the database. Include an \"id\" in the record to update.",
+        "properties": {
+          "id": {
+            "description": "The id of the record. If not specified it is inferred from the 'id' field of the record",
+            "type": "string"
+          },
+          "record": {
+            "description": "record, JSON object",
+            "type": "object"
+          },
+          "table": {
+            "description": "Optional table name. Defaults to 'default'",
+            "type": "string"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Db",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/db/Db/Count": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbCountRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbCountResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Count(CountRequest)"
+      }
+    },
+    "/db/Db/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Create(CreateRequest)"
+      }
+    },
+    "/db/Db/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Delete(DeleteRequest)"
+      }
+    },
+    "/db/Db/DropTable": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbDropTableRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbDropTableResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.DropTable(DropTableRequest)"
+      }
+    },
+    "/db/Db/ListTables": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbListTablesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbListTablesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.ListTables(ListTablesRequest)"
+      }
+    },
+    "/db/Db/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Read(ReadRequest)"
+      }
+    },
+    "/db/Db/RenameTable": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbRenameTableRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbRenameTableResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.RenameTable(RenameTableRequest)"
+      }
+    },
+    "/db/Db/Truncate": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbTruncateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbTruncateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Truncate(TruncateRequest)"
+      }
+    },
+    "/db/Db/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DbUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DbUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Db.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

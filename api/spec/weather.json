@@ -1,0 +1,466 @@
+{
+  "components": {
+    "requestBodies": {
+      "WeatherForecastRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ForecastRequest"
+            }
+          }
+        },
+        "description": "WeatherForecastRequest"
+      },
+      "WeatherNowRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NowRequest"
+            }
+          }
+        },
+        "description": "WeatherNowRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "WeatherForecastResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ForecastResponse"
+            }
+          }
+        },
+        "description": "WeatherForecastResponse"
+      },
+      "WeatherNowResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NowResponse"
+            }
+          }
+        },
+        "description": "WeatherNowResponse"
+      }
+    },
+    "schemas": {
+      "Forecast": {
+        "properties": {
+          "avg_temp_c": {
+            "description": "the average temp in celsius",
+            "format": "double",
+            "type": "number"
+          },
+          "avg_temp_f": {
+            "description": "the average temp in fahrenheit",
+            "format": "double",
+            "type": "number"
+          },
+          "chance_of_rain": {
+            "description": "chance of rain (percentage)",
+            "format": "int32",
+            "type": "number"
+          },
+          "condition": {
+            "description": "forecast condition",
+            "type": "string"
+          },
+          "date": {
+            "description": "date of the forecast",
+            "type": "string"
+          },
+          "icon_url": {
+            "description": "the URL of forecast condition icon. Simply prefix with either http or https to use it",
+            "type": "string"
+          },
+          "max_temp_c": {
+            "description": "max temp in celsius",
+            "format": "double",
+            "type": "number"
+          },
+          "max_temp_f": {
+            "description": "max temp in fahrenheit",
+            "format": "double",
+            "type": "number"
+          },
+          "min_temp_c": {
+            "description": "minimum temp in celsius",
+            "format": "double",
+            "type": "number"
+          },
+          "min_temp_f": {
+            "description": "minimum temp in fahrenheit",
+            "format": "double",
+            "type": "number"
+          },
+          "sunrise": {
+            "description": "time of sunrise",
+            "type": "string"
+          },
+          "sunset": {
+            "description": "time of sunset",
+            "type": "string"
+          },
+          "will_it_rain": {
+            "description": "will it rain",
+            "type": "boolean"
+          }
+        },
+        "title": "Forecast",
+        "type": "object"
+      },
+      "ForecastRequest": {
+        "description": "Get the weather forecast for the next 1-10 days",
+        "properties": {
+          "days": {
+            "description": "number of days. default 1, max 10",
+            "format": "int32",
+            "type": "number"
+          },
+          "location": {
+            "description": "location of the forecase",
+            "type": "string"
+          }
+        },
+        "title": "ForecastRequest",
+        "type": "object"
+      },
+      "ForecastResponse": {
+        "properties": {
+          "country": {
+            "description": "country of the request",
+            "type": "string"
+          },
+          "forecast": {
+            "description": "forecast for the next number of days",
+            "items": {
+              "properties": {
+                "avg_temp_c": {
+                  "description": "the average temp in celsius",
+                  "format": "double",
+                  "type": "number"
+                },
+                "avg_temp_f": {
+                  "description": "the average temp in fahrenheit",
+                  "format": "double",
+                  "type": "number"
+                },
+                "chance_of_rain": {
+                  "description": "chance of rain (percentage)",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "condition": {
+                  "description": "forecast condition",
+                  "type": "string"
+                },
+                "date": {
+                  "description": "date of the forecast",
+                  "type": "string"
+                },
+                "icon_url": {
+                  "description": "the URL of forecast condition icon. Simply prefix with either http or https to use it",
+                  "type": "string"
+                },
+                "max_temp_c": {
+                  "description": "max temp in celsius",
+                  "format": "double",
+                  "type": "number"
+                },
+                "max_temp_f": {
+                  "description": "max temp in fahrenheit",
+                  "format": "double",
+                  "type": "number"
+                },
+                "min_temp_c": {
+                  "description": "minimum temp in celsius",
+                  "format": "double",
+                  "type": "number"
+                },
+                "min_temp_f": {
+                  "description": "minimum temp in fahrenheit",
+                  "format": "double",
+                  "type": "number"
+                },
+                "sunrise": {
+                  "description": "time of sunrise",
+                  "type": "string"
+                },
+                "sunset": {
+                  "description": "time of sunset",
+                  "type": "string"
+                },
+                "will_it_rain": {
+                  "description": "will it rain",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "latitude": {
+            "description": "e.g 37.55",
+            "format": "double",
+            "type": "number"
+          },
+          "local_time": {
+            "description": "the local time",
+            "type": "string"
+          },
+          "location": {
+            "description": "location of the request",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "e.g -77.46",
+            "format": "double",
+            "type": "number"
+          },
+          "region": {
+            "description": "region related to the location",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "timezone of the location",
+            "type": "string"
+          }
+        },
+        "title": "ForecastResponse",
+        "type": "object"
+      },
+      "NowRequest": {
+        "description": "Get the current weather report for a location by postcode, city, zip code, ip address",
+        "properties": {
+          "location": {
+            "description": "location to get weather e.g postcode, city",
+            "type": "string"
+          }
+        },
+        "title": "NowRequest",
+        "type": "object"
+      },
+      "NowResponse": {
+        "properties": {
+          "cloud": {
+            "description": "cloud cover percentage",
+            "format": "int32",
+            "type": "number"
+          },
+          "condition": {
+            "description": "the weather condition",
+            "type": "string"
+          },
+          "country": {
+            "description": "country of the request",
+            "type": "string"
+          },
+          "daytime": {
+            "description": "whether its daytime",
+            "type": "boolean"
+          },
+          "feels_like_c": {
+            "description": "feels like in celsius",
+            "format": "double",
+            "type": "number"
+          },
+          "feels_like_f": {
+            "description": "feels like in fahrenheit",
+            "format": "double",
+            "type": "number"
+          },
+          "humidity": {
+            "description": "the humidity percentage",
+            "format": "int32",
+            "type": "number"
+          },
+          "icon_url": {
+            "description": "the URL of the related icon. Simply prefix with either http or https to use it",
+            "type": "string"
+          },
+          "latitude": {
+            "description": "e.g 37.55",
+            "format": "double",
+            "type": "number"
+          },
+          "local_time": {
+            "description": "the local time",
+            "type": "string"
+          },
+          "location": {
+            "description": "location of the request",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "e.g -77.46",
+            "format": "double",
+            "type": "number"
+          },
+          "region": {
+            "description": "region related to the location",
+            "type": "string"
+          },
+          "temp_c": {
+            "description": "temperature in celsius",
+            "format": "double",
+            "type": "number"
+          },
+          "temp_f": {
+            "description": "temperature in fahrenheit",
+            "format": "double",
+            "type": "number"
+          },
+          "timezone": {
+            "description": "timezone of the location",
+            "type": "string"
+          },
+          "wind_degree": {
+            "description": "wind degree",
+            "format": "int32",
+            "type": "number"
+          },
+          "wind_direction": {
+            "description": "wind direction",
+            "type": "string"
+          },
+          "wind_kph": {
+            "description": "wind in kph",
+            "format": "double",
+            "type": "number"
+          },
+          "wind_mph": {
+            "description": "wind in mph",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "NowResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Weather",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/weather/Weather/Forecast": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/WeatherForecastRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/WeatherForecastResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Weather.Forecast(ForecastRequest)"
+      }
+    },
+    "/weather/Weather/Now": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/WeatherNowRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/WeatherNowResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Weather.Now(NowRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

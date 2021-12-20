@@ -1,0 +1,748 @@
+{
+  "components": {
+    "requestBodies": {
+      "RoutingDirectionsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DirectionsRequest"
+            }
+          }
+        },
+        "description": "RoutingDirectionsRequest"
+      },
+      "RoutingEtaRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EtaRequest"
+            }
+          }
+        },
+        "description": "RoutingEtaRequest"
+      },
+      "RoutingRouteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RouteRequest"
+            }
+          }
+        },
+        "description": "RoutingRouteRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "RoutingDirectionsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DirectionsResponse"
+            }
+          }
+        },
+        "description": "RoutingDirectionsResponse"
+      },
+      "RoutingEtaResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EtaResponse"
+            }
+          }
+        },
+        "description": "RoutingEtaResponse"
+      },
+      "RoutingRouteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RouteResponse"
+            }
+          }
+        },
+        "description": "RoutingRouteResponse"
+      }
+    },
+    "schemas": {
+      "Direction": {
+        "properties": {
+          "distance": {
+            "description": "distance to travel in meters",
+            "format": "double",
+            "type": "number"
+          },
+          "duration": {
+            "description": "duration to travel in seconds",
+            "format": "double",
+            "type": "number"
+          },
+          "instruction": {
+            "description": "human readable instruction",
+            "type": "string"
+          },
+          "intersections": {
+            "description": "intersections on route",
+            "items": {
+              "properties": {
+                "bearings": {
+                  "format": "double",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "location": {
+                  "properties": {
+                    "latitude": {
+                      "description": "Lat e.g 52.523219",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Long e.g 13.428555",
+                      "format": "double",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "maneuver": {
+            "description": "maneuver to take",
+            "properties": {
+              "action": {
+                "type": "string"
+              },
+              "bearing_after": {
+                "format": "double",
+                "type": "number"
+              },
+              "bearing_before": {
+                "format": "double",
+                "type": "number"
+              },
+              "direction": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "latitude": {
+                    "description": "Lat e.g 52.523219",
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "description": "Long e.g 13.428555",
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "name": {
+            "description": "street name or location",
+            "type": "string"
+          },
+          "reference": {
+            "description": "alternative reference",
+            "type": "string"
+          }
+        },
+        "title": "Direction",
+        "type": "object"
+      },
+      "DirectionsRequest": {
+        "description": "Turn by turn directions from a start point to an end point including maneuvers and bearings",
+        "properties": {
+          "destination": {
+            "description": "The destination of the journey",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "origin": {
+            "description": "The staring point for the journey",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DirectionsRequest",
+        "type": "object"
+      },
+      "DirectionsResponse": {
+        "properties": {
+          "directions": {
+            "description": "Turn by turn directions",
+            "items": {
+              "properties": {
+                "distance": {
+                  "description": "distance to travel in meters",
+                  "format": "double",
+                  "type": "number"
+                },
+                "duration": {
+                  "description": "duration to travel in seconds",
+                  "format": "double",
+                  "type": "number"
+                },
+                "instruction": {
+                  "description": "human readable instruction",
+                  "type": "string"
+                },
+                "intersections": {
+                  "description": "intersections on route",
+                  "items": {
+                    "properties": {
+                      "bearings": {
+                        "format": "double",
+                        "items": {
+                          "type": "number"
+                        },
+                        "type": "array"
+                      },
+                      "location": {
+                        "properties": {
+                          "latitude": {
+                            "description": "Lat e.g 52.523219",
+                            "format": "double",
+                            "type": "number"
+                          },
+                          "longitude": {
+                            "description": "Long e.g 13.428555",
+                            "format": "double",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "maneuver": {
+                  "description": "maneuver to take",
+                  "properties": {
+                    "action": {
+                      "type": "string"
+                    },
+                    "bearing_after": {
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "bearing_before": {
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "direction": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "properties": {
+                        "latitude": {
+                          "description": "Lat e.g 52.523219",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "Long e.g 13.428555",
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "name": {
+                  "description": "street name or location",
+                  "type": "string"
+                },
+                "reference": {
+                  "description": "alternative reference",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "distance": {
+            "description": "Estimated distance of the route in meters",
+            "format": "double",
+            "type": "number"
+          },
+          "duration": {
+            "description": "Estimated duration of the route in seconds",
+            "format": "double",
+            "type": "number"
+          },
+          "waypoints": {
+            "description": "The waypoints on the route",
+            "items": {
+              "properties": {
+                "location": {
+                  "description": "gps point coordinates",
+                  "properties": {
+                    "latitude": {
+                      "description": "Lat e.g 52.523219",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Long e.g 13.428555",
+                      "format": "double",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "name": {
+                  "description": "street name or related reference",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "DirectionsResponse",
+        "type": "object"
+      },
+      "EtaRequest": {
+        "description": "Get the eta for a route from origin to destination. The eta is an estimated time based on car routes",
+        "properties": {
+          "destination": {
+            "description": "The end point for the eta calculation",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "origin": {
+            "description": "The starting point for the eta calculation",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "speed": {
+            "description": "speed in kilometers",
+            "format": "double",
+            "type": "number"
+          },
+          "type": {
+            "description": "type of transport. Only \"car\" is supported currently.",
+            "type": "string"
+          }
+        },
+        "title": "EtaRequest",
+        "type": "object"
+      },
+      "EtaResponse": {
+        "properties": {
+          "duration": {
+            "description": "eta in seconds",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "EtaResponse",
+        "type": "object"
+      },
+      "Intersection": {
+        "properties": {
+          "bearings": {
+            "format": "double",
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Intersection",
+        "type": "object"
+      },
+      "Maneuver": {
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "bearing_after": {
+            "format": "double",
+            "type": "number"
+          },
+          "bearing_before": {
+            "format": "double",
+            "type": "number"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Maneuver",
+        "type": "object"
+      },
+      "Point": {
+        "properties": {
+          "latitude": {
+            "description": "Lat e.g 52.523219",
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "description": "Long e.g 13.428555",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "Point",
+        "type": "object"
+      },
+      "RouteRequest": {
+        "description": "Retrieve a route as a simple list of gps points along with total distance and estimated duration",
+        "properties": {
+          "destination": {
+            "description": "Point of destination for the trip",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "origin": {
+            "description": "Point of origin for the trip",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "RouteRequest",
+        "type": "object"
+      },
+      "RouteResponse": {
+        "properties": {
+          "distance": {
+            "description": "estimated distance in meters",
+            "format": "double",
+            "type": "number"
+          },
+          "duration": {
+            "description": "estimated duration in seconds",
+            "format": "double",
+            "type": "number"
+          },
+          "waypoints": {
+            "description": "waypoints on the route",
+            "items": {
+              "properties": {
+                "location": {
+                  "description": "gps point coordinates",
+                  "properties": {
+                    "latitude": {
+                      "description": "Lat e.g 52.523219",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Long e.g 13.428555",
+                      "format": "double",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "name": {
+                  "description": "street name or related reference",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "RouteResponse",
+        "type": "object"
+      },
+      "Waypoint": {
+        "properties": {
+          "location": {
+            "description": "gps point coordinates",
+            "properties": {
+              "latitude": {
+                "description": "Lat e.g 52.523219",
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "description": "Long e.g 13.428555",
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "name": {
+            "description": "street name or related reference",
+            "type": "string"
+          }
+        },
+        "title": "Waypoint",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Routing",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/routing/Routing/Directions": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RoutingDirectionsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RoutingDirectionsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Routing.Directions(DirectionsRequest)"
+      }
+    },
+    "/routing/Routing/Eta": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RoutingEtaRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RoutingEtaResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Routing.Eta(EtaRequest)"
+      }
+    },
+    "/routing/Routing/Route": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RoutingRouteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RoutingRouteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Routing.Route(RouteRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -1,0 +1,1394 @@
+{
+  "components": {
+    "requestBodies": {
+      "EvchargersReferenceDataRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReferenceDataRequest"
+            }
+          }
+        },
+        "description": "EvchargersReferenceDataRequest"
+      },
+      "EvchargersSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "EvchargersSearchRequest"
+      }
+    },
+    "responses": {
+      "EvchargersReferenceDataResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReferenceDataResponse"
+            }
+          }
+        },
+        "description": "EvchargersReferenceDataResponse"
+      },
+      "EvchargersSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "EvchargersSearchResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Address": {
+        "properties": {
+          "access_comments": {
+            "description": "Any comments about how to access the charger",
+            "type": "string"
+          },
+          "address_line_1": {
+            "type": "string"
+          },
+          "address_line_2": {
+            "type": "string"
+          },
+          "country": {
+            "properties": {
+              "continent_code": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "iso_code": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "country_id": {
+            "type": "string"
+          },
+          "lat_lng": {
+            "type": "string"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "state_or_province": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "town": {
+            "type": "string"
+          }
+        },
+        "title": "Address",
+        "type": "object"
+      },
+      "BoundingBox": {
+        "description": "Box to search (top left and bottom right coordinates)",
+        "properties": {
+          "bottom_left": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "top_right": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "BoundingBox",
+        "type": "object"
+      },
+      "ChargerType": {
+        "properties": {
+          "comments": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "is_fast_charge_capable": {
+            "description": "Is this 40KW+",
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "ChargerType",
+        "type": "object"
+      },
+      "CheckinStatusType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_automated": {
+            "type": "boolean"
+          },
+          "is_positive": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "CheckinStatusType",
+        "type": "object"
+      },
+      "Connection": {
+        "properties": {
+          "amps": {
+            "description": "The amps offered",
+            "format": "double",
+            "type": "number"
+          },
+          "connection_type": {
+            "properties": {
+              "formal_name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "is_discontinued": {
+                "type": "boolean"
+              },
+              "is_obsolete": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "connection_type_id": {
+            "description": "The ID of the connection type",
+            "type": "string"
+          },
+          "current": {
+            "description": "The current",
+            "type": "string"
+          },
+          "level": {
+            "properties": {
+              "comments": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "is_fast_charge_capable": {
+                "description": "Is this 40KW+",
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "level_id": {
+            "description": "The level of charging power available",
+            "type": "string"
+          },
+          "power": {
+            "description": "The power in KW",
+            "format": "double",
+            "type": "number"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "voltage": {
+            "description": "The voltage offered",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "Connection",
+        "type": "object"
+      },
+      "ConnectionType": {
+        "properties": {
+          "formal_name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "is_discontinued": {
+            "type": "boolean"
+          },
+          "is_obsolete": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "ConnectionType",
+        "type": "object"
+      },
+      "Coordinates": {
+        "properties": {
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "Country": {
+        "properties": {
+          "continent_code": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "iso_code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "Country",
+        "type": "object"
+      },
+      "CurrentType": {
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "CurrentType",
+        "type": "object"
+      },
+      "DataProvider": {
+        "properties": {
+          "comments": {
+            "type": "string"
+          },
+          "data_provider_status_type": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_provider_enabled": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "id": {
+            "type": "string"
+          },
+          "license": {
+            "description": "How is this data licensed",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          }
+        },
+        "title": "DataProvider",
+        "type": "object"
+      },
+      "DataProviderStatusType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_provider_enabled": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "DataProviderStatusType",
+        "type": "object"
+      },
+      "Operator": {
+        "properties": {
+          "comments": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string"
+          },
+          "fault_report_email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "is_private_individual": {
+            "description": "Is this operator a private individual vs a company",
+            "type": "boolean"
+          },
+          "phone_primary": {
+            "type": "string"
+          },
+          "phone_secondary": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          }
+        },
+        "title": "Operator",
+        "type": "object"
+      },
+      "Poi": {
+        "properties": {
+          "address": {
+            "description": "The address",
+            "properties": {
+              "access_comments": {
+                "description": "Any comments about how to access the charger",
+                "type": "string"
+              },
+              "address_line_1": {
+                "type": "string"
+              },
+              "address_line_2": {
+                "type": "string"
+              },
+              "country": {
+                "properties": {
+                  "continent_code": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "iso_code": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "country_id": {
+                "type": "string"
+              },
+              "lat_lng": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "latitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              },
+              "postcode": {
+                "type": "string"
+              },
+              "state_or_province": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "town": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "connections": {
+            "description": "The connections available at this charge point",
+            "items": {
+              "properties": {
+                "amps": {
+                  "description": "The amps offered",
+                  "format": "double",
+                  "type": "number"
+                },
+                "connection_type": {
+                  "properties": {
+                    "formal_name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_discontinued": {
+                      "type": "boolean"
+                    },
+                    "is_obsolete": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "connection_type_id": {
+                  "description": "The ID of the connection type",
+                  "type": "string"
+                },
+                "current": {
+                  "description": "The current",
+                  "type": "string"
+                },
+                "level": {
+                  "properties": {
+                    "comments": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_fast_charge_capable": {
+                      "description": "Is this 40KW+",
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "level_id": {
+                  "description": "The level of charging power available",
+                  "type": "string"
+                },
+                "power": {
+                  "description": "The power in KW",
+                  "format": "double",
+                  "type": "number"
+                },
+                "reference": {
+                  "type": "string"
+                },
+                "voltage": {
+                  "description": "The voltage offered",
+                  "format": "double",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "cost": {
+            "description": "The cost of charging",
+            "type": "string"
+          },
+          "data_provider_id": {
+            "description": "The ID of the data provider",
+            "type": "string"
+          },
+          "id": {
+            "description": "The ID of the charger",
+            "type": "string"
+          },
+          "num_points": {
+            "description": "The number of charging points",
+            "format": "int64",
+            "type": "number"
+          },
+          "operator": {
+            "description": "The operator",
+            "properties": {
+              "comments": {
+                "type": "string"
+              },
+              "contact_email": {
+                "type": "string"
+              },
+              "fault_report_email": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "is_private_individual": {
+                "description": "Is this operator a private individual vs a company",
+                "type": "boolean"
+              },
+              "phone_primary": {
+                "type": "string"
+              },
+              "phone_secondary": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "website": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "operator_id": {
+            "description": "The ID of the operator of the charger",
+            "type": "string"
+          },
+          "usage_type": {
+            "description": "The type of usage",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_access_key_required": {
+                "type": "boolean"
+              },
+              "is_membership_required": {
+                "type": "boolean"
+              },
+              "is_pay_at_location": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "usage_type_id": {
+            "description": "The type of usage for this charger point (is it public, membership required, etc)",
+            "type": "string"
+          }
+        },
+        "title": "Poi",
+        "type": "object"
+      },
+      "ReferenceDataRequest": {
+        "description": "Retrieve reference data as used by this API and in conjunction with the Search endpoint",
+        "title": "ReferenceDataRequest",
+        "type": "object"
+      },
+      "ReferenceDataResponse": {
+        "properties": {
+          "charger_types": {
+            "description": "The types of charger",
+            "properties": {
+              "comments": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "is_fast_charge_capable": {
+                "description": "Is this 40KW+",
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "checkin_status_types": {
+            "description": "The types of checkin status",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_automated": {
+                "type": "boolean"
+              },
+              "is_positive": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "connection_types": {
+            "description": "The types of connection",
+            "properties": {
+              "formal_name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "is_discontinued": {
+                "type": "boolean"
+              },
+              "is_obsolete": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "countries": {
+            "description": "The countries",
+            "items": {
+              "properties": {
+                "continent_code": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "iso_code": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "current_types": {
+            "description": "The types of current",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "data_providers": {
+            "description": "The providers of the charger data",
+            "properties": {
+              "comments": {
+                "type": "string"
+              },
+              "data_provider_status_type": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "is_provider_enabled": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "type": "string"
+              },
+              "license": {
+                "description": "How is this data licensed",
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "website": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "operators": {
+            "description": "The companies operating the chargers",
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "contact_email": {
+                  "type": "string"
+                },
+                "fault_report_email": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "is_private_individual": {
+                  "description": "Is this operator a private individual vs a company",
+                  "type": "boolean"
+                },
+                "phone_primary": {
+                  "type": "string"
+                },
+                "phone_secondary": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "website": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "status_types": {
+            "description": "The status of the charger",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_operational": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "submission_status_types": {
+            "description": "The status of a submission",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_live": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "usage_types": {
+            "description": "The different types of usage",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_access_key_required": {
+                "type": "boolean"
+              },
+              "is_membership_required": {
+                "type": "boolean"
+              },
+              "is_pay_at_location": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "user_comment_types": {
+            "description": "The types of user comment",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReferenceDataResponse",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search by giving a coordinate and a max distance, or bounding box and optional filters",
+        "properties": {
+          "box": {
+            "description": "Bounding box to search within (top left and bottom right coordinates)",
+            "properties": {
+              "bottom_left": {
+                "properties": {
+                  "latitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              },
+              "top_right": {
+                "properties": {
+                  "latitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "connection_types": {
+            "description": "IDs of the connection type",
+            "type": "string"
+          },
+          "country_id": {
+            "description": "Country ID",
+            "type": "string"
+          },
+          "distance": {
+            "description": "Search distance from point in metres, defaults to 5000m",
+            "format": "int64",
+            "type": "number"
+          },
+          "levels": {
+            "description": "Supported charging levels",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "location": {
+            "description": "Coordinates from which to begin search",
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "max_results": {
+            "description": "Maximum number of results to return, defaults to 100",
+            "format": "int64",
+            "type": "number"
+          },
+          "min_power": {
+            "description": "Minimum power in KW. Note: data not available for many chargers",
+            "format": "int64",
+            "type": "number"
+          },
+          "operators": {
+            "description": "IDs of the the EV charger operator",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "usage_types": {
+            "description": "Usage of the charge point (is it public, membership required, etc)",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "pois": {
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "The address",
+                  "properties": {
+                    "access_comments": {
+                      "description": "Any comments about how to access the charger",
+                      "type": "string"
+                    },
+                    "address_line_1": {
+                      "type": "string"
+                    },
+                    "address_line_2": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "properties": {
+                        "continent_code": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "iso_code": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "country_id": {
+                      "type": "string"
+                    },
+                    "lat_lng": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "properties": {
+                        "latitude": {
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "postcode": {
+                      "type": "string"
+                    },
+                    "state_or_province": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "town": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "connections": {
+                  "description": "The connections available at this charge point",
+                  "items": {
+                    "properties": {
+                      "amps": {
+                        "description": "The amps offered",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "connection_type": {
+                        "properties": {
+                          "formal_name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "is_discontinued": {
+                            "type": "boolean"
+                          },
+                          "is_obsolete": {
+                            "type": "boolean"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "connection_type_id": {
+                        "description": "The ID of the connection type",
+                        "type": "string"
+                      },
+                      "current": {
+                        "description": "The current",
+                        "type": "string"
+                      },
+                      "level": {
+                        "properties": {
+                          "comments": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "is_fast_charge_capable": {
+                            "description": "Is this 40KW+",
+                            "type": "boolean"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "level_id": {
+                        "description": "The level of charging power available",
+                        "type": "string"
+                      },
+                      "power": {
+                        "description": "The power in KW",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "reference": {
+                        "type": "string"
+                      },
+                      "voltage": {
+                        "description": "The voltage offered",
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "cost": {
+                  "description": "The cost of charging",
+                  "type": "string"
+                },
+                "data_provider_id": {
+                  "description": "The ID of the data provider",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "The ID of the charger",
+                  "type": "string"
+                },
+                "num_points": {
+                  "description": "The number of charging points",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "operator": {
+                  "description": "The operator",
+                  "properties": {
+                    "comments": {
+                      "type": "string"
+                    },
+                    "contact_email": {
+                      "type": "string"
+                    },
+                    "fault_report_email": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_private_individual": {
+                      "description": "Is this operator a private individual vs a company",
+                      "type": "boolean"
+                    },
+                    "phone_primary": {
+                      "type": "string"
+                    },
+                    "phone_secondary": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "website": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "operator_id": {
+                  "description": "The ID of the operator of the charger",
+                  "type": "string"
+                },
+                "usage_type": {
+                  "description": "The type of usage",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_access_key_required": {
+                      "type": "boolean"
+                    },
+                    "is_membership_required": {
+                      "type": "boolean"
+                    },
+                    "is_pay_at_location": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "usage_type_id": {
+                  "description": "The type of usage for this charger point (is it public, membership required, etc)",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "StatusType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_operational": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "StatusType",
+        "type": "object"
+      },
+      "SubmissionStatusType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_live": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "SubmissionStatusType",
+        "type": "object"
+      },
+      "UsageType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_access_key_required": {
+            "type": "boolean"
+          },
+          "is_membership_required": {
+            "type": "boolean"
+          },
+          "is_pay_at_location": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "UsageType",
+        "type": "object"
+      },
+      "UserCommentType": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "UserCommentType",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Evchargers",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/evchargers/Evchargers/ReferenceData": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EvchargersReferenceDataRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EvchargersReferenceDataResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Evchargers.ReferenceData(ReferenceDataRequest)"
+      }
+    },
+    "/evchargers/Evchargers/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EvchargersSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EvchargersSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Evchargers.Search(SearchRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

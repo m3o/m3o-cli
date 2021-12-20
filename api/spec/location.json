@@ -1,0 +1,433 @@
+{
+  "components": {
+    "requestBodies": {
+      "LocationReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "LocationReadRequest"
+      },
+      "LocationSaveRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SaveRequest"
+            }
+          }
+        },
+        "description": "LocationSaveRequest"
+      },
+      "LocationSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "LocationSearchRequest"
+      }
+    },
+    "responses": {
+      "LocationReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "LocationReadResponse"
+      },
+      "LocationSaveResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SaveResponse"
+            }
+          }
+        },
+        "description": "LocationSaveResponse"
+      },
+      "LocationSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "LocationSearchResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Entity": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "timestamp": {
+                "format": "int64",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "title": "Entity",
+        "type": "object"
+      },
+      "Point": {
+        "description": "A point is a GPS coordinate.",
+        "properties": {
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "timestamp": {
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "Point",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read an entity by its ID",
+        "properties": {
+          "id": {
+            "description": "the entity id",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "entity": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "latitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "timestamp": {
+                    "format": "int64",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "SaveRequest": {
+        "description": "Save an entity's current position",
+        "properties": {
+          "entity": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "latitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "timestamp": {
+                    "format": "int64",
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "SaveRequest",
+        "type": "object"
+      },
+      "SaveResponse": {
+        "title": "SaveResponse",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search for entities in a given radius",
+        "properties": {
+          "center": {
+            "description": "Central position to search from",
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "timestamp": {
+                "format": "int64",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "numEntities": {
+            "description": "Maximum number of entities to return",
+            "format": "int64",
+            "type": "number"
+          },
+          "radius": {
+            "description": "radius in meters",
+            "format": "double",
+            "type": "number"
+          },
+          "type": {
+            "description": "type of entities to filter",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "entities": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "location": {
+                  "properties": {
+                    "latitude": {
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "timestamp": {
+                      "format": "int64",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Location",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/location/Location/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/LocationReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/LocationReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Location.Read(ReadRequest)"
+      }
+    },
+    "/location/Location/Save": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/LocationSaveRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/LocationSaveResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Location.Save(SaveRequest)"
+      }
+    },
+    "/location/Location/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/LocationSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/LocationSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Location.Search(SearchRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

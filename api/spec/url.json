@@ -1,0 +1,318 @@
+{
+  "components": {
+    "requestBodies": {
+      "UrlListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "UrlListRequest"
+      },
+      "UrlProxyRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProxyRequest"
+            }
+          }
+        },
+        "description": "UrlProxyRequest"
+      },
+      "UrlShortenRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ShortenRequest"
+            }
+          }
+        },
+        "description": "UrlShortenRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "UrlListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "UrlListResponse"
+      },
+      "UrlProxyResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProxyResponse"
+            }
+          }
+        },
+        "description": "UrlProxyResponse"
+      },
+      "UrlShortenResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ShortenResponse"
+            }
+          }
+        },
+        "description": "UrlShortenResponse"
+      }
+    },
+    "schemas": {
+      "ListRequest": {
+        "description": "List all the shortened URLs",
+        "properties": {
+          "shortURL": {
+            "description": "filter by short URL, optional",
+            "type": "string"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "urlPairs": {
+            "properties": {
+              "created": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "destinationURL": {
+                "description": "destination url",
+                "type": "string"
+              },
+              "shortURL": {
+                "description": "shortened url",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ProxyRequest": {
+        "description": "Proxy returns the destination URL of a short URL.",
+        "properties": {
+          "shortURL": {
+            "description": "short url ID, without the domain, eg. if your short URL is\n `m3o.one/u/someshorturlid` then pass in `someshorturlid`",
+            "type": "string"
+          }
+        },
+        "title": "ProxyRequest",
+        "type": "object"
+      },
+      "ProxyResponse": {
+        "properties": {
+          "destinationURL": {
+            "type": "string"
+          }
+        },
+        "title": "ProxyResponse",
+        "type": "object"
+      },
+      "ShortenRequest": {
+        "description": "Shorten a long URL",
+        "properties": {
+          "destinationURL": {
+            "description": "the url to shorten",
+            "type": "string"
+          }
+        },
+        "title": "ShortenRequest",
+        "type": "object"
+      },
+      "ShortenResponse": {
+        "properties": {
+          "shortURL": {
+            "description": "the shortened url",
+            "type": "string"
+          }
+        },
+        "title": "ShortenResponse",
+        "type": "object"
+      },
+      "URLPair": {
+        "properties": {
+          "created": {
+            "description": "time of creation",
+            "type": "string"
+          },
+          "destinationURL": {
+            "description": "destination url",
+            "type": "string"
+          },
+          "shortURL": {
+            "description": "shortened url",
+            "type": "string"
+          }
+        },
+        "title": "URLPair",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Url",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/url/Url/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UrlListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UrlListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Url.List(ListRequest)"
+      }
+    },
+    "/url/Url/Proxy": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UrlProxyRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UrlProxyResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Url.Proxy(ProxyRequest)"
+      }
+    },
+    "/url/Url/Shorten": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UrlShortenRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UrlShortenResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Url.Shorten(ShortenRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

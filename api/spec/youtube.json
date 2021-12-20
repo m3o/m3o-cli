@@ -1,0 +1,310 @@
+{
+  "components": {
+    "requestBodies": {
+      "YoutubeEmbedRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EmbedRequest"
+            }
+          }
+        },
+        "description": "YoutubeEmbedRequest"
+      },
+      "YoutubeSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "YoutubeSearchRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "YoutubeEmbedResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EmbedResponse"
+            }
+          }
+        },
+        "description": "YoutubeEmbedResponse"
+      },
+      "YoutubeSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "YoutubeSearchResponse"
+      }
+    },
+    "schemas": {
+      "EmbedRequest": {
+        "description": "Embed a YouTube video",
+        "properties": {
+          "url": {
+            "description": "provide the youtube url e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0",
+            "type": "string"
+          }
+        },
+        "title": "EmbedRequest",
+        "type": "object"
+      },
+      "EmbedResponse": {
+        "properties": {
+          "embed_url": {
+            "description": "the embeddable link e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0",
+            "type": "string"
+          },
+          "html_script": {
+            "description": "the script code",
+            "type": "string"
+          },
+          "long_url": {
+            "description": "the full url",
+            "type": "string"
+          },
+          "short_url": {
+            "description": "the short url",
+            "type": "string"
+          }
+        },
+        "title": "EmbedResponse",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search for videos on YouTube",
+        "properties": {
+          "query": {
+            "description": "Query to search for",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "results": {
+            "description": "List of results for the query",
+            "items": {
+              "properties": {
+                "broadcasting": {
+                  "description": "if live broadcast then indicates activity. \n none, upcoming, live, completed",
+                  "type": "string"
+                },
+                "channel_id": {
+                  "description": "the channel id",
+                  "type": "string"
+                },
+                "channel_title": {
+                  "description": "the channel title",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "the result description",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "id of the result",
+                  "type": "string"
+                },
+                "kind": {
+                  "description": "kind of result; \"video\", \"channel\", \"playlist\"",
+                  "type": "string"
+                },
+                "published_at": {
+                  "description": "published at time",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "title of the result",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "the associated url",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "SearchResult": {
+        "properties": {
+          "broadcasting": {
+            "description": "if live broadcast then indicates activity. \n none, upcoming, live, completed",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "the channel id",
+            "type": "string"
+          },
+          "channel_title": {
+            "description": "the channel title",
+            "type": "string"
+          },
+          "description": {
+            "description": "the result description",
+            "type": "string"
+          },
+          "id": {
+            "description": "id of the result",
+            "type": "string"
+          },
+          "kind": {
+            "description": "kind of result; \"video\", \"channel\", \"playlist\"",
+            "type": "string"
+          },
+          "published_at": {
+            "description": "published at time",
+            "type": "string"
+          },
+          "title": {
+            "description": "title of the result",
+            "type": "string"
+          },
+          "url": {
+            "description": "the associated url",
+            "type": "string"
+          }
+        },
+        "title": "SearchResult",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Youtube",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/youtube/Youtube/Embed": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/YoutubeEmbedRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/YoutubeEmbedResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Youtube.Embed(EmbedRequest)"
+      }
+    },
+    "/youtube/Youtube/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/YoutubeSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/YoutubeSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Youtube.Search(SearchRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

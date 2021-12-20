@@ -1,0 +1,624 @@
+{
+  "components": {
+    "requestBodies": {
+      "TwitterSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "TwitterSearchRequest"
+      },
+      "TwitterTimelineRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TimelineRequest"
+            }
+          }
+        },
+        "description": "TwitterTimelineRequest"
+      },
+      "TwitterTrendsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrendsRequest"
+            }
+          }
+        },
+        "description": "TwitterTrendsRequest"
+      },
+      "TwitterUserRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UserRequest"
+            }
+          }
+        },
+        "description": "TwitterUserRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "TwitterSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "TwitterSearchResponse"
+      },
+      "TwitterTimelineResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TimelineResponse"
+            }
+          }
+        },
+        "description": "TwitterTimelineResponse"
+      },
+      "TwitterTrendsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrendsResponse"
+            }
+          }
+        },
+        "description": "TwitterTrendsResponse"
+      },
+      "TwitterUserResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UserResponse"
+            }
+          }
+        },
+        "description": "TwitterUserResponse"
+      }
+    },
+    "schemas": {
+      "Profile": {
+        "properties": {
+          "created_at": {
+            "description": "the account creation date",
+            "type": "string"
+          },
+          "description": {
+            "description": "the user description",
+            "type": "string"
+          },
+          "followers": {
+            "description": "the follower count",
+            "format": "int64",
+            "type": "number"
+          },
+          "id": {
+            "description": "the user id",
+            "format": "int64",
+            "type": "number"
+          },
+          "image_url": {
+            "description": "The user's profile picture",
+            "type": "string"
+          },
+          "location": {
+            "description": "the user's location",
+            "type": "string"
+          },
+          "name": {
+            "description": "display name of the user",
+            "type": "string"
+          },
+          "private": {
+            "description": "if the account is private",
+            "type": "boolean"
+          },
+          "username": {
+            "description": "the username",
+            "type": "string"
+          },
+          "verified": {
+            "description": "if the account is verified",
+            "type": "boolean"
+          }
+        },
+        "title": "Profile",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search for tweets with a simple query",
+        "properties": {
+          "limit": {
+            "description": "number of tweets to return. default: 20",
+            "format": "int32",
+            "type": "number"
+          },
+          "query": {
+            "description": "the query to search for",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "tweets": {
+            "description": "the related tweets for the search",
+            "items": {
+              "properties": {
+                "created_at": {
+                  "description": "time of tweet",
+                  "type": "string"
+                },
+                "favourited_count": {
+                  "description": "number of times favourited",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "id": {
+                  "description": "id of the tweet",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "retweeted_count": {
+                  "description": "number of times retweeted",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "text": {
+                  "description": "text of the tweet",
+                  "type": "string"
+                },
+                "username": {
+                  "description": "username of the person who tweeted",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "TimelineRequest": {
+        "description": "Get the timeline for a given user",
+        "properties": {
+          "limit": {
+            "description": "number of tweets to return. default: 20",
+            "format": "int32",
+            "type": "number"
+          },
+          "username": {
+            "description": "the username to request the timeline for",
+            "type": "string"
+          }
+        },
+        "title": "TimelineRequest",
+        "type": "object"
+      },
+      "TimelineResponse": {
+        "properties": {
+          "tweets": {
+            "description": "The recent tweets for the user",
+            "items": {
+              "properties": {
+                "created_at": {
+                  "description": "time of tweet",
+                  "type": "string"
+                },
+                "favourited_count": {
+                  "description": "number of times favourited",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "id": {
+                  "description": "id of the tweet",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "retweeted_count": {
+                  "description": "number of times retweeted",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "text": {
+                  "description": "text of the tweet",
+                  "type": "string"
+                },
+                "username": {
+                  "description": "username of the person who tweeted",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "TimelineResponse",
+        "type": "object"
+      },
+      "Trend": {
+        "properties": {
+          "name": {
+            "description": "name of the trend",
+            "type": "string"
+          },
+          "tweet_volume": {
+            "description": "the volume of tweets in last 24 hours",
+            "format": "int64",
+            "type": "number"
+          },
+          "url": {
+            "description": "the twitter url",
+            "type": "string"
+          }
+        },
+        "title": "Trend",
+        "type": "object"
+      },
+      "TrendsRequest": {
+        "description": "Get the current global trending topics",
+        "title": "TrendsRequest",
+        "type": "object"
+      },
+      "TrendsResponse": {
+        "properties": {
+          "trends": {
+            "description": "a list of trending topics",
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "name of the trend",
+                  "type": "string"
+                },
+                "tweet_volume": {
+                  "description": "the volume of tweets in last 24 hours",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "url": {
+                  "description": "the twitter url",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "TrendsResponse",
+        "type": "object"
+      },
+      "Tweet": {
+        "properties": {
+          "created_at": {
+            "description": "time of tweet",
+            "type": "string"
+          },
+          "favourited_count": {
+            "description": "number of times favourited",
+            "format": "int64",
+            "type": "number"
+          },
+          "id": {
+            "description": "id of the tweet",
+            "format": "int64",
+            "type": "number"
+          },
+          "retweeted_count": {
+            "description": "number of times retweeted",
+            "format": "int64",
+            "type": "number"
+          },
+          "text": {
+            "description": "text of the tweet",
+            "type": "string"
+          },
+          "username": {
+            "description": "username of the person who tweeted",
+            "type": "string"
+          }
+        },
+        "title": "Tweet",
+        "type": "object"
+      },
+      "UserRequest": {
+        "description": "Get a user's twitter profile",
+        "properties": {
+          "username": {
+            "description": "the username to lookup",
+            "type": "string"
+          }
+        },
+        "title": "UserRequest",
+        "type": "object"
+      },
+      "UserResponse": {
+        "properties": {
+          "profile": {
+            "description": "The requested user profile",
+            "properties": {
+              "created_at": {
+                "description": "the account creation date",
+                "type": "string"
+              },
+              "description": {
+                "description": "the user description",
+                "type": "string"
+              },
+              "followers": {
+                "description": "the follower count",
+                "format": "int64",
+                "type": "number"
+              },
+              "id": {
+                "description": "the user id",
+                "format": "int64",
+                "type": "number"
+              },
+              "image_url": {
+                "description": "The user's profile picture",
+                "type": "string"
+              },
+              "location": {
+                "description": "the user's location",
+                "type": "string"
+              },
+              "name": {
+                "description": "display name of the user",
+                "type": "string"
+              },
+              "private": {
+                "description": "if the account is private",
+                "type": "boolean"
+              },
+              "username": {
+                "description": "the username",
+                "type": "string"
+              },
+              "verified": {
+                "description": "if the account is verified",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "status": {
+            "description": "the current user status",
+            "properties": {
+              "created_at": {
+                "description": "time of tweet",
+                "type": "string"
+              },
+              "favourited_count": {
+                "description": "number of times favourited",
+                "format": "int64",
+                "type": "number"
+              },
+              "id": {
+                "description": "id of the tweet",
+                "format": "int64",
+                "type": "number"
+              },
+              "retweeted_count": {
+                "description": "number of times retweeted",
+                "format": "int64",
+                "type": "number"
+              },
+              "text": {
+                "description": "text of the tweet",
+                "type": "string"
+              },
+              "username": {
+                "description": "username of the person who tweeted",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UserResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Twitter",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/twitter/Twitter/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TwitterSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TwitterSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Twitter.Search(SearchRequest)"
+      }
+    },
+    "/twitter/Twitter/Timeline": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TwitterTimelineRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TwitterTimelineResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Twitter.Timeline(TimelineRequest)"
+      }
+    },
+    "/twitter/Twitter/Trends": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TwitterTrendsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TwitterTrendsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Twitter.Trends(TrendsRequest)"
+      }
+    },
+    "/twitter/Twitter/User": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TwitterUserRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TwitterUserResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Twitter.User(UserRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

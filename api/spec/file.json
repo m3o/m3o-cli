@@ -1,0 +1,482 @@
+{
+  "components": {
+    "requestBodies": {
+      "FileDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "FileDeleteRequest"
+      },
+      "FileListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "FileListRequest"
+      },
+      "FileReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "FileReadRequest"
+      },
+      "FileSaveRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SaveRequest"
+            }
+          }
+        },
+        "description": "FileSaveRequest"
+      }
+    },
+    "responses": {
+      "FileDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "FileDeleteResponse"
+      },
+      "FileListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "FileListResponse"
+      },
+      "FileReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "FileReadResponse"
+      },
+      "FileSaveResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SaveResponse"
+            }
+          }
+        },
+        "description": "FileSaveResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "DeleteRequest": {
+        "description": "Delete a file by project name/path",
+        "properties": {
+          "path": {
+            "description": "Path to the file",
+            "type": "string"
+          },
+          "project": {
+            "description": "The project name",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List files by their project and optionally a path.",
+        "properties": {
+          "path": {
+            "description": "Defaults to '/', ie. lists all files in a project.\n Supply path to a folder if you want to list\n files inside that folder\n eg. '/docs'",
+            "type": "string"
+          },
+          "project": {
+            "description": "Project, required for listing.",
+            "type": "string"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "files": {
+            "items": {
+              "properties": {
+                "content": {
+                  "description": "File contents",
+                  "type": "string"
+                },
+                "created": {
+                  "description": "Time the file was created e.g 2021-05-20T13:37:21Z",
+                  "type": "string"
+                },
+                "metadata": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Any other associated metadata as a map of key-value pairs",
+                  "type": "object"
+                },
+                "path": {
+                  "description": "Path to file or folder eg. '/documents/text-files/file.txt'.",
+                  "type": "string"
+                },
+                "project": {
+                  "description": "A custom project to group files\n eg. file-of-mywebsite.com",
+                  "type": "string"
+                },
+                "updated": {
+                  "description": "Time the file was updated e.g 2021-05-20T13:37:21Z",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read a file by path",
+        "properties": {
+          "path": {
+            "description": "Path to the file",
+            "type": "string"
+          },
+          "project": {
+            "description": "Project name",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "file": {
+            "description": "Returns the file",
+            "properties": {
+              "content": {
+                "description": "File contents",
+                "type": "string"
+              },
+              "created": {
+                "description": "Time the file was created e.g 2021-05-20T13:37:21Z",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Any other associated metadata as a map of key-value pairs",
+                "type": "object"
+              },
+              "path": {
+                "description": "Path to file or folder eg. '/documents/text-files/file.txt'.",
+                "type": "string"
+              },
+              "project": {
+                "description": "A custom project to group files\n eg. file-of-mywebsite.com",
+                "type": "string"
+              },
+              "updated": {
+                "description": "Time the file was updated e.g 2021-05-20T13:37:21Z",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "Record": {
+        "properties": {
+          "content": {
+            "description": "File contents",
+            "type": "string"
+          },
+          "created": {
+            "description": "Time the file was created e.g 2021-05-20T13:37:21Z",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Any other associated metadata as a map of key-value pairs",
+            "type": "object"
+          },
+          "path": {
+            "description": "Path to file or folder eg. '/documents/text-files/file.txt'.",
+            "type": "string"
+          },
+          "project": {
+            "description": "A custom project to group files\n eg. file-of-mywebsite.com",
+            "type": "string"
+          },
+          "updated": {
+            "description": "Time the file was updated e.g 2021-05-20T13:37:21Z",
+            "type": "string"
+          }
+        },
+        "title": "Record",
+        "type": "object"
+      },
+      "SaveRequest": {
+        "description": "Save a file",
+        "properties": {
+          "file": {
+            "properties": {
+              "content": {
+                "description": "File contents",
+                "type": "string"
+              },
+              "created": {
+                "description": "Time the file was created e.g 2021-05-20T13:37:21Z",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Any other associated metadata as a map of key-value pairs",
+                "type": "object"
+              },
+              "path": {
+                "description": "Path to file or folder eg. '/documents/text-files/file.txt'.",
+                "type": "string"
+              },
+              "project": {
+                "description": "A custom project to group files\n eg. file-of-mywebsite.com",
+                "type": "string"
+              },
+              "updated": {
+                "description": "Time the file was updated e.g 2021-05-20T13:37:21Z",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "SaveRequest",
+        "type": "object"
+      },
+      "SaveResponse": {
+        "title": "SaveResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "File",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/file/File/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FileDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FileDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "File.Delete(DeleteRequest)"
+      }
+    },
+    "/file/File/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FileListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FileListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "File.List(ListRequest)"
+      }
+    },
+    "/file/File/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FileReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FileReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "File.Read(ReadRequest)"
+      }
+    },
+    "/file/File/Save": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FileSaveRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FileSaveResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "File.Save(SaveRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

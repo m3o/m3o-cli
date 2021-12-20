@@ -1,0 +1,251 @@
+{
+  "components": {
+    "requestBodies": {
+      "PrayerTimesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TimesRequest"
+            }
+          }
+        },
+        "description": "PrayerTimesRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "PrayerTimesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TimesResponse"
+            }
+          }
+        },
+        "description": "PrayerTimesResponse"
+      }
+    },
+    "schemas": {
+      "PrayerTime": {
+        "properties": {
+          "asr": {
+            "description": "asr time",
+            "type": "string"
+          },
+          "date": {
+            "description": "date for prayer times in YYYY-MM-DD format",
+            "type": "string"
+          },
+          "fajr": {
+            "description": "fajr time",
+            "type": "string"
+          },
+          "isha": {
+            "description": "isha time",
+            "type": "string"
+          },
+          "maghrib": {
+            "description": "maghrib time",
+            "type": "string"
+          },
+          "sunrise": {
+            "description": "time of sunrise",
+            "type": "string"
+          },
+          "zuhr": {
+            "description": "zuhr time",
+            "type": "string"
+          }
+        },
+        "title": "PrayerTime",
+        "type": "object"
+      },
+      "TimesRequest": {
+        "description": "Get the prayer (salah) times for a location on a given date",
+        "properties": {
+          "date": {
+            "description": "optional date in YYYY-MM-DD format, otherwise uses today",
+            "type": "string"
+          },
+          "days": {
+            "description": "number of days to request times for",
+            "format": "int32",
+            "type": "number"
+          },
+          "latitude": {
+            "description": "optional latitude used in place of location",
+            "format": "double",
+            "type": "number"
+          },
+          "location": {
+            "description": "location to retrieve prayer times for. \n this can be a specific address, city, etc",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "optional longitude used in place of location",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "TimesRequest",
+        "type": "object"
+      },
+      "TimesResponse": {
+        "properties": {
+          "date": {
+            "description": "date of request",
+            "type": "string"
+          },
+          "days": {
+            "description": "number of days",
+            "format": "int32",
+            "type": "number"
+          },
+          "latitude": {
+            "description": "latitude of location",
+            "format": "double",
+            "type": "number"
+          },
+          "location": {
+            "description": "location for the request",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "longitude of location",
+            "format": "double",
+            "type": "number"
+          },
+          "times": {
+            "description": "prayer times for the given location",
+            "items": {
+              "properties": {
+                "asr": {
+                  "description": "asr time",
+                  "type": "string"
+                },
+                "date": {
+                  "description": "date for prayer times in YYYY-MM-DD format",
+                  "type": "string"
+                },
+                "fajr": {
+                  "description": "fajr time",
+                  "type": "string"
+                },
+                "isha": {
+                  "description": "isha time",
+                  "type": "string"
+                },
+                "maghrib": {
+                  "description": "maghrib time",
+                  "type": "string"
+                },
+                "sunrise": {
+                  "description": "time of sunrise",
+                  "type": "string"
+                },
+                "zuhr": {
+                  "description": "zuhr time",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "TimesResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Prayer",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/prayer/Prayer/Times": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PrayerTimesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PrayerTimesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Prayer.Times(TimesRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

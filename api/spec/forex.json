@@ -1,0 +1,336 @@
+{
+  "components": {
+    "requestBodies": {
+      "ForexHistoryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryRequest"
+            }
+          }
+        },
+        "description": "ForexHistoryRequest"
+      },
+      "ForexPriceRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceRequest"
+            }
+          }
+        },
+        "description": "ForexPriceRequest"
+      },
+      "ForexQuoteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteRequest"
+            }
+          }
+        },
+        "description": "ForexQuoteRequest"
+      }
+    },
+    "responses": {
+      "ForexHistoryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryResponse"
+            }
+          }
+        },
+        "description": "ForexHistoryResponse"
+      },
+      "ForexPriceResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceResponse"
+            }
+          }
+        },
+        "description": "ForexPriceResponse"
+      },
+      "ForexQuoteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteResponse"
+            }
+          }
+        },
+        "description": "ForexQuoteResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "HistoryRequest": {
+        "description": "Returns the data for the previous close",
+        "properties": {
+          "symbol": {
+            "description": "the forex symbol e.g GBPUSD",
+            "type": "string"
+          }
+        },
+        "title": "HistoryRequest",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "properties": {
+          "close": {
+            "description": "the close price",
+            "format": "double",
+            "type": "number"
+          },
+          "date": {
+            "description": "the date",
+            "type": "string"
+          },
+          "high": {
+            "description": "the peak price",
+            "format": "double",
+            "type": "number"
+          },
+          "low": {
+            "description": "the low price",
+            "format": "double",
+            "type": "number"
+          },
+          "open": {
+            "description": "the open price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the forex symbol",
+            "type": "string"
+          },
+          "volume": {
+            "description": "the volume",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "PriceRequest": {
+        "description": "Get the latest price for a given forex ticker",
+        "properties": {
+          "symbol": {
+            "description": "forex symbol e.g GBPUSD",
+            "type": "string"
+          }
+        },
+        "title": "PriceRequest",
+        "type": "object"
+      },
+      "PriceResponse": {
+        "properties": {
+          "price": {
+            "description": "the last price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the forex symbol e.g GBPUSD",
+            "type": "string"
+          }
+        },
+        "title": "PriceResponse",
+        "type": "object"
+      },
+      "QuoteRequest": {
+        "description": "Get the latest quote for the forex",
+        "properties": {
+          "symbol": {
+            "description": "the forex symbol e.g GBPUSD",
+            "type": "string"
+          }
+        },
+        "title": "QuoteRequest",
+        "type": "object"
+      },
+      "QuoteResponse": {
+        "properties": {
+          "ask_price": {
+            "description": "the asking price",
+            "format": "double",
+            "type": "number"
+          },
+          "bid_price": {
+            "description": "the bidding price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the forex symbol",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "the UTC timestamp of the quote",
+            "type": "string"
+          }
+        },
+        "title": "QuoteResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Forex",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/forex/Forex/History": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ForexHistoryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ForexHistoryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Forex.History(HistoryRequest)"
+      }
+    },
+    "/forex/Forex/Price": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ForexPriceRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ForexPriceResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Forex.Price(PriceRequest)"
+      }
+    },
+    "/forex/Forex/Quote": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ForexQuoteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ForexQuoteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Forex.Quote(QuoteRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

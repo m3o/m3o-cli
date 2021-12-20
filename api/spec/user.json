@@ -1,0 +1,1494 @@
+{
+  "components": {
+    "requestBodies": {
+      "UserCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "UserCreateRequest"
+      },
+      "UserDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "UserDeleteRequest"
+      },
+      "UserListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "UserListRequest"
+      },
+      "UserLoginRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LoginRequest"
+            }
+          }
+        },
+        "description": "UserLoginRequest"
+      },
+      "UserLogoutRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogoutRequest"
+            }
+          }
+        },
+        "description": "UserLogoutRequest"
+      },
+      "UserReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "UserReadRequest"
+      },
+      "UserReadSessionRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadSessionRequest"
+            }
+          }
+        },
+        "description": "UserReadSessionRequest"
+      },
+      "UserResetPasswordRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResetPasswordRequest"
+            }
+          }
+        },
+        "description": "UserResetPasswordRequest"
+      },
+      "UserSendMagicLinkRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendMagicLinkRequest"
+            }
+          }
+        },
+        "description": "UserSendMagicLinkRequest"
+      },
+      "UserSendPasswordResetEmailRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendPasswordResetEmailRequest"
+            }
+          }
+        },
+        "description": "UserSendPasswordResetEmailRequest"
+      },
+      "UserSendVerificationEmailRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendVerificationEmailRequest"
+            }
+          }
+        },
+        "description": "UserSendVerificationEmailRequest"
+      },
+      "UserUpdatePasswordRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdatePasswordRequest"
+            }
+          }
+        },
+        "description": "UserUpdatePasswordRequest"
+      },
+      "UserUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "UserUpdateRequest"
+      },
+      "UserVerifyEmailRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VerifyEmailRequest"
+            }
+          }
+        },
+        "description": "UserVerifyEmailRequest"
+      },
+      "UserVerifyTokenRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VerifyTokenRequest"
+            }
+          }
+        },
+        "description": "UserVerifyTokenRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "UserCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "UserCreateResponse"
+      },
+      "UserDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "UserDeleteResponse"
+      },
+      "UserListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "UserListResponse"
+      },
+      "UserLoginResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LoginResponse"
+            }
+          }
+        },
+        "description": "UserLoginResponse"
+      },
+      "UserLogoutResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogoutResponse"
+            }
+          }
+        },
+        "description": "UserLogoutResponse"
+      },
+      "UserReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "UserReadResponse"
+      },
+      "UserReadSessionResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadSessionResponse"
+            }
+          }
+        },
+        "description": "UserReadSessionResponse"
+      },
+      "UserResetPasswordResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResetPasswordResponse"
+            }
+          }
+        },
+        "description": "UserResetPasswordResponse"
+      },
+      "UserSendMagicLinkResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendMagicLinkResponse"
+            }
+          }
+        },
+        "description": "UserSendMagicLinkResponse"
+      },
+      "UserSendPasswordResetEmailResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendPasswordResetEmailResponse"
+            }
+          }
+        },
+        "description": "UserSendPasswordResetEmailResponse"
+      },
+      "UserSendVerificationEmailResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendVerificationEmailResponse"
+            }
+          }
+        },
+        "description": "UserSendVerificationEmailResponse"
+      },
+      "UserUpdatePasswordResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdatePasswordResponse"
+            }
+          }
+        },
+        "description": "UserUpdatePasswordResponse"
+      },
+      "UserUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "UserUpdateResponse"
+      },
+      "UserVerifyEmailResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VerifyEmailResponse"
+            }
+          }
+        },
+        "description": "UserVerifyEmailResponse"
+      },
+      "UserVerifyTokenResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VerifyTokenResponse"
+            }
+          }
+        },
+        "description": "UserVerifyTokenResponse"
+      }
+    },
+    "schemas": {
+      "Account": {
+        "properties": {
+          "created": {
+            "description": "unix timestamp",
+            "format": "int64",
+            "type": "number"
+          },
+          "email": {
+            "description": "an email address",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique account id",
+            "type": "string"
+          },
+          "profile": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Store any custom data you want about your users in this fields.",
+            "type": "object"
+          },
+          "updated": {
+            "description": "unix timestamp",
+            "format": "int64",
+            "type": "number"
+          },
+          "username": {
+            "description": "alphanumeric username",
+            "type": "string"
+          },
+          "verificationDate": {
+            "description": "date of verification",
+            "format": "int64",
+            "type": "number"
+          },
+          "verified": {
+            "description": "if the account is verified",
+            "type": "boolean"
+          }
+        },
+        "title": "Account",
+        "type": "object"
+      },
+      "CreateRequest": {
+        "description": "Create a new user account. The email address and username for the account must be unique.",
+        "properties": {
+          "email": {
+            "description": "the email address",
+            "type": "string"
+          },
+          "id": {
+            "description": "optional account id",
+            "type": "string"
+          },
+          "password": {
+            "description": "the user password",
+            "type": "string"
+          },
+          "profile": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "optional user profile as map\u003cstring,string\u003e",
+            "type": "object"
+          },
+          "username": {
+            "description": "the username",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "account": {
+            "properties": {
+              "created": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "email": {
+                "description": "an email address",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique account id",
+                "type": "string"
+              },
+              "profile": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Store any custom data you want about your users in this fields.",
+                "type": "object"
+              },
+              "updated": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "username": {
+                "description": "alphanumeric username",
+                "type": "string"
+              },
+              "verificationDate": {
+                "description": "date of verification",
+                "format": "int64",
+                "type": "number"
+              },
+              "verified": {
+                "description": "if the account is verified",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete an account by id",
+        "properties": {
+          "id": {
+            "description": "the account id",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all users. Returns a paged list of results",
+        "properties": {
+          "limit": {
+            "description": "Maximum number of records to return. Default limit is 25.\n Maximum limit is 1000. Anything higher will return an error.",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "users": {
+            "items": {
+              "properties": {
+                "created": {
+                  "description": "unix timestamp",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "email": {
+                  "description": "an email address",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique account id",
+                  "type": "string"
+                },
+                "profile": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Store any custom data you want about your users in this fields.",
+                  "type": "object"
+                },
+                "updated": {
+                  "description": "unix timestamp",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "username": {
+                  "description": "alphanumeric username",
+                  "type": "string"
+                },
+                "verificationDate": {
+                  "description": "date of verification",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "verified": {
+                  "description": "if the account is verified",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "LoginRequest": {
+        "description": "Login using username or email. The response will return a new session for successful login, \n 401 in the case of login failure and 500 for any other error",
+        "properties": {
+          "email": {
+            "description": "The email address of the user",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of the user",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of the user",
+            "type": "string"
+          }
+        },
+        "title": "LoginRequest",
+        "type": "object"
+      },
+      "LoginResponse": {
+        "properties": {
+          "session": {
+            "description": "The session of the logged in  user",
+            "properties": {
+              "created": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "expires": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "id": {
+                "description": "the session id",
+                "type": "string"
+              },
+              "userId": {
+                "description": "the associated user id",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "LoginResponse",
+        "type": "object"
+      },
+      "LogoutRequest": {
+        "description": "Logout a user account",
+        "properties": {
+          "sessionId": {
+            "description": "the session id for the user to logout",
+            "type": "string"
+          }
+        },
+        "title": "LogoutRequest",
+        "type": "object"
+      },
+      "LogoutResponse": {
+        "title": "LogoutResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read an account by id, username or email. Only one need to be specified.",
+        "properties": {
+          "email": {
+            "description": "the account email",
+            "type": "string"
+          },
+          "id": {
+            "description": "the account id",
+            "type": "string"
+          },
+          "username": {
+            "description": "the account username",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "account": {
+            "properties": {
+              "created": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "email": {
+                "description": "an email address",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique account id",
+                "type": "string"
+              },
+              "profile": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Store any custom data you want about your users in this fields.",
+                "type": "object"
+              },
+              "updated": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "username": {
+                "description": "alphanumeric username",
+                "type": "string"
+              },
+              "verificationDate": {
+                "description": "date of verification",
+                "format": "int64",
+                "type": "number"
+              },
+              "verified": {
+                "description": "if the account is verified",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "ReadSessionRequest": {
+        "description": "Read a session by the session id. In the event it has expired or is not found and error is returned.",
+        "properties": {
+          "sessionId": {
+            "description": "The unique session id",
+            "type": "string"
+          }
+        },
+        "title": "ReadSessionRequest",
+        "type": "object"
+      },
+      "ReadSessionResponse": {
+        "properties": {
+          "session": {
+            "description": "the session for the user",
+            "properties": {
+              "created": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "expires": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "id": {
+                "description": "the session id",
+                "type": "string"
+              },
+              "userId": {
+                "description": "the associated user id",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadSessionResponse",
+        "type": "object"
+      },
+      "ResetPasswordRequest": {
+        "description": "Reset password with the code sent by the \"SendPasswordResetEmail\" endoint.",
+        "properties": {
+          "code": {
+            "description": "The code from the verification email",
+            "type": "string"
+          },
+          "confirmPassword": {
+            "description": "confirm new password",
+            "type": "string"
+          },
+          "email": {
+            "description": "the email to reset the password for",
+            "type": "string"
+          },
+          "newPassword": {
+            "description": "the new password",
+            "type": "string"
+          }
+        },
+        "title": "ResetPasswordRequest",
+        "type": "object"
+      },
+      "ResetPasswordResponse": {
+        "title": "ResetPasswordResponse",
+        "type": "object"
+      },
+      "SendMagicLinkRequest": {
+        "description": "Login using email only - Passwordless",
+        "properties": {
+          "address": {
+            "description": "Your web site address, example www.example.com or user.example.com",
+            "type": "string"
+          },
+          "email": {
+            "description": "the email address of the user",
+            "type": "string"
+          },
+          "endpoint": {
+            "description": "Endpoint name where your http request handler handles MagicLink by \n calling M3O VerifyToken endpoint. You can return as a result a success, \n failed or redirect to another page.",
+            "type": "string"
+          },
+          "fromName": {
+            "description": "Display name of the sender for the email. Note: the email address will still be 'support@m3o.com'",
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "textContent": {
+            "description": "Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link\n HTML emails are not available currently.",
+            "type": "string"
+          }
+        },
+        "title": "SendMagicLinkRequest",
+        "type": "object"
+      },
+      "SendMagicLinkResponse": {
+        "title": "SendMagicLinkResponse",
+        "type": "object"
+      },
+      "SendPasswordResetEmailRequest": {
+        "description": "Send an email with a verification code to reset password.\n Call \"ResetPassword\" endpoint once user provides the code.",
+        "properties": {
+          "email": {
+            "description": "email address to send reset for",
+            "type": "string"
+          },
+          "fromName": {
+            "description": "Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'",
+            "type": "string"
+          },
+          "subject": {
+            "description": "subject of the email",
+            "type": "string"
+          },
+          "textContent": {
+            "description": "Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link\n HTML emails are not available currently.",
+            "type": "string"
+          }
+        },
+        "title": "SendPasswordResetEmailRequest",
+        "type": "object"
+      },
+      "SendPasswordResetEmailResponse": {
+        "title": "SendPasswordResetEmailResponse",
+        "type": "object"
+      },
+      "SendVerificationEmailRequest": {
+        "description": "Send a verification email\n to the user being signed up. Email from will be from 'noreply@email.m3ocontent.com',\n but you can provide the title and contents.\n The verification link will be injected in to the email as a template variable, $micro_verification_link.\n Example: 'Hi there, welcome onboard! Use the link below to verify your email: $micro_verification_link'\n The variable will be replaced with an actual url that will look similar to this:\n 'https://user.m3o.com/user/verify?token=a-verification-token\u0026redirectUrl=your-redir-url'",
+        "properties": {
+          "email": {
+            "description": "email address to send the verification code",
+            "type": "string"
+          },
+          "failureRedirectUrl": {
+            "type": "string"
+          },
+          "fromName": {
+            "description": "Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'",
+            "type": "string"
+          },
+          "redirectUrl": {
+            "type": "string"
+          },
+          "subject": {
+            "description": "subject of the email",
+            "type": "string"
+          },
+          "textContent": {
+            "description": "Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link\n HTML emails are not available currently.",
+            "type": "string"
+          }
+        },
+        "title": "SendVerificationEmailRequest",
+        "type": "object"
+      },
+      "SendVerificationEmailResponse": {
+        "title": "SendVerificationEmailResponse",
+        "type": "object"
+      },
+      "Session": {
+        "properties": {
+          "created": {
+            "description": "unix timestamp",
+            "format": "int64",
+            "type": "number"
+          },
+          "expires": {
+            "description": "unix timestamp",
+            "format": "int64",
+            "type": "number"
+          },
+          "id": {
+            "description": "the session id",
+            "type": "string"
+          },
+          "userId": {
+            "description": "the associated user id",
+            "type": "string"
+          }
+        },
+        "title": "Session",
+        "type": "object"
+      },
+      "UpdatePasswordRequest": {
+        "description": "Update the account password",
+        "properties": {
+          "confirm_password": {
+            "description": "confirm new password",
+            "type": "string"
+          },
+          "newPassword": {
+            "description": "the new password",
+            "type": "string"
+          },
+          "oldPassword": {
+            "description": "the old password",
+            "type": "string"
+          },
+          "userId": {
+            "description": "the account id",
+            "type": "string"
+          }
+        },
+        "title": "UpdatePasswordRequest",
+        "type": "object"
+      },
+      "UpdatePasswordResponse": {
+        "title": "UpdatePasswordResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update the account username or email",
+        "properties": {
+          "email": {
+            "description": "the new email address",
+            "type": "string"
+          },
+          "id": {
+            "description": "the account id",
+            "type": "string"
+          },
+          "profile": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "the user profile as map\u003cstring,string\u003e",
+            "type": "object"
+          },
+          "username": {
+            "description": "the new username",
+            "type": "string"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "title": "UpdateResponse",
+        "type": "object"
+      },
+      "VerifyEmailRequest": {
+        "description": "Verify the email address of an account from a token sent in an email to the user.",
+        "properties": {
+          "email": {
+            "description": "the email address to verify",
+            "type": "string"
+          },
+          "token": {
+            "description": "The token from the verification email",
+            "type": "string"
+          }
+        },
+        "title": "VerifyEmailRequest",
+        "type": "object"
+      },
+      "VerifyEmailResponse": {
+        "title": "VerifyEmailResponse",
+        "type": "object"
+      },
+      "VerifyTokenRequest": {
+        "description": "Check whether the token attached to MagicLink is valid or not.\n Ideally, you need to call this endpoint from your http request  \n handler that handles the endpoint which is specified in the \n SendMagicLink request.",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "title": "VerifyTokenRequest",
+        "type": "object"
+      },
+      "VerifyTokenResponse": {
+        "properties": {
+          "is_valid": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "session": {
+            "properties": {
+              "created": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "expires": {
+                "description": "unix timestamp",
+                "format": "int64",
+                "type": "number"
+              },
+              "id": {
+                "description": "the session id",
+                "type": "string"
+              },
+              "userId": {
+                "description": "the associated user id",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "VerifyTokenResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "User",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/user/User/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Create(CreateRequest)"
+      }
+    },
+    "/user/User/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Delete(DeleteRequest)"
+      }
+    },
+    "/user/User/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.List(ListRequest)"
+      }
+    },
+    "/user/User/Login": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserLoginRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserLoginResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Login(LoginRequest)"
+      }
+    },
+    "/user/User/Logout": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserLogoutRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserLogoutResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Logout(LogoutRequest)"
+      }
+    },
+    "/user/User/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Read(ReadRequest)"
+      }
+    },
+    "/user/User/ReadSession": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserReadSessionRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserReadSessionResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.ReadSession(ReadSessionRequest)"
+      }
+    },
+    "/user/User/ResetPassword": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserResetPasswordRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserResetPasswordResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.ResetPassword(ResetPasswordRequest)"
+      }
+    },
+    "/user/User/SendMagicLink": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserSendMagicLinkRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserSendMagicLinkResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.SendMagicLink(SendMagicLinkRequest)"
+      }
+    },
+    "/user/User/SendPasswordResetEmail": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserSendPasswordResetEmailRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserSendPasswordResetEmailResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.SendPasswordResetEmail(SendPasswordResetEmailRequest)"
+      }
+    },
+    "/user/User/SendVerificationEmail": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserSendVerificationEmailRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserSendVerificationEmailResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.SendVerificationEmail(SendVerificationEmailRequest)"
+      }
+    },
+    "/user/User/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.Update(UpdateRequest)"
+      }
+    },
+    "/user/User/UpdatePassword": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserUpdatePasswordRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserUpdatePasswordResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.UpdatePassword(UpdatePasswordRequest)"
+      }
+    },
+    "/user/User/VerifyEmail": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserVerifyEmailRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserVerifyEmailResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.VerifyEmail(VerifyEmailRequest)"
+      }
+    },
+    "/user/User/VerifyToken": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserVerifyTokenRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserVerifyTokenResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.VerifyToken(VerifyTokenRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}
