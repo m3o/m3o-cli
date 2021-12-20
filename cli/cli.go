@@ -371,18 +371,41 @@ func callService(service, endpoint string, vals map[string]interface{}) func(*co
 			os.Exit(1)
 		}
 
-		var req map[string]interface{}
+		req := map[string]interface{}{}
 
-		// marshal the request
-		request, err := json.Marshal(vals)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to parse flags as JSON: %v\n", err)
-			os.Exit(1)
-		}
+		for k, v := range vals {
+			// only process what was set
+			if !cmd.Flags().Changed(k) {
+				continue
+			}
 
-		if err := json.Unmarshal([]byte(request), &req); err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to parse request as JSON: %v\n", err)
-			os.Exit(1)
+			switch v.(type) {
+			case *bool:
+				val := v.(*bool)
+				req[k] = *val
+			case *int:
+				val := v.(*int)
+				req[k] = *val
+			case *int32:
+				val := v.(*int32)
+				req[k] = *val
+			case *int64:
+				val := v.(*int64)
+				req[k] = *val
+			case *float32:
+				val := v.(*float32)
+				req[k] = *val
+			case *float64:
+				val := v.(*float64)
+				req[k] = *val
+			case *string:
+				val := v.(*string)
+				if len(*val) > 0 {
+					req[k] = *val
+				}
+			case nil:
+				continue
+			}
 		}
 
 		c := client.NewClient(nil)
