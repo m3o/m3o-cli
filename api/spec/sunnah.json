@@ -1,0 +1,699 @@
+{
+  "components": {
+    "requestBodies": {
+      "SunnahBooksRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BooksRequest"
+            }
+          }
+        },
+        "description": "SunnahBooksRequest"
+      },
+      "SunnahChaptersRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ChaptersRequest"
+            }
+          }
+        },
+        "description": "SunnahChaptersRequest"
+      },
+      "SunnahCollectionsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsRequest"
+            }
+          }
+        },
+        "description": "SunnahCollectionsRequest"
+      },
+      "SunnahHadithsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HadithsRequest"
+            }
+          }
+        },
+        "description": "SunnahHadithsRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "SunnahBooksResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BooksResponse"
+            }
+          }
+        },
+        "description": "SunnahBooksResponse"
+      },
+      "SunnahChaptersResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ChaptersResponse"
+            }
+          }
+        },
+        "description": "SunnahChaptersResponse"
+      },
+      "SunnahCollectionsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsResponse"
+            }
+          }
+        },
+        "description": "SunnahCollectionsResponse"
+      },
+      "SunnahHadithsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HadithsResponse"
+            }
+          }
+        },
+        "description": "SunnahHadithsResponse"
+      }
+    },
+    "schemas": {
+      "Book": {
+        "properties": {
+          "arabic_name": {
+            "description": "arabic name of the book",
+            "type": "string"
+          },
+          "hadiths": {
+            "description": "number of hadiths in the book",
+            "format": "int32",
+            "type": "number"
+          },
+          "id": {
+            "description": "number of the book e.g 1",
+            "format": "int32",
+            "type": "number"
+          },
+          "name": {
+            "description": "name of the book",
+            "type": "string"
+          }
+        },
+        "title": "Book",
+        "type": "object"
+      },
+      "BooksRequest": {
+        "description": "Get a list of books from within a collection. A book can contain many chapters \n each with its own hadiths.",
+        "properties": {
+          "collection": {
+            "description": "Name of the collection",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Limit the number of books returned",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "BooksRequest",
+        "type": "object"
+      },
+      "BooksResponse": {
+        "properties": {
+          "books": {
+            "description": "A list of books",
+            "items": {
+              "properties": {
+                "arabic_name": {
+                  "description": "arabic name of the book",
+                  "type": "string"
+                },
+                "hadiths": {
+                  "description": "number of hadiths in the book",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "id": {
+                  "description": "number of the book e.g 1",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "name": {
+                  "description": "name of the book",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "collection": {
+            "description": "Name of the collection",
+            "type": "string"
+          },
+          "limit": {
+            "description": "The limit specified",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page requested",
+            "format": "int32",
+            "type": "number"
+          },
+          "total": {
+            "description": "The total overall books",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "BooksResponse",
+        "type": "object"
+      },
+      "Chapter": {
+        "properties": {
+          "arabic_title": {
+            "description": "arabic title",
+            "type": "string"
+          },
+          "book": {
+            "description": "the book number",
+            "format": "int32",
+            "type": "number"
+          },
+          "id": {
+            "description": "the chapter id e.g 1",
+            "format": "int32",
+            "type": "number"
+          },
+          "key": {
+            "description": "the chapter key e.g 1.00",
+            "type": "string"
+          },
+          "title": {
+            "description": "title of the chapter",
+            "type": "string"
+          }
+        },
+        "title": "Chapter",
+        "type": "object"
+      },
+      "ChaptersRequest": {
+        "description": "Get all the chapters of a given book within a collection.",
+        "properties": {
+          "book": {
+            "description": "number of the book",
+            "format": "int32",
+            "type": "number"
+          },
+          "collection": {
+            "description": "name of the collection",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Limit the number of chapters returned",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ChaptersRequest",
+        "type": "object"
+      },
+      "ChaptersResponse": {
+        "properties": {
+          "book": {
+            "description": "number of the book",
+            "format": "int32",
+            "type": "number"
+          },
+          "chapters": {
+            "description": "The chapters of the book",
+            "items": {
+              "properties": {
+                "arabic_title": {
+                  "description": "arabic title",
+                  "type": "string"
+                },
+                "book": {
+                  "description": "the book number",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "id": {
+                  "description": "the chapter id e.g 1",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "key": {
+                  "description": "the chapter key e.g 1.00",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "title of the chapter",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "collection": {
+            "description": "name of the collection",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Limit the number of chapters returned",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          },
+          "total": {
+            "description": "Total chapters in the book",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ChaptersResponse",
+        "type": "object"
+      },
+      "Collection": {
+        "properties": {
+          "arabic_title": {
+            "description": "Arabic title if available",
+            "type": "string"
+          },
+          "hadiths": {
+            "description": "Total hadiths in the collection",
+            "format": "int32",
+            "type": "number"
+          },
+          "name": {
+            "description": "Name of the collection e.g bukhari",
+            "type": "string"
+          },
+          "summary": {
+            "description": "An introduction explaining the collection",
+            "type": "string"
+          },
+          "title": {
+            "description": "Title of the collection e.g Sahih al-Bukhari",
+            "type": "string"
+          }
+        },
+        "title": "Collection",
+        "type": "object"
+      },
+      "CollectionsRequest": {
+        "description": "Get a list of available collections. A collection is \n a compilation of hadiths collected and written by an author.",
+        "properties": {
+          "limit": {
+            "description": "Number of collections to limit to",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "CollectionsRequest",
+        "type": "object"
+      },
+      "CollectionsResponse": {
+        "properties": {
+          "collections": {
+            "items": {
+              "properties": {
+                "arabic_title": {
+                  "description": "Arabic title if available",
+                  "type": "string"
+                },
+                "hadiths": {
+                  "description": "Total hadiths in the collection",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "name": {
+                  "description": "Name of the collection e.g bukhari",
+                  "type": "string"
+                },
+                "summary": {
+                  "description": "An introduction explaining the collection",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "Title of the collection e.g Sahih al-Bukhari",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "CollectionsResponse",
+        "type": "object"
+      },
+      "Hadith": {
+        "properties": {
+          "arabic_chapter_title": {
+            "description": "the arabic chapter title",
+            "type": "string"
+          },
+          "arabic_text": {
+            "description": "the arabic text",
+            "type": "string"
+          },
+          "chapter": {
+            "description": "the chapter id",
+            "format": "int32",
+            "type": "number"
+          },
+          "chapter_key": {
+            "description": "the chapter key",
+            "type": "string"
+          },
+          "chapter_title": {
+            "description": "the chapter title",
+            "type": "string"
+          },
+          "id": {
+            "description": "hadith id",
+            "format": "int32",
+            "type": "number"
+          },
+          "text": {
+            "description": "hadith text",
+            "type": "string"
+          }
+        },
+        "title": "Hadith",
+        "type": "object"
+      },
+      "HadithsRequest": {
+        "description": "Hadiths returns a list of hadiths and their corresponding text for a \n given book within a collection.",
+        "properties": {
+          "book": {
+            "description": "number of the book",
+            "format": "int32",
+            "type": "number"
+          },
+          "collection": {
+            "description": "name of the collection",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Limit the number of hadiths",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "HadithsRequest",
+        "type": "object"
+      },
+      "HadithsResponse": {
+        "properties": {
+          "book": {
+            "description": "number of the book",
+            "format": "int32",
+            "type": "number"
+          },
+          "collection": {
+            "description": "name of the collection",
+            "type": "string"
+          },
+          "hadiths": {
+            "description": "The hadiths of the book",
+            "items": {
+              "properties": {
+                "arabic_chapter_title": {
+                  "description": "the arabic chapter title",
+                  "type": "string"
+                },
+                "arabic_text": {
+                  "description": "the arabic text",
+                  "type": "string"
+                },
+                "chapter": {
+                  "description": "the chapter id",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "chapter_key": {
+                  "description": "the chapter key",
+                  "type": "string"
+                },
+                "chapter_title": {
+                  "description": "the chapter title",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "hadith id",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "text": {
+                  "description": "hadith text",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "limit": {
+            "description": "Limit the number of hadiths returned",
+            "format": "int32",
+            "type": "number"
+          },
+          "page": {
+            "description": "The page in the pagination",
+            "format": "int32",
+            "type": "number"
+          },
+          "total": {
+            "description": "Total hadiths in the  book",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "HadithsResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Sunnah",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/sunnah/Sunnah/Books": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SunnahBooksRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SunnahBooksResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Sunnah.Books(BooksRequest)"
+      }
+    },
+    "/sunnah/Sunnah/Chapters": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SunnahChaptersRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SunnahChaptersResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Sunnah.Chapters(ChaptersRequest)"
+      }
+    },
+    "/sunnah/Sunnah/Collections": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SunnahCollectionsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SunnahCollectionsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Sunnah.Collections(CollectionsRequest)"
+      }
+    },
+    "/sunnah/Sunnah/Hadiths": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SunnahHadithsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SunnahHadithsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Sunnah.Hadiths(HadithsRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

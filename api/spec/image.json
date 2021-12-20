@@ -1,0 +1,499 @@
+{
+  "components": {
+    "requestBodies": {
+      "ImageConvertRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConvertRequest"
+            }
+          }
+        },
+        "description": "ImageConvertRequest"
+      },
+      "ImageDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "ImageDeleteRequest"
+      },
+      "ImageResizeRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResizeRequest"
+            }
+          }
+        },
+        "description": "ImageResizeRequest"
+      },
+      "ImageUploadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UploadRequest"
+            }
+          }
+        },
+        "description": "ImageUploadRequest"
+      }
+    },
+    "responses": {
+      "ImageConvertResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConvertResponse"
+            }
+          }
+        },
+        "description": "ImageConvertResponse"
+      },
+      "ImageDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "ImageDeleteResponse"
+      },
+      "ImageResizeResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResizeResponse"
+            }
+          }
+        },
+        "description": "ImageResizeResponse"
+      },
+      "ImageUploadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UploadResponse"
+            }
+          }
+        },
+        "description": "ImageUploadResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "ConvertRequest": {
+        "description": "Convert an image from one format (jpeg, png etc.) to an other either on the fly (from base64 to base64),\n or by uploading the conversion result.\n To use the file parameter you need to send the request as a multipart/form-data rather than the usual application/json\n with each parameter as a form field.",
+        "properties": {
+          "base64": {
+            "description": "base64 encoded image to resize,",
+            "type": "string"
+          },
+          "file": {
+            "description": "The image file to convert",
+            "format": "byte",
+            "type": "string"
+          },
+          "name": {
+            "description": "output name of the image including extension, ie. \"cat.png\"",
+            "type": "string"
+          },
+          "outputURL": {
+            "description": "make output a URL and not a base64 response",
+            "type": "boolean"
+          },
+          "url": {
+            "description": "url of the image to resize",
+            "type": "string"
+          }
+        },
+        "title": "ConvertRequest",
+        "type": "object"
+      },
+      "ConvertResponse": {
+        "properties": {
+          "base64": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "title": "ConvertResponse",
+        "type": "object"
+      },
+      "CropOptions": {
+        "properties": {
+          "anchor": {
+            "description": "Crop anchor point: \"top\", \"top left\", \"top right\",\n \"left\", \"center\", \"right\"\n \"bottom left\", \"bottom\", \"bottom right\".\n Optional. Defaults to center.",
+            "type": "string"
+          },
+          "height": {
+            "description": "height to crop to",
+            "format": "int32",
+            "type": "number"
+          },
+          "width": {
+            "description": "width to crop to",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "CropOptions",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete an image previously uploaded.",
+        "properties": {
+          "url": {
+            "description": "url of the image to delete e.g. https://cdn.m3ocontent.com/micro/images/micro/41e23b39-48dd-42b6-9738-79a313414bb8/cat.jpeg",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "Point": {
+        "properties": {
+          "x": {
+            "format": "int32",
+            "type": "number"
+          },
+          "y": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Point",
+        "type": "object"
+      },
+      "Rectangle": {
+        "properties": {
+          "max": {
+            "properties": {
+              "x": {
+                "format": "int32",
+                "type": "number"
+              },
+              "y": {
+                "format": "int32",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "min": {
+            "properties": {
+              "x": {
+                "format": "int32",
+                "type": "number"
+              },
+              "y": {
+                "format": "int32",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Rectangle",
+        "type": "object"
+      },
+      "ResizeRequest": {
+        "description": "Resize an image on the fly without storing it (by sending and receiving a base64 encoded image), or resize and upload depending on parameters.\n If one of width or height is 0, the image aspect ratio is preserved.\n Optional cropping.\n To use the file parameter you need to send the request as a multipart/form-data rather than the usual application/json\n with each parameter as a form field.",
+        "properties": {
+          "base64": {
+            "description": "base64 encoded image to resize,",
+            "type": "string"
+          },
+          "cropOptions": {
+            "description": "optional crop options\n if provided, after resize, the image\n will be cropped",
+            "properties": {
+              "anchor": {
+                "description": "Crop anchor point: \"top\", \"top left\", \"top right\",\n \"left\", \"center\", \"right\"\n \"bottom left\", \"bottom\", \"bottom right\".\n Optional. Defaults to center.",
+                "type": "string"
+              },
+              "height": {
+                "description": "height to crop to",
+                "format": "int32",
+                "type": "number"
+              },
+              "width": {
+                "description": "width to crop to",
+                "format": "int32",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "file": {
+            "description": "The image file to resize",
+            "format": "byte",
+            "type": "string"
+          },
+          "height": {
+            "format": "int64",
+            "type": "number"
+          },
+          "name": {
+            "description": "output name of the image including extension, ie. \"cat.png\"",
+            "type": "string"
+          },
+          "outputURL": {
+            "description": "make output a URL and not a base64 response",
+            "type": "boolean"
+          },
+          "url": {
+            "description": "url of the image to resize",
+            "type": "string"
+          },
+          "width": {
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "ResizeRequest",
+        "type": "object"
+      },
+      "ResizeResponse": {
+        "properties": {
+          "base64": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "title": "ResizeResponse",
+        "type": "object"
+      },
+      "UploadRequest": {
+        "description": "Upload an image by either sending a base64 encoded image to this endpoint or a URL.\n To resize an image before uploading, see the Resize endpoint.\n To use the file parameter you need to send the request as a multipart/form-data rather than the usual application/json\n with each parameter as a form field.",
+        "properties": {
+          "base64": {
+            "description": "Base64 encoded image to upload,",
+            "type": "string"
+          },
+          "file": {
+            "description": "The image file to upload",
+            "format": "byte",
+            "type": "string"
+          },
+          "name": {
+            "description": "Output name of the image including extension, ie. \"cat.png\"",
+            "type": "string"
+          },
+          "url": {
+            "description": "URL of the image to upload",
+            "type": "string"
+          }
+        },
+        "title": "UploadRequest",
+        "type": "object"
+      },
+      "UploadResponse": {
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "title": "UploadResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Image",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/image/Image/Convert": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ImageConvertRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ImageConvertResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Image.Convert(ConvertRequest)"
+      }
+    },
+    "/image/Image/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ImageDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ImageDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Image.Delete(DeleteRequest)"
+      }
+    },
+    "/image/Image/Resize": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ImageResizeRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ImageResizeResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Image.Resize(ResizeRequest)"
+      }
+    },
+    "/image/Image/Upload": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ImageUploadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ImageUploadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Image.Upload(UploadRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "components": {
+    "requestBodies": {
+      "MovieSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "MovieSearchRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "MovieSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "MovieSearchResponse"
+      }
+    },
+    "schemas": {
+      "MovieInfo": {
+        "properties": {
+          "adult": {
+            "type": "boolean"
+          },
+          "backdrop_path": {
+            "type": "string"
+          },
+          "genre_ids": {
+            "format": "int32",
+            "type": "number"
+          },
+          "id": {
+            "format": "int32",
+            "type": "number"
+          },
+          "original_language": {
+            "type": "string"
+          },
+          "original_title": {
+            "type": "string"
+          },
+          "overview": {
+            "type": "string"
+          },
+          "popularity": {
+            "format": "double",
+            "type": "number"
+          },
+          "poster_path": {
+            "type": "string"
+          },
+          "release_date": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "video": {
+            "type": "boolean"
+          },
+          "vote_average": {
+            "format": "double",
+            "type": "number"
+          },
+          "vote_count": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "MovieInfo",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search for movies by simple text search",
+        "properties": {
+          "language": {
+            "description": "a ISO 639-1 value to display translated data",
+            "type": "string"
+          },
+          "page": {
+            "description": "page to query",
+            "format": "int32",
+            "type": "number"
+          },
+          "primary_release_year": {
+            "description": "year of release",
+            "format": "int32",
+            "type": "number"
+          },
+          "query": {
+            "description": "a text query to search",
+            "type": "string"
+          },
+          "region": {
+            "description": "a ISO 3166-1 code to filter release dates.",
+            "type": "string"
+          },
+          "year": {
+            "description": "year of making",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "page": {
+            "format": "int32",
+            "type": "number"
+          },
+          "results": {
+            "items": {
+              "properties": {
+                "adult": {
+                  "type": "boolean"
+                },
+                "backdrop_path": {
+                  "type": "string"
+                },
+                "genre_ids": {
+                  "format": "int32",
+                  "type": "number"
+                },
+                "id": {
+                  "format": "int32",
+                  "type": "number"
+                },
+                "original_language": {
+                  "type": "string"
+                },
+                "original_title": {
+                  "type": "string"
+                },
+                "overview": {
+                  "type": "string"
+                },
+                "popularity": {
+                  "format": "double",
+                  "type": "number"
+                },
+                "poster_path": {
+                  "type": "string"
+                },
+                "release_date": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "video": {
+                  "type": "boolean"
+                },
+                "vote_average": {
+                  "format": "double",
+                  "type": "number"
+                },
+                "vote_count": {
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "total_pages": {
+            "format": "int32",
+            "type": "number"
+          },
+          "total_results": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "SearchResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Movie",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/movie/Movie/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/MovieSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MovieSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Movie.Search(SearchRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "components": {
+    "requestBodies": {
+      "EventConsumeRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsumeRequest"
+            }
+          }
+        },
+        "description": "EventConsumeRequest"
+      },
+      "EventPublishRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PublishRequest"
+            }
+          }
+        },
+        "description": "EventPublishRequest"
+      },
+      "EventReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "EventReadRequest"
+      }
+    },
+    "responses": {
+      "EventConsumeResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsumeResponse"
+            }
+          }
+        },
+        "description": "EventConsumeResponse"
+      },
+      "EventPublishResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PublishResponse"
+            }
+          }
+        },
+        "description": "EventPublishResponse"
+      },
+      "EventReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "EventReadResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "ConsumeRequest": {
+        "description": "Consume events from a given topic.",
+        "properties": {
+          "group": {
+            "description": "Optional group for the subscription",
+            "type": "string"
+          },
+          "offset": {
+            "description": "Optional offset to read from e.g \"2006-01-02T15:04:05.999Z07:00\"",
+            "type": "string"
+          },
+          "topic": {
+            "description": "The topic to subscribe to",
+            "type": "string"
+          }
+        },
+        "title": "ConsumeRequest",
+        "type": "object"
+      },
+      "ConsumeResponse": {
+        "description": "A blocking event will be returned in response.",
+        "properties": {
+          "id": {
+            "description": "Unique message id",
+            "type": "string"
+          },
+          "message": {
+            "description": "The next json message on the topic",
+            "type": "object"
+          },
+          "timestamp": {
+            "description": "Timestamp of publishing",
+            "type": "string"
+          },
+          "topic": {
+            "description": "The topic subscribed to",
+            "type": "string"
+          }
+        },
+        "title": "ConsumeResponse",
+        "type": "object"
+      },
+      "Ev": {
+        "properties": {
+          "id": {
+            "description": "event id",
+            "type": "string"
+          },
+          "message": {
+            "description": "event message",
+            "type": "object"
+          },
+          "timestamp": {
+            "description": "event timestamp",
+            "type": "string"
+          }
+        },
+        "title": "Ev",
+        "type": "object"
+      },
+      "PublishRequest": {
+        "description": "Publish a event to the event stream.",
+        "properties": {
+          "message": {
+            "description": "The json message to publish",
+            "type": "object"
+          },
+          "topic": {
+            "description": "The topic to publish to",
+            "type": "string"
+          }
+        },
+        "title": "PublishRequest",
+        "type": "object"
+      },
+      "PublishResponse": {
+        "title": "PublishResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read stored events",
+        "properties": {
+          "limit": {
+            "description": "number of events to read; default 25",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "description": "offset for the events; default 0",
+            "format": "int32",
+            "type": "number"
+          },
+          "topic": {
+            "description": "topic to read from",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "events": {
+            "description": "the events",
+            "items": {
+              "properties": {
+                "id": {
+                  "description": "event id",
+                  "type": "string"
+                },
+                "message": {
+                  "description": "event message",
+                  "type": "object"
+                },
+                "timestamp": {
+                  "description": "event timestamp",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Event",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/event/Event/Consume": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EventConsumeRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EventConsumeResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          },
+          "stream": {
+            "$ref": "#/components/responses/EventConsumeResponse"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Event.Consume(ConsumeRequest)"
+      }
+    },
+    "/event/Event/Publish": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EventPublishRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EventPublishResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Event.Publish(PublishRequest)"
+      }
+    },
+    "/event/Event/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EventReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EventReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Event.Read(ReadRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

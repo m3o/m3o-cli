@@ -1,0 +1,240 @@
+{
+  "components": {
+    "requestBodies": {
+      "AddressLookupPostcodeRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupPostcodeRequest"
+            }
+          }
+        },
+        "description": "AddressLookupPostcodeRequest"
+      }
+    },
+    "responses": {
+      "AddressLookupPostcodeResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupPostcodeResponse"
+            }
+          }
+        },
+        "description": "AddressLookupPostcodeResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "LookupPostcodeRequest": {
+        "description": "Lookup a list of UK addresses by postcode",
+        "properties": {
+          "postcode": {
+            "description": "UK postcode e.g SW1A 2AA",
+            "type": "string"
+          }
+        },
+        "title": "LookupPostcodeRequest",
+        "type": "object"
+      },
+      "LookupPostcodeResponse": {
+        "properties": {
+          "addresses": {
+            "items": {
+              "properties": {
+                "building_name": {
+                  "description": "building name",
+                  "type": "string"
+                },
+                "county": {
+                  "description": "the county",
+                  "type": "string"
+                },
+                "line_one": {
+                  "description": "line one of address",
+                  "type": "string"
+                },
+                "line_two": {
+                  "description": "line two of address",
+                  "type": "string"
+                },
+                "locality": {
+                  "description": "dependent locality",
+                  "type": "string"
+                },
+                "organisation": {
+                  "description": "organisation if present",
+                  "type": "string"
+                },
+                "postcode": {
+                  "description": "the postcode",
+                  "type": "string"
+                },
+                "premise": {
+                  "description": "the premise",
+                  "type": "string"
+                },
+                "street": {
+                  "description": "street name",
+                  "type": "string"
+                },
+                "summary": {
+                  "description": "the complete address",
+                  "type": "string"
+                },
+                "town": {
+                  "description": "post town",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "LookupPostcodeResponse",
+        "type": "object"
+      },
+      "Record": {
+        "properties": {
+          "building_name": {
+            "description": "building name",
+            "type": "string"
+          },
+          "county": {
+            "description": "the county",
+            "type": "string"
+          },
+          "line_one": {
+            "description": "line one of address",
+            "type": "string"
+          },
+          "line_two": {
+            "description": "line two of address",
+            "type": "string"
+          },
+          "locality": {
+            "description": "dependent locality",
+            "type": "string"
+          },
+          "organisation": {
+            "description": "organisation if present",
+            "type": "string"
+          },
+          "postcode": {
+            "description": "the postcode",
+            "type": "string"
+          },
+          "premise": {
+            "description": "the premise",
+            "type": "string"
+          },
+          "street": {
+            "description": "street name",
+            "type": "string"
+          },
+          "summary": {
+            "description": "the complete address",
+            "type": "string"
+          },
+          "town": {
+            "description": "post town",
+            "type": "string"
+          }
+        },
+        "title": "Record",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Address",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/address/Address/LookupPostcode": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddressLookupPostcodeRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AddressLookupPostcodeResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Address.LookupPostcode(LookupPostcodeRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

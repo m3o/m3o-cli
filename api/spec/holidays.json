@@ -1,0 +1,310 @@
+{
+  "components": {
+    "requestBodies": {
+      "HolidaysCountriesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CountriesRequest"
+            }
+          }
+        },
+        "description": "HolidaysCountriesRequest"
+      },
+      "HolidaysListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "HolidaysListRequest"
+      }
+    },
+    "responses": {
+      "HolidaysCountriesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CountriesResponse"
+            }
+          }
+        },
+        "description": "HolidaysCountriesResponse"
+      },
+      "HolidaysListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "HolidaysListResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "CountriesRequest": {
+        "description": "Get the list of countries that are supported by this API",
+        "title": "CountriesRequest",
+        "type": "object"
+      },
+      "CountriesResponse": {
+        "properties": {
+          "countries": {
+            "items": {
+              "properties": {
+                "code": {
+                  "description": "The 2 letter country code (as defined in ISO 3166-1 alpha-2)",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The English name of the country",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "CountriesResponse",
+        "type": "object"
+      },
+      "Country": {
+        "properties": {
+          "code": {
+            "description": "The 2 letter country code (as defined in ISO 3166-1 alpha-2)",
+            "type": "string"
+          },
+          "name": {
+            "description": "The English name of the country",
+            "type": "string"
+          }
+        },
+        "title": "Country",
+        "type": "object"
+      },
+      "Holiday": {
+        "properties": {
+          "country_code": {
+            "description": "the country this holiday occurs in",
+            "type": "string"
+          },
+          "date": {
+            "description": "date of the holiday in yyyy-mm-dd format",
+            "type": "string"
+          },
+          "local_name": {
+            "description": "the local name of the holiday",
+            "type": "string"
+          },
+          "name": {
+            "description": "the name of the holiday in English",
+            "type": "string"
+          },
+          "regions": {
+            "description": "the regions within the country that observe this holiday (if not all of them)",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "types": {
+            "description": "the type of holiday Public, Bank, School, Authorities, Optional, Observance",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "title": "Holiday",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List the holiday dates for a given country and year",
+        "properties": {
+          "country_code": {
+            "description": "The 2 letter country code (as defined in ISO 3166-1 alpha-2)",
+            "type": "string"
+          },
+          "year": {
+            "description": "The year to list holidays for",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "holidays": {
+            "items": {
+              "properties": {
+                "country_code": {
+                  "description": "the country this holiday occurs in",
+                  "type": "string"
+                },
+                "date": {
+                  "description": "date of the holiday in yyyy-mm-dd format",
+                  "type": "string"
+                },
+                "local_name": {
+                  "description": "the local name of the holiday",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "the name of the holiday in English",
+                  "type": "string"
+                },
+                "regions": {
+                  "description": "the regions within the country that observe this holiday (if not all of them)",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "types": {
+                  "description": "the type of holiday Public, Bank, School, Authorities, Optional, Observance",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Holidays",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/holidays/Holidays/Countries": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/HolidaysCountriesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/HolidaysCountriesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Holidays.Countries(CountriesRequest)"
+      }
+    },
+    "/holidays/Holidays/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/HolidaysListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/HolidaysListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Holidays.List(ListRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

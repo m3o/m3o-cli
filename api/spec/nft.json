@@ -1,0 +1,1390 @@
+{
+  "components": {
+    "requestBodies": {
+      "NftAssetsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AssetsRequest"
+            }
+          }
+        },
+        "description": "NftAssetsRequest"
+      },
+      "NftCollectionsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsRequest"
+            }
+          }
+        },
+        "description": "NftCollectionsRequest"
+      },
+      "NftCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "NftCreateRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "NftAssetsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AssetsResponse"
+            }
+          }
+        },
+        "description": "NftAssetsResponse"
+      },
+      "NftCollectionsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsResponse"
+            }
+          }
+        },
+        "description": "NftCollectionsResponse"
+      },
+      "NftCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "NftCreateResponse"
+      }
+    },
+    "schemas": {
+      "Asset": {
+        "properties": {
+          "collection": {
+            "description": "associated collection",
+            "properties": {
+              "created_at": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "image_url": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "payout_address": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "contract": {
+            "description": "asset contract",
+            "properties": {
+              "address": {
+                "description": "ethereum address",
+                "type": "string"
+              },
+              "created_at": {
+                "description": "timestamp of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of contract",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of contract",
+                "type": "string"
+              },
+              "owner": {
+                "description": "owner id",
+                "format": "int32",
+                "type": "number"
+              },
+              "payout_address": {
+                "description": "payout address",
+                "type": "string"
+              },
+              "schema": {
+                "description": "aka \"ERC1155\"",
+                "type": "string"
+              },
+              "seller_fees": {
+                "description": "seller fees",
+                "type": "string"
+              },
+              "symbol": {
+                "description": "related symbol",
+                "type": "string"
+              },
+              "type": {
+                "description": "type of contract e.g \"semi-fungible\"",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "creator": {
+            "description": "Creator of the NFT",
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "profile_url": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "description": {
+            "description": "related description",
+            "type": "string"
+          },
+          "id": {
+            "description": "id of the asset",
+            "format": "int32",
+            "type": "number"
+          },
+          "image_url": {
+            "description": "the image url",
+            "type": "string"
+          },
+          "last_sale": {
+            "description": "last time sold",
+            "properties": {
+              "asset_decimals": {
+                "format": "int32",
+                "type": "number"
+              },
+              "asset_token_id": {
+                "type": "string"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "event_timestamp": {
+                "type": "string"
+              },
+              "event_type": {
+                "type": "string"
+              },
+              "payment_token": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "decimals": {
+                    "format": "int32",
+                    "type": "number"
+                  },
+                  "eth_price": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "format": "int32",
+                    "type": "number"
+                  },
+                  "image_url": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "usd_price": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "quantity": {
+                "type": "string"
+              },
+              "total_price": {
+                "type": "string"
+              },
+              "transaction": {
+                "properties": {
+                  "block_hash": {
+                    "type": "string"
+                  },
+                  "block_number": {
+                    "type": "string"
+                  },
+                  "from_account": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "profile_url": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "format": "int32",
+                    "type": "number"
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "to_account": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "profile_url": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "transaction_hash": {
+                    "type": "string"
+                  },
+                  "transaction_index": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "listing_date": {
+            "description": "listing date",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the asset",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owner of the NFT",
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "profile_url": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "permalink": {
+            "description": "the permalink",
+            "type": "string"
+          },
+          "presale": {
+            "description": "is it a presale",
+            "type": "boolean"
+          },
+          "sales": {
+            "description": "number of sales",
+            "format": "int32",
+            "type": "number"
+          },
+          "token_id": {
+            "description": "the token id",
+            "type": "string"
+          }
+        },
+        "title": "Asset",
+        "type": "object"
+      },
+      "AssetsRequest": {
+        "description": "Return a list of assets",
+        "properties": {
+          "collection": {
+            "description": "limit to members of a collection by slug name (case sensitive)",
+            "type": "string"
+          },
+          "limit": {
+            "description": "limit returned assets",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "description": "offset for pagination",
+            "format": "int32",
+            "type": "number"
+          },
+          "order": {
+            "description": "order \"asc\" or \"desc\"",
+            "type": "string"
+          },
+          "order_by": {
+            "description": "order by \"sale_date\", \"sale_count\", \"sale_price\", \"total_price\"",
+            "type": "string"
+          }
+        },
+        "title": "AssetsRequest",
+        "type": "object"
+      },
+      "AssetsResponse": {
+        "properties": {
+          "assets": {
+            "description": "list of assets",
+            "items": {
+              "properties": {
+                "collection": {
+                  "description": "associated collection",
+                  "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image_url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "payout_address": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "contract": {
+                  "description": "asset contract",
+                  "properties": {
+                    "address": {
+                      "description": "ethereum address",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "timestamp of creation",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "description of contract",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "name of contract",
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "owner id",
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "payout_address": {
+                      "description": "payout address",
+                      "type": "string"
+                    },
+                    "schema": {
+                      "description": "aka \"ERC1155\"",
+                      "type": "string"
+                    },
+                    "seller_fees": {
+                      "description": "seller fees",
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "description": "related symbol",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "type of contract e.g \"semi-fungible\"",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "creator": {
+                  "description": "Creator of the NFT",
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "profile_url": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "description": {
+                  "description": "related description",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "id of the asset",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "image_url": {
+                  "description": "the image url",
+                  "type": "string"
+                },
+                "last_sale": {
+                  "description": "last time sold",
+                  "properties": {
+                    "asset_decimals": {
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "asset_token_id": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "event_timestamp": {
+                      "type": "string"
+                    },
+                    "event_type": {
+                      "type": "string"
+                    },
+                    "payment_token": {
+                      "properties": {
+                        "address": {
+                          "type": "string"
+                        },
+                        "decimals": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "eth_price": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "image_url": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "usd_price": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "quantity": {
+                      "type": "string"
+                    },
+                    "total_price": {
+                      "type": "string"
+                    },
+                    "transaction": {
+                      "properties": {
+                        "block_hash": {
+                          "type": "string"
+                        },
+                        "block_number": {
+                          "type": "string"
+                        },
+                        "from_account": {
+                          "properties": {
+                            "address": {
+                              "type": "string"
+                            },
+                            "profile_url": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "id": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "to_account": {
+                          "properties": {
+                            "address": {
+                              "type": "string"
+                            },
+                            "profile_url": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "transaction_hash": {
+                          "type": "string"
+                        },
+                        "transaction_index": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "listing_date": {
+                  "description": "listing date",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of the asset",
+                  "type": "string"
+                },
+                "owner": {
+                  "description": "Owner of the NFT",
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "profile_url": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "permalink": {
+                  "description": "the permalink",
+                  "type": "string"
+                },
+                "presale": {
+                  "description": "is it a presale",
+                  "type": "boolean"
+                },
+                "sales": {
+                  "description": "number of sales",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "token_id": {
+                  "description": "the token id",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "AssetsResponse",
+        "type": "object"
+      },
+      "Collection": {
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "payout_address": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "title": "Collection",
+        "type": "object"
+      },
+      "CollectionsRequest": {
+        "description": "Get a list of collections",
+        "properties": {
+          "limit": {
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "CollectionsRequest",
+        "type": "object"
+      },
+      "CollectionsResponse": {
+        "properties": {
+          "collections": {
+            "items": {
+              "properties": {
+                "created_at": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "image_url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "payout_address": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "CollectionsResponse",
+        "type": "object"
+      },
+      "Contract": {
+        "properties": {
+          "address": {
+            "description": "ethereum address",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "timestamp of creation",
+            "type": "string"
+          },
+          "description": {
+            "description": "description of contract",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of contract",
+            "type": "string"
+          },
+          "owner": {
+            "description": "owner id",
+            "format": "int32",
+            "type": "number"
+          },
+          "payout_address": {
+            "description": "payout address",
+            "type": "string"
+          },
+          "schema": {
+            "description": "aka \"ERC1155\"",
+            "type": "string"
+          },
+          "seller_fees": {
+            "description": "seller fees",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "related symbol",
+            "type": "string"
+          },
+          "type": {
+            "description": "type of contract e.g \"semi-fungible\"",
+            "type": "string"
+          }
+        },
+        "title": "Contract",
+        "type": "object"
+      },
+      "CreateRequest": {
+        "description": "Create your own NFT (coming soon)",
+        "properties": {
+          "data": {
+            "description": "data if not image",
+            "format": "byte",
+            "type": "string"
+          },
+          "description": {
+            "description": "description",
+            "type": "string"
+          },
+          "image": {
+            "description": "image data",
+            "format": "byte",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the NFT",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "asset": {
+            "properties": {
+              "collection": {
+                "description": "associated collection",
+                "properties": {
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image_url": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "payout_address": {
+                    "type": "string"
+                  },
+                  "slug": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "contract": {
+                "description": "asset contract",
+                "properties": {
+                  "address": {
+                    "description": "ethereum address",
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "description": "timestamp of creation",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "description of contract",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "name of contract",
+                    "type": "string"
+                  },
+                  "owner": {
+                    "description": "owner id",
+                    "format": "int32",
+                    "type": "number"
+                  },
+                  "payout_address": {
+                    "description": "payout address",
+                    "type": "string"
+                  },
+                  "schema": {
+                    "description": "aka \"ERC1155\"",
+                    "type": "string"
+                  },
+                  "seller_fees": {
+                    "description": "seller fees",
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "description": "related symbol",
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "type of contract e.g \"semi-fungible\"",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "creator": {
+                "description": "Creator of the NFT",
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "profile_url": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "description": {
+                "description": "related description",
+                "type": "string"
+              },
+              "id": {
+                "description": "id of the asset",
+                "format": "int32",
+                "type": "number"
+              },
+              "image_url": {
+                "description": "the image url",
+                "type": "string"
+              },
+              "last_sale": {
+                "description": "last time sold",
+                "properties": {
+                  "asset_decimals": {
+                    "format": "int32",
+                    "type": "number"
+                  },
+                  "asset_token_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "event_timestamp": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "type": "string"
+                  },
+                  "payment_token": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "decimals": {
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "eth_price": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "image_url": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "usd_price": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "quantity": {
+                    "type": "string"
+                  },
+                  "total_price": {
+                    "type": "string"
+                  },
+                  "transaction": {
+                    "properties": {
+                      "block_hash": {
+                        "type": "string"
+                      },
+                      "block_number": {
+                        "type": "string"
+                      },
+                      "from_account": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "profile_url": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "id": {
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "timestamp": {
+                        "type": "string"
+                      },
+                      "to_account": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "profile_url": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "transaction_hash": {
+                        "type": "string"
+                      },
+                      "transaction_index": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "listing_date": {
+                "description": "listing date",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the asset",
+                "type": "string"
+              },
+              "owner": {
+                "description": "Owner of the NFT",
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "profile_url": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "permalink": {
+                "description": "the permalink",
+                "type": "string"
+              },
+              "presale": {
+                "description": "is it a presale",
+                "type": "boolean"
+              },
+              "sales": {
+                "description": "number of sales",
+                "format": "int32",
+                "type": "number"
+              },
+              "token_id": {
+                "description": "the token id",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "Sale": {
+        "properties": {
+          "asset_decimals": {
+            "format": "int32",
+            "type": "number"
+          },
+          "asset_token_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "event_timestamp": {
+            "type": "string"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "payment_token": {
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "decimals": {
+                "format": "int32",
+                "type": "number"
+              },
+              "eth_price": {
+                "type": "string"
+              },
+              "id": {
+                "format": "int32",
+                "type": "number"
+              },
+              "image_url": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "symbol": {
+                "type": "string"
+              },
+              "usd_price": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "quantity": {
+            "type": "string"
+          },
+          "total_price": {
+            "type": "string"
+          },
+          "transaction": {
+            "properties": {
+              "block_hash": {
+                "type": "string"
+              },
+              "block_number": {
+                "type": "string"
+              },
+              "from_account": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "profile_url": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "format": "int32",
+                "type": "number"
+              },
+              "timestamp": {
+                "type": "string"
+              },
+              "to_account": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "profile_url": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "transaction_hash": {
+                "type": "string"
+              },
+              "transaction_index": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Sale",
+        "type": "object"
+      },
+      "Token": {
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "decimals": {
+            "format": "int32",
+            "type": "number"
+          },
+          "eth_price": {
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "number"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "usd_price": {
+            "type": "string"
+          }
+        },
+        "title": "Token",
+        "type": "object"
+      },
+      "Transaction": {
+        "properties": {
+          "block_hash": {
+            "type": "string"
+          },
+          "block_number": {
+            "type": "string"
+          },
+          "from_account": {
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "profile_url": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "id": {
+            "format": "int32",
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "to_account": {
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "profile_url": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "transaction_hash": {
+            "type": "string"
+          },
+          "transaction_index": {
+            "type": "string"
+          }
+        },
+        "title": "Transaction",
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "profile_url": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "title": "User",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Nft",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/nft/Nft/Assets": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NftAssetsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NftAssetsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Nft.Assets(AssetsRequest)"
+      }
+    },
+    "/nft/Nft/Collections": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NftCollectionsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NftCollectionsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Nft.Collections(CollectionsRequest)"
+      }
+    },
+    "/nft/Nft/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NftCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NftCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Nft.Create(CreateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

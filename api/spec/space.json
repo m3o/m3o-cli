@@ -1,0 +1,814 @@
+{
+  "components": {
+    "requestBodies": {
+      "SpaceCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "SpaceCreateRequest"
+      },
+      "SpaceDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "SpaceDeleteRequest"
+      },
+      "SpaceDownloadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DownloadRequest"
+            }
+          }
+        },
+        "description": "SpaceDownloadRequest"
+      },
+      "SpaceHeadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HeadRequest"
+            }
+          }
+        },
+        "description": "SpaceHeadRequest"
+      },
+      "SpaceListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "SpaceListRequest"
+      },
+      "SpaceReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "SpaceReadRequest"
+      },
+      "SpaceUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "SpaceUpdateRequest"
+      },
+      "SpaceUploadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UploadRequest"
+            }
+          }
+        },
+        "description": "SpaceUploadRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "SpaceCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "SpaceCreateResponse"
+      },
+      "SpaceDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "SpaceDeleteResponse"
+      },
+      "SpaceDownloadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DownloadResponse"
+            }
+          }
+        },
+        "description": "SpaceDownloadResponse"
+      },
+      "SpaceHeadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HeadResponse"
+            }
+          }
+        },
+        "description": "SpaceHeadResponse"
+      },
+      "SpaceListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "SpaceListResponse"
+      },
+      "SpaceReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "SpaceReadResponse"
+      },
+      "SpaceUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "SpaceUpdateResponse"
+      },
+      "SpaceUploadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UploadResponse"
+            }
+          }
+        },
+        "description": "SpaceUploadResponse"
+      }
+    },
+    "schemas": {
+      "CreateRequest": {
+        "description": "Create an object. Returns error if object with this name already exists. Max object size of 10MB, see Upload endpoint for larger objects. If you want to update an existing object use the `Update` endpoint",
+        "properties": {
+          "name": {
+            "description": "The name of the object. Use forward slash delimiter to implement a nested directory-like structure e.g. images/foo.jpg",
+            "type": "string"
+          },
+          "object": {
+            "description": "The contents of the object. Either base64 encoded if sending request as application/json or raw bytes if using multipart/form-data format",
+            "format": "byte",
+            "type": "string"
+          },
+          "visibility": {
+            "description": "Who can see this object? \"public\" or \"private\", defaults to \"private\"",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "url": {
+            "description": "A public URL to access the object if visibility is \"public\"",
+            "type": "string"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete an object from space",
+        "properties": {
+          "name": {
+            "description": "Name of the object",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "DownloadRequest": {
+        "description": "Download an object via a presigned url",
+        "properties": {
+          "name": {
+            "description": "name of object",
+            "type": "string"
+          }
+        },
+        "title": "DownloadRequest",
+        "type": "object"
+      },
+      "DownloadResponse": {
+        "properties": {
+          "url": {
+            "description": "presigned url",
+            "type": "string"
+          }
+        },
+        "title": "DownloadResponse",
+        "type": "object"
+      },
+      "HeadObject": {
+        "properties": {
+          "created": {
+            "description": "when was this created",
+            "type": "string"
+          },
+          "modified": {
+            "description": "when was this last modified",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "description": "URL to access the object if it is public",
+            "type": "string"
+          },
+          "visibility": {
+            "description": "is this public or private",
+            "type": "string"
+          }
+        },
+        "title": "HeadObject",
+        "type": "object"
+      },
+      "HeadRequest": {
+        "description": "Retrieve meta information about an object",
+        "properties": {
+          "name": {
+            "description": "name of the object",
+            "type": "string"
+          }
+        },
+        "title": "HeadRequest",
+        "type": "object"
+      },
+      "HeadResponse": {
+        "properties": {
+          "object": {
+            "properties": {
+              "created": {
+                "description": "when was this created",
+                "type": "string"
+              },
+              "modified": {
+                "description": "when was this last modified",
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "description": "URL to access the object if it is public",
+                "type": "string"
+              },
+              "visibility": {
+                "description": "is this public or private",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "HeadResponse",
+        "type": "object"
+      },
+      "ListObject": {
+        "properties": {
+          "created": {
+            "type": "string"
+          },
+          "modified": {
+            "description": "when was this last modified",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "string"
+          }
+        },
+        "title": "ListObject",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List the objects in space",
+        "properties": {
+          "prefix": {
+            "description": "optional prefix for the name e.g. to return all the objects in the images directory pass images/",
+            "type": "string"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "objects": {
+            "items": {
+              "properties": {
+                "created": {
+                  "type": "string"
+                },
+                "modified": {
+                  "description": "when was this last modified",
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "visibility": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "Object": {
+        "properties": {
+          "created": {
+            "description": "when was this created",
+            "type": "string"
+          },
+          "data": {
+            "description": "the data within the object",
+            "format": "byte",
+            "type": "string"
+          },
+          "modified": {
+            "description": "when was this last modified",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of object",
+            "type": "string"
+          },
+          "url": {
+            "description": "URL to access the object if it is public",
+            "type": "string"
+          },
+          "visibility": {
+            "description": "is this public or private",
+            "type": "string"
+          }
+        },
+        "title": "Object",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read an object in space",
+        "properties": {
+          "name": {
+            "description": "name of the object",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "description": "Returns the raw object",
+        "properties": {
+          "object": {
+            "description": "The object itself",
+            "properties": {
+              "created": {
+                "description": "when was this created",
+                "type": "string"
+              },
+              "data": {
+                "description": "the data within the object",
+                "format": "byte",
+                "type": "string"
+              },
+              "modified": {
+                "description": "when was this last modified",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of object",
+                "type": "string"
+              },
+              "url": {
+                "description": "URL to access the object if it is public",
+                "type": "string"
+              },
+              "visibility": {
+                "description": "is this public or private",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update an object. If an object with this name does not exist, creates a new one.",
+        "properties": {
+          "name": {
+            "description": "The name of the object. Use forward slash delimiter to implement a nested directory-like structure e.g. images/foo.jpg",
+            "type": "string"
+          },
+          "object": {
+            "description": "The contents of the object. Either base64 encoded if sending request as application/json or raw bytes if using multipart/form-data format",
+            "format": "byte",
+            "type": "string"
+          },
+          "visibility": {
+            "description": "Who can see this object? \"public\" or \"private\", defaults to \"private\"",
+            "type": "string"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "properties": {
+          "url": {
+            "description": "A public URL to access the object if visibility is \"public\"",
+            "type": "string"
+          }
+        },
+        "title": "UpdateResponse",
+        "type": "object"
+      },
+      "UploadRequest": {
+        "description": "Upload a large object (\u003e 10MB). Returns a time limited presigned URL to be used for uploading the object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "visibility": {
+            "description": "is this object public or private",
+            "type": "string"
+          }
+        },
+        "title": "UploadRequest",
+        "type": "object"
+      },
+      "UploadResponse": {
+        "properties": {
+          "url": {
+            "description": "a presigned url to be used for uploading. To use the URL call it with HTTP PUT and pass the object as the request data",
+            "type": "string"
+          }
+        },
+        "title": "UploadResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Space",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/space/Space/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Create(CreateRequest)"
+      }
+    },
+    "/space/Space/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Delete(DeleteRequest)"
+      }
+    },
+    "/space/Space/Download": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceDownloadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceDownloadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Download(DownloadRequest)"
+      }
+    },
+    "/space/Space/Head": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceHeadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceHeadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Head(HeadRequest)"
+      }
+    },
+    "/space/Space/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.List(ListRequest)"
+      }
+    },
+    "/space/Space/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Read(ReadRequest)"
+      }
+    },
+    "/space/Space/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Update(UpdateRequest)"
+      }
+    },
+    "/space/Space/Upload": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SpaceUploadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SpaceUploadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Space.Upload(UploadRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

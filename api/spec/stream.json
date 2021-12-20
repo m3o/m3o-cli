@@ -1,0 +1,451 @@
+{
+  "components": {
+    "requestBodies": {
+      "StreamCreateChannelRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateChannelRequest"
+            }
+          }
+        },
+        "description": "StreamCreateChannelRequest"
+      },
+      "StreamListChannelsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListChannelsRequest"
+            }
+          }
+        },
+        "description": "StreamListChannelsRequest"
+      },
+      "StreamListMessagesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListMessagesRequest"
+            }
+          }
+        },
+        "description": "StreamListMessagesRequest"
+      },
+      "StreamSendMessageRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendMessageRequest"
+            }
+          }
+        },
+        "description": "StreamSendMessageRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "StreamCreateChannelResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateChannelResponse"
+            }
+          }
+        },
+        "description": "StreamCreateChannelResponse"
+      },
+      "StreamListChannelsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListChannelsResponse"
+            }
+          }
+        },
+        "description": "StreamListChannelsResponse"
+      },
+      "StreamListMessagesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListMessagesResponse"
+            }
+          }
+        },
+        "description": "StreamListMessagesResponse"
+      },
+      "StreamSendMessageResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendMessageResponse"
+            }
+          }
+        },
+        "description": "StreamSendMessageResponse"
+      }
+    },
+    "schemas": {
+      "Channel": {
+        "properties": {
+          "description": {
+            "description": "description for the channel",
+            "type": "string"
+          },
+          "last_active": {
+            "description": "last activity time",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the channel",
+            "type": "string"
+          }
+        },
+        "title": "Channel",
+        "type": "object"
+      },
+      "CreateChannelRequest": {
+        "description": "Create a channel with a given name and description. Channels are created automatically but \n this allows you to specify a description that's persisted for the lifetime of the channel.",
+        "properties": {
+          "description": {
+            "description": "description for the channel",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the channel",
+            "type": "string"
+          }
+        },
+        "title": "CreateChannelRequest",
+        "type": "object"
+      },
+      "CreateChannelResponse": {
+        "title": "CreateChannelResponse",
+        "type": "object"
+      },
+      "ListChannelsRequest": {
+        "description": "List all the active channels",
+        "title": "ListChannelsRequest",
+        "type": "object"
+      },
+      "ListChannelsResponse": {
+        "properties": {
+          "channels": {
+            "items": {
+              "properties": {
+                "description": {
+                  "description": "description for the channel",
+                  "type": "string"
+                },
+                "last_active": {
+                  "description": "last activity time",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of the channel",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListChannelsResponse",
+        "type": "object"
+      },
+      "ListMessagesRequest": {
+        "description": "List messages for a given channel",
+        "properties": {
+          "channel": {
+            "description": "The channel to subscribe to",
+            "type": "string"
+          },
+          "limit": {
+            "description": "number of message to return",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ListMessagesRequest",
+        "type": "object"
+      },
+      "ListMessagesResponse": {
+        "properties": {
+          "channel": {
+            "description": "The channel subscribed to",
+            "type": "string"
+          },
+          "messages": {
+            "description": "Messages are chronological order",
+            "items": {
+              "properties": {
+                "channel": {
+                  "description": "the channel name",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "id of the message",
+                  "type": "string"
+                },
+                "metadata": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "the associated metadata",
+                  "type": "object"
+                },
+                "text": {
+                  "description": "text of the message",
+                  "type": "string"
+                },
+                "timestamp": {
+                  "description": "time of message creation",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListMessagesResponse",
+        "type": "object"
+      },
+      "Message": {
+        "properties": {
+          "channel": {
+            "description": "the channel name",
+            "type": "string"
+          },
+          "id": {
+            "description": "id of the message",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "the associated metadata",
+            "type": "object"
+          },
+          "text": {
+            "description": "text of the message",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "time of message creation",
+            "type": "string"
+          }
+        },
+        "title": "Message",
+        "type": "object"
+      },
+      "SendMessageRequest": {
+        "description": "Send a message to the stream.",
+        "properties": {
+          "channel": {
+            "description": "The channel to send to",
+            "type": "string"
+          },
+          "text": {
+            "description": "The message text to send",
+            "type": "string"
+          }
+        },
+        "title": "SendMessageRequest",
+        "type": "object"
+      },
+      "SendMessageResponse": {
+        "title": "SendMessageResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Stream",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/stream/Stream/CreateChannel": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StreamCreateChannelRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StreamCreateChannelResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stream.CreateChannel(CreateChannelRequest)"
+      }
+    },
+    "/stream/Stream/ListChannels": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StreamListChannelsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StreamListChannelsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stream.ListChannels(ListChannelsRequest)"
+      }
+    },
+    "/stream/Stream/ListMessages": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StreamListMessagesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StreamListMessagesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stream.ListMessages(ListMessagesRequest)"
+      }
+    },
+    "/stream/Stream/SendMessage": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StreamSendMessageRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StreamSendMessageResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stream.SendMessage(SendMessageRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

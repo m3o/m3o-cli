@@ -1,0 +1,320 @@
+{
+  "components": {
+    "requestBodies": {
+      "GeocodingLookupRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupRequest"
+            }
+          }
+        },
+        "description": "GeocodingLookupRequest"
+      },
+      "GeocodingReverseRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReverseRequest"
+            }
+          }
+        },
+        "description": "GeocodingReverseRequest"
+      }
+    },
+    "responses": {
+      "GeocodingLookupResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupResponse"
+            }
+          }
+        },
+        "description": "GeocodingLookupResponse"
+      },
+      "GeocodingReverseResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReverseResponse"
+            }
+          }
+        },
+        "description": "GeocodingReverseResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Address": {
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "line_one": {
+            "type": "string"
+          },
+          "line_two": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          }
+        },
+        "title": "Address",
+        "type": "object"
+      },
+      "Location": {
+        "properties": {
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "Location",
+        "type": "object"
+      },
+      "LookupRequest": {
+        "description": "Lookup returns a geocoded address including normalized address and gps coordinates. All fields are optional, provide more to get more accurate results",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          }
+        },
+        "title": "LookupRequest",
+        "type": "object"
+      },
+      "LookupResponse": {
+        "properties": {
+          "address": {
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "line_one": {
+                "type": "string"
+              },
+              "line_two": {
+                "type": "string"
+              },
+              "postcode": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "LookupResponse",
+        "type": "object"
+      },
+      "ReverseRequest": {
+        "description": "Reverse lookup an address from gps coordinates",
+        "properties": {
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "ReverseRequest",
+        "type": "object"
+      },
+      "ReverseResponse": {
+        "properties": {
+          "address": {
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "line_one": {
+                "type": "string"
+              },
+              "line_two": {
+                "type": "string"
+              },
+              "postcode": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "location": {
+            "properties": {
+              "latitude": {
+                "format": "double",
+                "type": "number"
+              },
+              "longitude": {
+                "format": "double",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReverseResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Geocoding",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/geocoding/Geocoding/Lookup": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/GeocodingLookupRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/GeocodingLookupResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Geocoding.Lookup(LookupRequest)"
+      }
+    },
+    "/geocoding/Geocoding/Reverse": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/GeocodingReverseRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/GeocodingReverseResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Geocoding.Reverse(ReverseRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

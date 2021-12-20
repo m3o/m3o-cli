@@ -1,0 +1,1022 @@
+{
+  "components": {
+    "requestBodies": {
+      "FunctionCallRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CallRequest"
+            }
+          }
+        },
+        "description": "FunctionCallRequest"
+      },
+      "FunctionDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "FunctionDeleteRequest"
+      },
+      "FunctionDeployRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeployRequest"
+            }
+          }
+        },
+        "description": "FunctionDeployRequest"
+      },
+      "FunctionDescribeRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DescribeRequest"
+            }
+          }
+        },
+        "description": "FunctionDescribeRequest"
+      },
+      "FunctionListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "FunctionListRequest"
+      },
+      "FunctionProxyRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProxyRequest"
+            }
+          }
+        },
+        "description": "FunctionProxyRequest"
+      },
+      "FunctionRegionsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RegionsRequest"
+            }
+          }
+        },
+        "description": "FunctionRegionsRequest"
+      },
+      "FunctionReserveRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReserveRequest"
+            }
+          }
+        },
+        "description": "FunctionReserveRequest"
+      },
+      "FunctionUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "FunctionUpdateRequest"
+      }
+    },
+    "responses": {
+      "FunctionCallResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CallResponse"
+            }
+          }
+        },
+        "description": "FunctionCallResponse"
+      },
+      "FunctionDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "FunctionDeleteResponse"
+      },
+      "FunctionDeployResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeployResponse"
+            }
+          }
+        },
+        "description": "FunctionDeployResponse"
+      },
+      "FunctionDescribeResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DescribeResponse"
+            }
+          }
+        },
+        "description": "FunctionDescribeResponse"
+      },
+      "FunctionListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "FunctionListResponse"
+      },
+      "FunctionProxyResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProxyResponse"
+            }
+          }
+        },
+        "description": "FunctionProxyResponse"
+      },
+      "FunctionRegionsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RegionsResponse"
+            }
+          }
+        },
+        "description": "FunctionRegionsResponse"
+      },
+      "FunctionReserveResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReserveResponse"
+            }
+          }
+        },
+        "description": "FunctionReserveResponse"
+      },
+      "FunctionUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "FunctionUpdateResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "CallRequest": {
+        "description": "Call a function by name",
+        "properties": {
+          "name": {
+            "description": "Name of the function",
+            "type": "string"
+          },
+          "request": {
+            "description": "Request body that will be passed to the function",
+            "type": "object"
+          }
+        },
+        "title": "CallRequest",
+        "type": "object"
+      },
+      "CallResponse": {
+        "properties": {
+          "response": {
+            "description": "Response body that the function returned",
+            "type": "object"
+          }
+        },
+        "title": "CallResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a function by name",
+        "properties": {
+          "name": {
+            "description": "The name of the function",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "DeployRequest": {
+        "description": "Deploy a group of functions",
+        "properties": {
+          "branch": {
+            "description": "branch to deploy. defaults to master",
+            "type": "string"
+          },
+          "entrypoint": {
+            "description": "entry point, ie. handler name in the source code \n if not provided, defaults to the name parameter",
+            "type": "string"
+          },
+          "env_vars": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "environment variables to pass in at runtime",
+            "type": "object"
+          },
+          "name": {
+            "description": "function name",
+            "type": "string"
+          },
+          "region": {
+            "description": "region to deploy in. defaults to europe-west1",
+            "type": "string"
+          },
+          "repo": {
+            "description": "github url to repo",
+            "type": "string"
+          },
+          "runtime": {
+            "description": "runtime/lanaguage of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,\n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+            "type": "string"
+          },
+          "subfolder": {
+            "description": "optional subfolder path",
+            "type": "string"
+          }
+        },
+        "title": "DeployRequest",
+        "type": "object"
+      },
+      "DeployResponse": {
+        "properties": {
+          "function": {
+            "properties": {
+              "branch": {
+                "description": "branch to deploy. defaults to master",
+                "type": "string"
+              },
+              "created": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "entrypoint": {
+                "description": "name of handler in source code",
+                "type": "string"
+              },
+              "env_vars": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "associated env vars",
+                "type": "object"
+              },
+              "id": {
+                "description": "id of the function",
+                "type": "string"
+              },
+              "name": {
+                "description": "function name\n limitation: must be unique across projects",
+                "type": "string"
+              },
+              "region": {
+                "description": "region to deploy in. defaults to europe-west1",
+                "type": "string"
+              },
+              "repo": {
+                "description": "git repo address",
+                "type": "string"
+              },
+              "runtime": {
+                "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+                "type": "string"
+              },
+              "status": {
+                "description": "eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc",
+                "type": "string"
+              },
+              "subfolder": {
+                "description": "subfolder path to entrypoint",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time it was updated",
+                "type": "string"
+              },
+              "url": {
+                "description": "unique url of the function",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeployResponse",
+        "type": "object"
+      },
+      "DescribeRequest": {
+        "description": "Get the info for a deployed function",
+        "properties": {
+          "name": {
+            "description": "The name of the function",
+            "type": "string"
+          }
+        },
+        "title": "DescribeRequest",
+        "type": "object"
+      },
+      "DescribeResponse": {
+        "properties": {
+          "function": {
+            "description": "The function requested",
+            "properties": {
+              "branch": {
+                "description": "branch to deploy. defaults to master",
+                "type": "string"
+              },
+              "created": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "entrypoint": {
+                "description": "name of handler in source code",
+                "type": "string"
+              },
+              "env_vars": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "associated env vars",
+                "type": "object"
+              },
+              "id": {
+                "description": "id of the function",
+                "type": "string"
+              },
+              "name": {
+                "description": "function name\n limitation: must be unique across projects",
+                "type": "string"
+              },
+              "region": {
+                "description": "region to deploy in. defaults to europe-west1",
+                "type": "string"
+              },
+              "repo": {
+                "description": "git repo address",
+                "type": "string"
+              },
+              "runtime": {
+                "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+                "type": "string"
+              },
+              "status": {
+                "description": "eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc",
+                "type": "string"
+              },
+              "subfolder": {
+                "description": "subfolder path to entrypoint",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time it was updated",
+                "type": "string"
+              },
+              "url": {
+                "description": "unique url of the function",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DescribeResponse",
+        "type": "object"
+      },
+      "Func": {
+        "properties": {
+          "branch": {
+            "description": "branch to deploy. defaults to master",
+            "type": "string"
+          },
+          "created": {
+            "description": "time of creation",
+            "type": "string"
+          },
+          "entrypoint": {
+            "description": "name of handler in source code",
+            "type": "string"
+          },
+          "env_vars": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "associated env vars",
+            "type": "object"
+          },
+          "id": {
+            "description": "id of the function",
+            "type": "string"
+          },
+          "name": {
+            "description": "function name\n limitation: must be unique across projects",
+            "type": "string"
+          },
+          "region": {
+            "description": "region to deploy in. defaults to europe-west1",
+            "type": "string"
+          },
+          "repo": {
+            "description": "git repo address",
+            "type": "string"
+          },
+          "runtime": {
+            "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+            "type": "string"
+          },
+          "status": {
+            "description": "eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc",
+            "type": "string"
+          },
+          "subfolder": {
+            "description": "subfolder path to entrypoint",
+            "type": "string"
+          },
+          "updated": {
+            "description": "time it was updated",
+            "type": "string"
+          },
+          "url": {
+            "description": "unique url of the function",
+            "type": "string"
+          }
+        },
+        "title": "Func",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all the deployed functions",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "functions": {
+            "description": "List of functions deployed",
+            "items": {
+              "properties": {
+                "branch": {
+                  "description": "branch to deploy. defaults to master",
+                  "type": "string"
+                },
+                "created": {
+                  "description": "time of creation",
+                  "type": "string"
+                },
+                "entrypoint": {
+                  "description": "name of handler in source code",
+                  "type": "string"
+                },
+                "env_vars": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "associated env vars",
+                  "type": "object"
+                },
+                "id": {
+                  "description": "id of the function",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "function name\n limitation: must be unique across projects",
+                  "type": "string"
+                },
+                "region": {
+                  "description": "region to deploy in. defaults to europe-west1",
+                  "type": "string"
+                },
+                "repo": {
+                  "description": "git repo address",
+                  "type": "string"
+                },
+                "runtime": {
+                  "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc",
+                  "type": "string"
+                },
+                "subfolder": {
+                  "description": "subfolder path to entrypoint",
+                  "type": "string"
+                },
+                "updated": {
+                  "description": "time it was updated",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "unique url of the function",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ProxyRequest": {
+        "description": "Return the backend url for proxying",
+        "properties": {
+          "id": {
+            "description": "id of the function",
+            "type": "string"
+          }
+        },
+        "title": "ProxyRequest",
+        "type": "object"
+      },
+      "ProxyResponse": {
+        "properties": {
+          "url": {
+            "description": "backend url",
+            "type": "string"
+          }
+        },
+        "title": "ProxyResponse",
+        "type": "object"
+      },
+      "RegionsRequest": {
+        "description": "Return a list of supported regions",
+        "title": "RegionsRequest",
+        "type": "object"
+      },
+      "RegionsResponse": {
+        "properties": {
+          "regions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "title": "RegionsResponse",
+        "type": "object"
+      },
+      "Reservation": {
+        "description": "Reservation represents a reserved function",
+        "properties": {
+          "created": {
+            "description": "time of reservation",
+            "type": "string"
+          },
+          "expires": {
+            "description": "time reservation expires",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the app",
+            "type": "string"
+          },
+          "owner": {
+            "description": "owner id",
+            "type": "string"
+          },
+          "token": {
+            "description": "associated token",
+            "type": "string"
+          }
+        },
+        "title": "Reservation",
+        "type": "object"
+      },
+      "ReserveRequest": {
+        "description": "Reserve function names and resources beyond free quota",
+        "properties": {
+          "name": {
+            "description": "name of your app e.g helloworld",
+            "type": "string"
+          }
+        },
+        "title": "ReserveRequest",
+        "type": "object"
+      },
+      "ReserveResponse": {
+        "properties": {
+          "reservation": {
+            "description": "The app reservation",
+            "properties": {
+              "created": {
+                "description": "time of reservation",
+                "type": "string"
+              },
+              "expires": {
+                "description": "time reservation expires",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the app",
+                "type": "string"
+              },
+              "owner": {
+                "description": "owner id",
+                "type": "string"
+              },
+              "token": {
+                "description": "associated token",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReserveResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update a function. Downloads the source, builds and redeploys",
+        "properties": {
+          "name": {
+            "description": "function name",
+            "type": "string"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Function",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/function/Function/Call": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionCallRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionCallResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Call(CallRequest)"
+      }
+    },
+    "/function/Function/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Delete(DeleteRequest)"
+      }
+    },
+    "/function/Function/Deploy": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionDeployRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionDeployResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Deploy(DeployRequest)"
+      }
+    },
+    "/function/Function/Describe": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionDescribeRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionDescribeResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Describe(DescribeRequest)"
+      }
+    },
+    "/function/Function/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.List(ListRequest)"
+      }
+    },
+    "/function/Function/Proxy": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionProxyRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionProxyResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Proxy(ProxyRequest)"
+      }
+    },
+    "/function/Function/Regions": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionRegionsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionRegionsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Regions(RegionsRequest)"
+      }
+    },
+    "/function/Function/Reserve": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionReserveRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionReserveResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Reserve(ReserveRequest)"
+      }
+    },
+    "/function/Function/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

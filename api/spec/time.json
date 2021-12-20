@@ -1,0 +1,266 @@
+{
+  "components": {
+    "requestBodies": {
+      "TimeNowRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NowRequest"
+            }
+          }
+        },
+        "description": "TimeNowRequest"
+      },
+      "TimeZoneRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ZoneRequest"
+            }
+          }
+        },
+        "description": "TimeZoneRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "TimeNowResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NowResponse"
+            }
+          }
+        },
+        "description": "TimeNowResponse"
+      },
+      "TimeZoneResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ZoneResponse"
+            }
+          }
+        },
+        "description": "TimeZoneResponse"
+      }
+    },
+    "schemas": {
+      "NowRequest": {
+        "description": "Get the current time",
+        "properties": {
+          "location": {
+            "description": "optional location, otherwise returns UTC",
+            "type": "string"
+          }
+        },
+        "title": "NowRequest",
+        "type": "object"
+      },
+      "NowResponse": {
+        "properties": {
+          "localtime": {
+            "description": "the current time as HH:MM:SS",
+            "type": "string"
+          },
+          "location": {
+            "description": "the location as Europe/London",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "timestamp as 2006-01-02T15:04:05.999999999Z07:00",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "the timezone as BST",
+            "type": "string"
+          },
+          "unix": {
+            "description": "the unix timestamp",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "NowResponse",
+        "type": "object"
+      },
+      "ZoneRequest": {
+        "description": "Get the timezone info for a specific location",
+        "properties": {
+          "location": {
+            "description": "location to lookup e.g postcode, city, ip address",
+            "type": "string"
+          }
+        },
+        "title": "ZoneRequest",
+        "type": "object"
+      },
+      "ZoneResponse": {
+        "properties": {
+          "abbreviation": {
+            "description": "the abbreviated code e.g BST",
+            "type": "string"
+          },
+          "country": {
+            "description": "country of the timezone",
+            "type": "string"
+          },
+          "dst": {
+            "description": "is daylight savings",
+            "type": "boolean"
+          },
+          "latitude": {
+            "description": "e.g 51.42",
+            "format": "double",
+            "type": "number"
+          },
+          "localtime": {
+            "description": "the local time",
+            "type": "string"
+          },
+          "location": {
+            "description": "location requested",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "e.g -0.37",
+            "format": "double",
+            "type": "number"
+          },
+          "region": {
+            "description": "region of timezone",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "the timezone e.g Europe/London",
+            "type": "string"
+          }
+        },
+        "title": "ZoneResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Time",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/time/Time/Now": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TimeNowRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TimeNowResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Time.Now(NowRequest)"
+      }
+    },
+    "/time/Time/Zone": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TimeZoneRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TimeZoneResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Time.Zone(ZoneRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

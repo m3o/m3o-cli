@@ -1,0 +1,507 @@
+{
+  "components": {
+    "requestBodies": {
+      "StockHistoryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryRequest"
+            }
+          }
+        },
+        "description": "StockHistoryRequest"
+      },
+      "StockOrderBookRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/OrderBookRequest"
+            }
+          }
+        },
+        "description": "StockOrderBookRequest"
+      },
+      "StockPriceRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceRequest"
+            }
+          }
+        },
+        "description": "StockPriceRequest"
+      },
+      "StockQuoteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteRequest"
+            }
+          }
+        },
+        "description": "StockQuoteRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "StockHistoryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryResponse"
+            }
+          }
+        },
+        "description": "StockHistoryResponse"
+      },
+      "StockOrderBookResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/OrderBookResponse"
+            }
+          }
+        },
+        "description": "StockOrderBookResponse"
+      },
+      "StockPriceResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceResponse"
+            }
+          }
+        },
+        "description": "StockPriceResponse"
+      },
+      "StockQuoteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteResponse"
+            }
+          }
+        },
+        "description": "StockQuoteResponse"
+      }
+    },
+    "schemas": {
+      "HistoryRequest": {
+        "description": "Get the historic open-close for a given day",
+        "properties": {
+          "date": {
+            "description": "date to retrieve as YYYY-MM-DD",
+            "type": "string"
+          },
+          "stock": {
+            "description": "the stock symbol e.g AAPL",
+            "type": "string"
+          }
+        },
+        "title": "HistoryRequest",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "properties": {
+          "close": {
+            "description": "the close price",
+            "format": "double",
+            "type": "number"
+          },
+          "date": {
+            "description": "the date",
+            "type": "string"
+          },
+          "high": {
+            "description": "the peak price",
+            "format": "double",
+            "type": "number"
+          },
+          "low": {
+            "description": "the low price",
+            "format": "double",
+            "type": "number"
+          },
+          "open": {
+            "description": "the open price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the stock symbol",
+            "type": "string"
+          },
+          "volume": {
+            "description": "the volume",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "Order": {
+        "properties": {
+          "ask_price": {
+            "description": "the asking price",
+            "format": "double",
+            "type": "number"
+          },
+          "ask_size": {
+            "description": "the ask size",
+            "format": "int32",
+            "type": "number"
+          },
+          "bid_price": {
+            "description": "the bidding price",
+            "format": "double",
+            "type": "number"
+          },
+          "bid_size": {
+            "description": "the bid size",
+            "format": "int32",
+            "type": "number"
+          },
+          "timestamp": {
+            "description": "the UTC timestamp of the quote",
+            "type": "string"
+          }
+        },
+        "title": "Order",
+        "type": "object"
+      },
+      "OrderBookRequest": {
+        "description": "Get the historic order book and each trade by timestamp",
+        "properties": {
+          "date": {
+            "description": "the date in format YYYY-MM-dd",
+            "type": "string"
+          },
+          "end": {
+            "description": "optional RFC3339Nano end time e.g 2006-01-02T15:04:05.999999999Z07:00",
+            "type": "string"
+          },
+          "limit": {
+            "description": "limit number of prices",
+            "format": "int32",
+            "type": "number"
+          },
+          "start": {
+            "description": "optional RFC3339Nano start time e.g 2006-01-02T15:04:05.999999999Z07:00",
+            "type": "string"
+          },
+          "stock": {
+            "description": "stock to retrieve e.g AAPL",
+            "type": "string"
+          }
+        },
+        "title": "OrderBookRequest",
+        "type": "object"
+      },
+      "OrderBookResponse": {
+        "properties": {
+          "date": {
+            "description": "date of the request",
+            "type": "string"
+          },
+          "orders": {
+            "description": "list of orders",
+            "items": {
+              "properties": {
+                "ask_price": {
+                  "description": "the asking price",
+                  "format": "double",
+                  "type": "number"
+                },
+                "ask_size": {
+                  "description": "the ask size",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "bid_price": {
+                  "description": "the bidding price",
+                  "format": "double",
+                  "type": "number"
+                },
+                "bid_size": {
+                  "description": "the bid size",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "timestamp": {
+                  "description": "the UTC timestamp of the quote",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "symbol": {
+            "description": "the stock symbol",
+            "type": "string"
+          }
+        },
+        "title": "OrderBookResponse",
+        "type": "object"
+      },
+      "PriceRequest": {
+        "description": "Get the last price for a given stock ticker",
+        "properties": {
+          "symbol": {
+            "description": "stock symbol e.g AAPL",
+            "type": "string"
+          }
+        },
+        "title": "PriceRequest",
+        "type": "object"
+      },
+      "PriceResponse": {
+        "properties": {
+          "price": {
+            "description": "the last price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the stock symbol e.g AAPL",
+            "type": "string"
+          }
+        },
+        "title": "PriceResponse",
+        "type": "object"
+      },
+      "QuoteRequest": {
+        "description": "Get the last quote for the stock",
+        "properties": {
+          "symbol": {
+            "description": "the stock symbol e.g AAPL",
+            "type": "string"
+          }
+        },
+        "title": "QuoteRequest",
+        "type": "object"
+      },
+      "QuoteResponse": {
+        "properties": {
+          "ask_price": {
+            "description": "the asking price",
+            "format": "double",
+            "type": "number"
+          },
+          "ask_size": {
+            "description": "the ask size",
+            "format": "int32",
+            "type": "number"
+          },
+          "bid_price": {
+            "description": "the bidding price",
+            "format": "double",
+            "type": "number"
+          },
+          "bid_size": {
+            "description": "the bid size",
+            "format": "int32",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the stock symbol",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "the UTC timestamp of the quote",
+            "type": "string"
+          }
+        },
+        "title": "QuoteResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Stock",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/stock/Stock/History": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StockHistoryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StockHistoryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stock.History(HistoryRequest)"
+      }
+    },
+    "/stock/Stock/OrderBook": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StockOrderBookRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StockOrderBookResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stock.OrderBook(OrderBookRequest)"
+      }
+    },
+    "/stock/Stock/Price": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StockPriceRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StockPriceResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stock.Price(PriceRequest)"
+      }
+    },
+    "/stock/Stock/Quote": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/StockQuoteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StockQuoteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Stock.Quote(QuoteRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -1,0 +1,472 @@
+{
+  "components": {
+    "requestBodies": {
+      "CacheDecrementRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DecrementRequest"
+            }
+          }
+        },
+        "description": "CacheDecrementRequest"
+      },
+      "CacheDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "CacheDeleteRequest"
+      },
+      "CacheGetRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetRequest"
+            }
+          }
+        },
+        "description": "CacheGetRequest"
+      },
+      "CacheIncrementRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IncrementRequest"
+            }
+          }
+        },
+        "description": "CacheIncrementRequest"
+      },
+      "CacheSetRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SetRequest"
+            }
+          }
+        },
+        "description": "CacheSetRequest"
+      }
+    },
+    "responses": {
+      "CacheDecrementResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DecrementResponse"
+            }
+          }
+        },
+        "description": "CacheDecrementResponse"
+      },
+      "CacheDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "CacheDeleteResponse"
+      },
+      "CacheGetResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetResponse"
+            }
+          }
+        },
+        "description": "CacheGetResponse"
+      },
+      "CacheIncrementResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IncrementResponse"
+            }
+          }
+        },
+        "description": "CacheIncrementResponse"
+      },
+      "CacheSetResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SetResponse"
+            }
+          }
+        },
+        "description": "CacheSetResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "DecrementRequest": {
+        "description": "Decrement a value (if it's a number). If key not found it is equivalent to set.",
+        "properties": {
+          "key": {
+            "description": "The key to decrement",
+            "type": "string"
+          },
+          "value": {
+            "description": "The amount to decrement the value by",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "DecrementRequest",
+        "type": "object"
+      },
+      "DecrementResponse": {
+        "properties": {
+          "key": {
+            "description": "The key decremented",
+            "type": "string"
+          },
+          "value": {
+            "description": "The new value",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "DecrementResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a value from the cache. If key not found a success response is returned.",
+        "properties": {
+          "key": {
+            "description": "The key to delete",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "status": {
+            "description": "Returns \"ok\" if successful",
+            "type": "string"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "GetRequest": {
+        "description": "Get an item from the cache by key. If key is not found, an empty response is returned.",
+        "properties": {
+          "key": {
+            "description": "The key to retrieve",
+            "type": "string"
+          }
+        },
+        "title": "GetRequest",
+        "type": "object"
+      },
+      "GetResponse": {
+        "properties": {
+          "key": {
+            "description": "The key",
+            "type": "string"
+          },
+          "ttl": {
+            "description": "Time to live in seconds",
+            "format": "int64",
+            "type": "number"
+          },
+          "value": {
+            "description": "The value",
+            "type": "string"
+          }
+        },
+        "title": "GetResponse",
+        "type": "object"
+      },
+      "IncrementRequest": {
+        "description": "Increment a value (if it's a number). If key not found it is equivalent to set.",
+        "properties": {
+          "key": {
+            "description": "The key to increment",
+            "type": "string"
+          },
+          "value": {
+            "description": "The amount to increment the value by",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "IncrementRequest",
+        "type": "object"
+      },
+      "IncrementResponse": {
+        "properties": {
+          "key": {
+            "description": "The key incremented",
+            "type": "string"
+          },
+          "value": {
+            "description": "The new value",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "IncrementResponse",
+        "type": "object"
+      },
+      "SetRequest": {
+        "description": "Set an item in the cache. Overwrites any existing value already set.",
+        "properties": {
+          "key": {
+            "description": "The key to update",
+            "type": "string"
+          },
+          "ttl": {
+            "description": "Time to live in seconds",
+            "format": "int64",
+            "type": "number"
+          },
+          "value": {
+            "description": "The value to set",
+            "type": "string"
+          }
+        },
+        "title": "SetRequest",
+        "type": "object"
+      },
+      "SetResponse": {
+        "properties": {
+          "status": {
+            "description": "Returns \"ok\" if successful",
+            "type": "string"
+          }
+        },
+        "title": "SetResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Cache",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/cache/Cache/Decrement": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CacheDecrementRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CacheDecrementResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cache.Decrement(DecrementRequest)"
+      }
+    },
+    "/cache/Cache/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CacheDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CacheDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cache.Delete(DeleteRequest)"
+      }
+    },
+    "/cache/Cache/Get": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CacheGetRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CacheGetResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cache.Get(GetRequest)"
+      }
+    },
+    "/cache/Cache/Increment": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CacheIncrementRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CacheIncrementResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cache.Increment(IncrementRequest)"
+      }
+    },
+    "/cache/Cache/Set": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CacheSetRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CacheSetResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cache.Set(SetRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

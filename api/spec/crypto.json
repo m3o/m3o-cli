@@ -1,0 +1,474 @@
+{
+  "components": {
+    "requestBodies": {
+      "CryptoHistoryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryRequest"
+            }
+          }
+        },
+        "description": "CryptoHistoryRequest"
+      },
+      "CryptoNewsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewsRequest"
+            }
+          }
+        },
+        "description": "CryptoNewsRequest"
+      },
+      "CryptoPriceRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceRequest"
+            }
+          }
+        },
+        "description": "CryptoPriceRequest"
+      },
+      "CryptoQuoteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteRequest"
+            }
+          }
+        },
+        "description": "CryptoQuoteRequest"
+      }
+    },
+    "responses": {
+      "CryptoHistoryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryResponse"
+            }
+          }
+        },
+        "description": "CryptoHistoryResponse"
+      },
+      "CryptoNewsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewsResponse"
+            }
+          }
+        },
+        "description": "CryptoNewsResponse"
+      },
+      "CryptoPriceResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PriceResponse"
+            }
+          }
+        },
+        "description": "CryptoPriceResponse"
+      },
+      "CryptoQuoteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QuoteResponse"
+            }
+          }
+        },
+        "description": "CryptoQuoteResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Article": {
+        "properties": {
+          "date": {
+            "description": "the date published",
+            "type": "string"
+          },
+          "description": {
+            "description": "its description",
+            "type": "string"
+          },
+          "source": {
+            "description": "the source",
+            "type": "string"
+          },
+          "title": {
+            "description": "title of the article",
+            "type": "string"
+          },
+          "url": {
+            "description": "the source url",
+            "type": "string"
+          }
+        },
+        "title": "Article",
+        "type": "object"
+      },
+      "HistoryRequest": {
+        "description": "Returns the history for the previous close",
+        "properties": {
+          "symbol": {
+            "description": "the crypto symbol e.g BTCUSD",
+            "type": "string"
+          }
+        },
+        "title": "HistoryRequest",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "properties": {
+          "close": {
+            "description": "the close price",
+            "format": "double",
+            "type": "number"
+          },
+          "date": {
+            "description": "the date",
+            "type": "string"
+          },
+          "high": {
+            "description": "the peak price",
+            "format": "double",
+            "type": "number"
+          },
+          "low": {
+            "description": "the low price",
+            "format": "double",
+            "type": "number"
+          },
+          "open": {
+            "description": "the open price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the crypto symbol",
+            "type": "string"
+          },
+          "volume": {
+            "description": "the volume",
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "NewsRequest": {
+        "description": "Get news related to a currency",
+        "properties": {
+          "symbol": {
+            "description": "cryptocurrency ticker to request news for e.g BTC",
+            "type": "string"
+          }
+        },
+        "title": "NewsRequest",
+        "type": "object"
+      },
+      "NewsResponse": {
+        "properties": {
+          "articles": {
+            "description": "list of articles",
+            "items": {
+              "properties": {
+                "date": {
+                  "description": "the date published",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "its description",
+                  "type": "string"
+                },
+                "source": {
+                  "description": "the source",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "title of the article",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "the source url",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "symbol": {
+            "description": "symbol requested for",
+            "type": "string"
+          }
+        },
+        "title": "NewsResponse",
+        "type": "object"
+      },
+      "PriceRequest": {
+        "description": "Get the last price for a given crypto ticker",
+        "properties": {
+          "symbol": {
+            "description": "the crypto symbol e.g BTCUSD",
+            "type": "string"
+          }
+        },
+        "title": "PriceRequest",
+        "type": "object"
+      },
+      "PriceResponse": {
+        "properties": {
+          "price": {
+            "description": "the last price",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the crypto symbol e.g BTCUSD",
+            "type": "string"
+          }
+        },
+        "title": "PriceResponse",
+        "type": "object"
+      },
+      "QuoteRequest": {
+        "description": "Get the last quote for a given crypto ticker",
+        "properties": {
+          "symbol": {
+            "description": "the crypto symbol e.g BTCUSD",
+            "type": "string"
+          }
+        },
+        "title": "QuoteRequest",
+        "type": "object"
+      },
+      "QuoteResponse": {
+        "properties": {
+          "ask_price": {
+            "description": "the asking price",
+            "format": "double",
+            "type": "number"
+          },
+          "ask_size": {
+            "description": "the ask size",
+            "format": "double",
+            "type": "number"
+          },
+          "bid_price": {
+            "description": "the bidding price",
+            "format": "double",
+            "type": "number"
+          },
+          "bid_size": {
+            "description": "the bid size",
+            "format": "double",
+            "type": "number"
+          },
+          "symbol": {
+            "description": "the crypto symbol",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "the UTC timestamp of the quote",
+            "type": "string"
+          }
+        },
+        "title": "QuoteResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Crypto",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/crypto/Crypto/History": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CryptoHistoryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CryptoHistoryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Crypto.History(HistoryRequest)"
+      }
+    },
+    "/crypto/Crypto/News": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CryptoNewsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CryptoNewsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Crypto.News(NewsRequest)"
+      }
+    },
+    "/crypto/Crypto/Price": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CryptoPriceRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CryptoPriceResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Crypto.Price(PriceRequest)"
+      }
+    },
+    "/crypto/Crypto/Quote": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CryptoQuoteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CryptoQuoteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Crypto.Quote(QuoteRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

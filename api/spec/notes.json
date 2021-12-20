@@ -1,0 +1,692 @@
+{
+  "components": {
+    "requestBodies": {
+      "NotesCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "NotesCreateRequest"
+      },
+      "NotesDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "NotesDeleteRequest"
+      },
+      "NotesEventsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsRequest"
+            }
+          }
+        },
+        "description": "NotesEventsRequest"
+      },
+      "NotesListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "NotesListRequest"
+      },
+      "NotesReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "NotesReadRequest"
+      },
+      "NotesUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "NotesUpdateRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "NotesCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "NotesCreateResponse"
+      },
+      "NotesDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "NotesDeleteResponse"
+      },
+      "NotesEventsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsResponse"
+            }
+          }
+        },
+        "description": "NotesEventsResponse"
+      },
+      "NotesListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "NotesListResponse"
+      },
+      "NotesReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "NotesReadResponse"
+      },
+      "NotesUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "NotesUpdateResponse"
+      }
+    },
+    "schemas": {
+      "CreateRequest": {
+        "description": "Create a new note",
+        "properties": {
+          "text": {
+            "description": "note text",
+            "type": "string"
+          },
+          "title": {
+            "description": "note title",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "note": {
+            "description": "The created note",
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a note",
+        "properties": {
+          "id": {
+            "description": "specify the id of the note",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "note": {
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "EventsRequest": {
+        "description": "Subscribe to notes events",
+        "properties": {
+          "id": {
+            "description": "optionally specify a note id",
+            "type": "string"
+          }
+        },
+        "title": "EventsRequest",
+        "type": "object"
+      },
+      "EventsResponse": {
+        "properties": {
+          "event": {
+            "description": "the event which occured; create, delete, update",
+            "type": "string"
+          },
+          "note": {
+            "description": "the note which the operation occured on",
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "EventsResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all the notes",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "notes": {
+            "description": "the list of notes",
+            "items": {
+              "properties": {
+                "created": {
+                  "description": "time at which the note was created",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique id for the note, generated if not specified",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "text within the note",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "title of the note",
+                  "type": "string"
+                },
+                "updated": {
+                  "description": "time at which the note was updated",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "Note": {
+        "properties": {
+          "created": {
+            "description": "time at which the note was created",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id for the note, generated if not specified",
+            "type": "string"
+          },
+          "text": {
+            "description": "text within the note",
+            "type": "string"
+          },
+          "title": {
+            "description": "title of the note",
+            "type": "string"
+          },
+          "updated": {
+            "description": "time at which the note was updated",
+            "type": "string"
+          }
+        },
+        "title": "Note",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read a note",
+        "properties": {
+          "id": {
+            "description": "the note id",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "note": {
+            "description": "The note",
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update a note",
+        "properties": {
+          "note": {
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "properties": {
+          "note": {
+            "properties": {
+              "created": {
+                "description": "time at which the note was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the note, generated if not specified",
+                "type": "string"
+              },
+              "text": {
+                "description": "text within the note",
+                "type": "string"
+              },
+              "title": {
+                "description": "title of the note",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the note was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Notes",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/notes/Notes/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.Create(CreateRequest)"
+      }
+    },
+    "/notes/Notes/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.Delete(DeleteRequest)"
+      }
+    },
+    "/notes/Notes/Events": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesEventsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesEventsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          },
+          "stream": {
+            "$ref": "#/components/responses/NotesEventsResponse"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.Events(EventsRequest)"
+      }
+    },
+    "/notes/Notes/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.List(ListRequest)"
+      }
+    },
+    "/notes/Notes/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.Read(ReadRequest)"
+      }
+    },
+    "/notes/Notes/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NotesUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NotesUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Notes.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

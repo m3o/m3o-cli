@@ -1,0 +1,469 @@
+{
+  "components": {
+    "requestBodies": {
+      "RssAddRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AddRequest"
+            }
+          }
+        },
+        "description": "RssAddRequest"
+      },
+      "RssFeedRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FeedRequest"
+            }
+          }
+        },
+        "description": "RssFeedRequest"
+      },
+      "RssListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "RssListRequest"
+      },
+      "RssRemoveRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RemoveRequest"
+            }
+          }
+        },
+        "description": "RssRemoveRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "RssAddResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AddResponse"
+            }
+          }
+        },
+        "description": "RssAddResponse"
+      },
+      "RssFeedResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FeedResponse"
+            }
+          }
+        },
+        "description": "RssFeedResponse"
+      },
+      "RssListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "RssListResponse"
+      },
+      "RssRemoveResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RemoveResponse"
+            }
+          }
+        },
+        "description": "RssRemoveResponse"
+      }
+    },
+    "schemas": {
+      "AddRequest": {
+        "description": "Add a new RSS feed with a name, url, and category",
+        "properties": {
+          "category": {
+            "description": "category to add e.g news",
+            "type": "string"
+          },
+          "name": {
+            "description": "rss feed name\n eg. a16z",
+            "type": "string"
+          },
+          "url": {
+            "description": "rss feed url\n eg. http://a16z.com/feed/",
+            "type": "string"
+          }
+        },
+        "title": "AddRequest",
+        "type": "object"
+      },
+      "AddResponse": {
+        "title": "AddResponse",
+        "type": "object"
+      },
+      "Entry": {
+        "properties": {
+          "content": {
+            "description": "article content",
+            "type": "string"
+          },
+          "date": {
+            "description": "data of the entry",
+            "type": "string"
+          },
+          "feed": {
+            "description": "the rss feed where it came from",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id of the entry",
+            "type": "string"
+          },
+          "link": {
+            "description": "rss feed url of the entry",
+            "type": "string"
+          },
+          "summary": {
+            "description": "article summary",
+            "type": "string"
+          },
+          "title": {
+            "description": "title of the entry",
+            "type": "string"
+          }
+        },
+        "title": "Entry",
+        "type": "object"
+      },
+      "Feed": {
+        "properties": {
+          "category": {
+            "description": "category of the feed e.g news",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id",
+            "type": "string"
+          },
+          "name": {
+            "description": "rss feed name\n eg. a16z",
+            "type": "string"
+          },
+          "url": {
+            "description": "rss feed url\n eg. http://a16z.com/feed/",
+            "type": "string"
+          }
+        },
+        "title": "Feed",
+        "type": "object"
+      },
+      "FeedRequest": {
+        "description": "Get an RSS feed by name. If no name is given, all feeds are returned. Default limit is 25 entries.",
+        "properties": {
+          "limit": {
+            "description": "limit entries returned",
+            "format": "int64",
+            "type": "number"
+          },
+          "name": {
+            "description": "rss feed name",
+            "type": "string"
+          },
+          "offset": {
+            "description": "offset entries",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "FeedRequest",
+        "type": "object"
+      },
+      "FeedResponse": {
+        "properties": {
+          "entries": {
+            "items": {
+              "properties": {
+                "content": {
+                  "description": "article content",
+                  "type": "string"
+                },
+                "date": {
+                  "description": "data of the entry",
+                  "type": "string"
+                },
+                "feed": {
+                  "description": "the rss feed where it came from",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique id of the entry",
+                  "type": "string"
+                },
+                "link": {
+                  "description": "rss feed url of the entry",
+                  "type": "string"
+                },
+                "summary": {
+                  "description": "article summary",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "title of the entry",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "FeedResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List the saved RSS fields",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "feeds": {
+            "items": {
+              "properties": {
+                "category": {
+                  "description": "category of the feed e.g news",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique id",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "rss feed name\n eg. a16z",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "rss feed url\n eg. http://a16z.com/feed/",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "RemoveRequest": {
+        "description": "Remove an RSS feed by name",
+        "properties": {
+          "name": {
+            "description": "rss feed name\n eg. a16z",
+            "type": "string"
+          }
+        },
+        "title": "RemoveRequest",
+        "type": "object"
+      },
+      "RemoveResponse": {
+        "title": "RemoveResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Rss",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/rss/Rss/Add": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RssAddRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RssAddResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Rss.Add(AddRequest)"
+      }
+    },
+    "/rss/Rss/Feed": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RssFeedRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RssFeedResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Rss.Feed(FeedRequest)"
+      }
+    },
+    "/rss/Rss/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RssListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RssListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Rss.List(ListRequest)"
+      }
+    },
+    "/rss/Rss/Remove": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RssRemoveRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RssRemoveResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Rss.Remove(RemoveRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

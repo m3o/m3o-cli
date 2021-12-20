@@ -1,0 +1,428 @@
+{
+  "components": {
+    "requestBodies": {
+      "CurrencyCodesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CodesRequest"
+            }
+          }
+        },
+        "description": "CurrencyCodesRequest"
+      },
+      "CurrencyConvertRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConvertRequest"
+            }
+          }
+        },
+        "description": "CurrencyConvertRequest"
+      },
+      "CurrencyHistoryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryRequest"
+            }
+          }
+        },
+        "description": "CurrencyHistoryRequest"
+      },
+      "CurrencyRatesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RatesRequest"
+            }
+          }
+        },
+        "description": "CurrencyRatesRequest"
+      }
+    },
+    "responses": {
+      "CurrencyCodesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CodesResponse"
+            }
+          }
+        },
+        "description": "CurrencyCodesResponse"
+      },
+      "CurrencyConvertResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConvertResponse"
+            }
+          }
+        },
+        "description": "CurrencyConvertResponse"
+      },
+      "CurrencyHistoryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryResponse"
+            }
+          }
+        },
+        "description": "CurrencyHistoryResponse"
+      },
+      "CurrencyRatesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RatesResponse"
+            }
+          }
+        },
+        "description": "CurrencyRatesResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Code": {
+        "properties": {
+          "currency": {
+            "description": "e.g United States Dollar",
+            "type": "string"
+          },
+          "name": {
+            "description": "e.g USD",
+            "type": "string"
+          }
+        },
+        "title": "Code",
+        "type": "object"
+      },
+      "CodesRequest": {
+        "description": "Codes returns the supported currency codes for the API",
+        "title": "CodesRequest",
+        "type": "object"
+      },
+      "CodesResponse": {
+        "properties": {
+          "codes": {
+            "items": {
+              "properties": {
+                "currency": {
+                  "description": "e.g United States Dollar",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "e.g USD",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "CodesResponse",
+        "type": "object"
+      },
+      "ConvertRequest": {
+        "description": "Convert returns the currency conversion rate between two pairs e.g USD/GBP",
+        "properties": {
+          "amount": {
+            "description": "optional amount to convert e.g 10.0",
+            "format": "double",
+            "type": "number"
+          },
+          "from": {
+            "description": "base code to convert from e.g USD",
+            "type": "string"
+          },
+          "to": {
+            "description": "target code to convert to e.g GBP",
+            "type": "string"
+          }
+        },
+        "title": "ConvertRequest",
+        "type": "object"
+      },
+      "ConvertResponse": {
+        "properties": {
+          "amount": {
+            "description": "converted amount e.g 7.10",
+            "format": "double",
+            "type": "number"
+          },
+          "from": {
+            "description": "the base code e.g USD",
+            "type": "string"
+          },
+          "rate": {
+            "description": "conversion rate e.g 0.71",
+            "format": "double",
+            "type": "number"
+          },
+          "to": {
+            "description": "the target code e.g GBP",
+            "type": "string"
+          }
+        },
+        "title": "ConvertResponse",
+        "type": "object"
+      },
+      "HistoryRequest": {
+        "description": "Returns the historic rates for a currency on a given date",
+        "properties": {
+          "code": {
+            "description": "currency code e.g USD",
+            "type": "string"
+          },
+          "date": {
+            "description": "date formatted as YYYY-MM-DD",
+            "type": "string"
+          }
+        },
+        "title": "HistoryRequest",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "properties": {
+          "code": {
+            "description": "The code of the request",
+            "type": "string"
+          },
+          "date": {
+            "description": "The date requested",
+            "type": "string"
+          },
+          "rates": {
+            "additionalProperties": {
+              "format": "double",
+              "type": "number"
+            },
+            "description": "The rate for the day as code:rate",
+            "type": "object"
+          }
+        },
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "RatesRequest": {
+        "description": "Rates returns the currency rates for a given code e.g USD",
+        "properties": {
+          "code": {
+            "description": "The currency code to get rates for e.g USD",
+            "type": "string"
+          }
+        },
+        "title": "RatesRequest",
+        "type": "object"
+      },
+      "RatesResponse": {
+        "properties": {
+          "code": {
+            "description": "The code requested e.g USD",
+            "type": "string"
+          },
+          "rates": {
+            "additionalProperties": {
+              "format": "double",
+              "type": "number"
+            },
+            "description": "The rates for the given code as key-value pairs code:rate",
+            "type": "object"
+          }
+        },
+        "title": "RatesResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Currency",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/currency/Currency/Codes": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CurrencyCodesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CurrencyCodesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Currency.Codes(CodesRequest)"
+      }
+    },
+    "/currency/Currency/Convert": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CurrencyConvertRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CurrencyConvertResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Currency.Convert(ConvertRequest)"
+      }
+    },
+    "/currency/Currency/History": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CurrencyHistoryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CurrencyHistoryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Currency.History(HistoryRequest)"
+      }
+    },
+    "/currency/Currency/Rates": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CurrencyRatesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CurrencyRatesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Currency.Rates(RatesRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}
