@@ -308,7 +308,6 @@ func generateCLI() []*cobra.Command {
 			schema := spec.Components.Schemas[parts[1]+"Request"]
 
 			if schema == nil {
-				fmt.Println(endpoint.Name)
 				command.AddCommand(&cobra.Command{
 					Use:   strings.ToLower(split[0]),
 					Short: "# Unsupported command",
