@@ -1,15 +1,45 @@
 {
   "components": {
     "requestBodies": {
-      "SearchVoteRequest": {
+      "SearchDeleteIndexRequest": {
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/VoteRequest"
+              "$ref": "#/components/schemas/DeleteIndexRequest"
             }
           }
         },
-        "description": "SearchVoteRequest"
+        "description": "SearchDeleteIndexRequest"
+      },
+      "SearchDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "SearchDeleteRequest"
+      },
+      "SearchIndexRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IndexRequest"
+            }
+          }
+        },
+        "description": "SearchIndexRequest"
+      },
+      "SearchSearchRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequest"
+            }
+          }
+        },
+        "description": "SearchSearchRequest"
       }
     },
     "responses": {
@@ -45,37 +75,211 @@
         },
         "description": "Error from the Micro API"
       },
-      "SearchVoteResponse": {
+      "SearchDeleteIndexResponse": {
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/VoteResponse"
+              "$ref": "#/components/schemas/DeleteIndexResponse"
             }
           }
         },
-        "description": "SearchVoteResponse"
+        "description": "SearchDeleteIndexResponse"
+      },
+      "SearchDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "SearchDeleteResponse"
+      },
+      "SearchIndexResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IndexResponse"
+            }
+          }
+        },
+        "description": "SearchIndexResponse"
+      },
+      "SearchSearchResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponse"
+            }
+          }
+        },
+        "description": "SearchSearchResponse"
       }
     },
     "schemas": {
-      "VoteRequest": {
-        "description": "Vote to have the Search api launched faster!",
+      "CreateIndexRequest": {
+        "description": "Create a search index by specifying which fields are to be queried",
         "properties": {
-          "message": {
-            "description": "optional message",
+          "fields": {
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "The name of the field. Use a `.` separator to define nested fields e.g. foo.bar",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "The type of the field - string, number",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "index": {
+            "description": "the name of the index",
             "type": "string"
           }
         },
-        "title": "VoteRequest",
+        "title": "CreateIndexRequest",
         "type": "object"
       },
-      "VoteResponse": {
+      "CreateIndexResponse": {
+        "title": "CreateIndexResponse",
+        "type": "object"
+      },
+      "DeleteIndexRequest": {
+        "description": "Delete an index.",
         "properties": {
-          "message": {
-            "description": "response message",
+          "index": {
+            "description": "The name of the index to delete",
             "type": "string"
           }
         },
-        "title": "VoteResponse",
+        "title": "DeleteIndexRequest",
+        "type": "object"
+      },
+      "DeleteIndexResponse": {
+        "title": "DeleteIndexResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a document given its ID",
+        "properties": {
+          "id": {
+            "description": "The ID of the document to delete",
+            "type": "string"
+          },
+          "index": {
+            "description": "The index the document belongs to",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "Document": {
+        "properties": {
+          "contents": {
+            "description": "The JSON contents of the document",
+            "type": "object"
+          },
+          "id": {
+            "description": "The ID for this document. If blank, one will be generated",
+            "type": "string"
+          }
+        },
+        "title": "Document",
+        "type": "object"
+      },
+      "Field": {
+        "properties": {
+          "name": {
+            "description": "The name of the field. Use a `.` separator to define nested fields e.g. foo.bar",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the field - string, number",
+            "type": "string"
+          }
+        },
+        "title": "Field",
+        "type": "object"
+      },
+      "IndexRequest": {
+        "description": "Index a document i.e. insert a document to search for.",
+        "properties": {
+          "document": {
+            "description": "The document to index",
+            "properties": {
+              "contents": {
+                "description": "The JSON contents of the document",
+                "type": "object"
+              },
+              "id": {
+                "description": "The ID for this document. If blank, one will be generated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "index": {
+            "description": "The index this document belongs to",
+            "type": "string"
+          }
+        },
+        "title": "IndexRequest",
+        "type": "object"
+      },
+      "IndexResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "title": "IndexResponse",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "description": "Search for documents in a given in index",
+        "properties": {
+          "index": {
+            "description": "The index the document belongs to",
+            "type": "string"
+          },
+          "query": {
+            "description": "The query. See docs for query language examples",
+            "type": "string"
+          }
+        },
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "documents": {
+            "description": "The matching documents",
+            "items": {
+              "properties": {
+                "contents": {
+                  "description": "The JSON contents of the document",
+                  "type": "object"
+                },
+                "id": {
+                  "description": "The ID for this document. If blank, one will be generated",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SearchResponse",
         "type": "object"
       }
     },
@@ -100,7 +304,7 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/search/Search/Vote": {
+    "/search/Search/Delete": {
       "parameters": [
         {
           "in": "header",
@@ -114,11 +318,11 @@
       ],
       "post": {
         "requestBody": {
-          "$ref": "#/components/requestBodies/SearchVoteRequest"
+          "$ref": "#/components/requestBodies/SearchDeleteRequest"
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/SearchVoteResponse"
+            "$ref": "#/components/responses/SearchDeleteResponse"
           },
           "default": {
             "$ref": "#/components/responses/MicroAPIError"
@@ -129,7 +333,103 @@
             "MicroAPIToken": []
           }
         ],
-        "summary": "Search.Vote(VoteRequest)"
+        "summary": "Search.Delete(DeleteRequest)"
+      }
+    },
+    "/search/Search/DeleteIndex": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SearchDeleteIndexRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SearchDeleteIndexResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Search.DeleteIndex(DeleteIndexRequest)"
+      }
+    },
+    "/search/Search/Index": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SearchIndexRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SearchIndexResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Search.Index(IndexRequest)"
+      }
+    },
+    "/search/Search/Search": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SearchSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SearchSearchResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Search.Search(SearchRequest)"
       }
     }
   },

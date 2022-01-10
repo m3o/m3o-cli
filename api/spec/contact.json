@@ -1,0 +1,1225 @@
+{
+  "components": {
+    "requestBodies": {
+      "ContactCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "ContactCreateRequest"
+      },
+      "ContactDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "ContactDeleteRequest"
+      },
+      "ContactListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "ContactListRequest"
+      },
+      "ContactReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "ContactReadRequest"
+      },
+      "ContactUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "ContactUpdateRequest"
+      }
+    },
+    "responses": {
+      "ContactCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "ContactCreateResponse"
+      },
+      "ContactDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "ContactDeleteResponse"
+      },
+      "ContactListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "ContactListResponse"
+      },
+      "ContactReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "ContactReadResponse"
+      },
+      "ContactUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "ContactUpdateResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Address": {
+        "properties": {
+          "label": {
+            "description": "the label of the address",
+            "type": "string"
+          },
+          "location": {
+            "description": "the address location",
+            "type": "string"
+          }
+        },
+        "title": "Address",
+        "type": "object"
+      },
+      "ContactInfo": {
+        "properties": {
+          "addresses": {
+            "description": "the address",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the address",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "the address location",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "birthday": {
+            "description": "the birthday",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "create date string in RFC3339",
+            "type": "string"
+          },
+          "emails": {
+            "description": "the emails",
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "the email address",
+                  "type": "string"
+                },
+                "label": {
+                  "description": "the label of the email",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "id": {
+            "description": "contact id",
+            "type": "string"
+          },
+          "links": {
+            "description": "the contact links",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the link",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "the url of the contact",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "name": {
+            "description": "the contact name",
+            "type": "string"
+          },
+          "note": {
+            "description": "note of the contact",
+            "type": "string"
+          },
+          "phones": {
+            "description": "the phone numbers",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the phone number",
+                  "type": "string"
+                },
+                "number": {
+                  "description": "phone number",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "social_medias": {
+            "description": "the social media username",
+            "properties": {
+              "label": {
+                "description": "the label of the social",
+                "type": "string"
+              },
+              "username": {
+                "description": "the username of social media",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "updated_at": {
+            "description": "update date string in RFC3339",
+            "type": "string"
+          }
+        },
+        "title": "ContactInfo",
+        "type": "object"
+      },
+      "CreateRequest": {
+        "properties": {
+          "addresses": {
+            "description": "optional, location",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the address",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "the address location",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "birthday": {
+            "description": "optional, birthday",
+            "type": "string"
+          },
+          "emails": {
+            "description": "optional, emails",
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "the email address",
+                  "type": "string"
+                },
+                "label": {
+                  "description": "the label of the email",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "links": {
+            "description": "optional, links",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the link",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "the url of the contact",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "name": {
+            "description": "required, the name of the contact",
+            "type": "string"
+          },
+          "note": {
+            "description": "optional, note of the contact",
+            "type": "string"
+          },
+          "phones": {
+            "description": "optional, phone numbers",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the phone number",
+                  "type": "string"
+                },
+                "number": {
+                  "description": "phone number",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "social_medias": {
+            "description": "optional, social media",
+            "properties": {
+              "label": {
+                "description": "the label of the social",
+                "type": "string"
+              },
+              "username": {
+                "description": "the username of social media",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "contact": {
+            "properties": {
+              "addresses": {
+                "description": "the address",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the address",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "the address location",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "birthday": {
+                "description": "the birthday",
+                "type": "string"
+              },
+              "created_at": {
+                "description": "create date string in RFC3339",
+                "type": "string"
+              },
+              "emails": {
+                "description": "the emails",
+                "items": {
+                  "properties": {
+                    "address": {
+                      "description": "the email address",
+                      "type": "string"
+                    },
+                    "label": {
+                      "description": "the label of the email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "id": {
+                "description": "contact id",
+                "type": "string"
+              },
+              "links": {
+                "description": "the contact links",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the link",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "the url of the contact",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "the contact name",
+                "type": "string"
+              },
+              "note": {
+                "description": "note of the contact",
+                "type": "string"
+              },
+              "phones": {
+                "description": "the phone numbers",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the phone number",
+                      "type": "string"
+                    },
+                    "number": {
+                      "description": "phone number",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "social_medias": {
+                "description": "the social media username",
+                "properties": {
+                  "label": {
+                    "description": "the label of the social",
+                    "type": "string"
+                  },
+                  "username": {
+                    "description": "the username of social media",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "updated_at": {
+                "description": "update date string in RFC3339",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "properties": {
+          "id": {
+            "description": "the id of the contact",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "Email": {
+        "properties": {
+          "address": {
+            "description": "the email address",
+            "type": "string"
+          },
+          "label": {
+            "description": "the label of the email",
+            "type": "string"
+          }
+        },
+        "title": "Email",
+        "type": "object"
+      },
+      "Link": {
+        "properties": {
+          "label": {
+            "description": "the label of the link",
+            "type": "string"
+          },
+          "url": {
+            "description": "the url of the contact",
+            "type": "string"
+          }
+        },
+        "title": "Link",
+        "type": "object"
+      },
+      "ListRequest": {
+        "properties": {
+          "limit": {
+            "description": "optional, default is 30",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "description": "optional",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "contacts": {
+            "items": {
+              "properties": {
+                "addresses": {
+                  "description": "the address",
+                  "items": {
+                    "properties": {
+                      "label": {
+                        "description": "the label of the address",
+                        "type": "string"
+                      },
+                      "location": {
+                        "description": "the address location",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "birthday": {
+                  "description": "the birthday",
+                  "type": "string"
+                },
+                "created_at": {
+                  "description": "create date string in RFC3339",
+                  "type": "string"
+                },
+                "emails": {
+                  "description": "the emails",
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "description": "the email address",
+                        "type": "string"
+                      },
+                      "label": {
+                        "description": "the label of the email",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "id": {
+                  "description": "contact id",
+                  "type": "string"
+                },
+                "links": {
+                  "description": "the contact links",
+                  "items": {
+                    "properties": {
+                      "label": {
+                        "description": "the label of the link",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "the url of the contact",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "name": {
+                  "description": "the contact name",
+                  "type": "string"
+                },
+                "note": {
+                  "description": "note of the contact",
+                  "type": "string"
+                },
+                "phones": {
+                  "description": "the phone numbers",
+                  "items": {
+                    "properties": {
+                      "label": {
+                        "description": "the label of the phone number",
+                        "type": "string"
+                      },
+                      "number": {
+                        "description": "phone number",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "social_medias": {
+                  "description": "the social media username",
+                  "properties": {
+                    "label": {
+                      "description": "the label of the social",
+                      "type": "string"
+                    },
+                    "username": {
+                      "description": "the username of social media",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "updated_at": {
+                  "description": "update date string in RFC3339",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "Phone": {
+        "properties": {
+          "label": {
+            "description": "the label of the phone number",
+            "type": "string"
+          },
+          "number": {
+            "description": "phone number",
+            "type": "string"
+          }
+        },
+        "title": "Phone",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "contact": {
+            "properties": {
+              "addresses": {
+                "description": "the address",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the address",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "the address location",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "birthday": {
+                "description": "the birthday",
+                "type": "string"
+              },
+              "created_at": {
+                "description": "create date string in RFC3339",
+                "type": "string"
+              },
+              "emails": {
+                "description": "the emails",
+                "items": {
+                  "properties": {
+                    "address": {
+                      "description": "the email address",
+                      "type": "string"
+                    },
+                    "label": {
+                      "description": "the label of the email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "id": {
+                "description": "contact id",
+                "type": "string"
+              },
+              "links": {
+                "description": "the contact links",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the link",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "the url of the contact",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "the contact name",
+                "type": "string"
+              },
+              "note": {
+                "description": "note of the contact",
+                "type": "string"
+              },
+              "phones": {
+                "description": "the phone numbers",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the phone number",
+                      "type": "string"
+                    },
+                    "number": {
+                      "description": "phone number",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "social_medias": {
+                "description": "the social media username",
+                "properties": {
+                  "label": {
+                    "description": "the label of the social",
+                    "type": "string"
+                  },
+                  "username": {
+                    "description": "the username of social media",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "updated_at": {
+                "description": "update date string in RFC3339",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "SocialMedia": {
+        "properties": {
+          "label": {
+            "description": "the label of the social",
+            "type": "string"
+          },
+          "username": {
+            "description": "the username of social media",
+            "type": "string"
+          }
+        },
+        "title": "SocialMedia",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "properties": {
+          "addresses": {
+            "description": "optional, addresses",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the address",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "the address location",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "birthday": {
+            "description": "optional, birthday",
+            "type": "string"
+          },
+          "emails": {
+            "description": "optional, emails",
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "the email address",
+                  "type": "string"
+                },
+                "label": {
+                  "description": "the label of the email",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "id": {
+            "description": "required, the contact id",
+            "type": "string"
+          },
+          "links": {
+            "description": "optional, links",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the link",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "the url of the contact",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "name": {
+            "description": "required, the name",
+            "type": "string"
+          },
+          "note": {
+            "description": "optional, note",
+            "type": "string"
+          },
+          "phones": {
+            "description": "optional, phone number",
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the phone number",
+                  "type": "string"
+                },
+                "number": {
+                  "description": "phone number",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "social_medias": {
+            "description": "optional, social media",
+            "properties": {
+              "label": {
+                "description": "the label of the social",
+                "type": "string"
+              },
+              "username": {
+                "description": "the username of social media",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "properties": {
+          "contact": {
+            "properties": {
+              "addresses": {
+                "description": "the address",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the address",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "the address location",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "birthday": {
+                "description": "the birthday",
+                "type": "string"
+              },
+              "created_at": {
+                "description": "create date string in RFC3339",
+                "type": "string"
+              },
+              "emails": {
+                "description": "the emails",
+                "items": {
+                  "properties": {
+                    "address": {
+                      "description": "the email address",
+                      "type": "string"
+                    },
+                    "label": {
+                      "description": "the label of the email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "id": {
+                "description": "contact id",
+                "type": "string"
+              },
+              "links": {
+                "description": "the contact links",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the link",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "the url of the contact",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "the contact name",
+                "type": "string"
+              },
+              "note": {
+                "description": "note of the contact",
+                "type": "string"
+              },
+              "phones": {
+                "description": "the phone numbers",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the phone number",
+                      "type": "string"
+                    },
+                    "number": {
+                      "description": "phone number",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "social_medias": {
+                "description": "the social media username",
+                "properties": {
+                  "label": {
+                    "description": "the label of the social",
+                    "type": "string"
+                  },
+                  "username": {
+                    "description": "the username of social media",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "updated_at": {
+                "description": "update date string in RFC3339",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Contact",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/contact/Contact/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContactCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ContactCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Contact.Create(CreateRequest)"
+      }
+    },
+    "/contact/Contact/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContactDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ContactDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Contact.Delete(DeleteRequest)"
+      }
+    },
+    "/contact/Contact/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContactListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ContactListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Contact.List(ListRequest)"
+      }
+    },
+    "/contact/Contact/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContactReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ContactReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Contact.Read(ReadRequest)"
+      }
+    },
+    "/contact/Contact/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContactUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ContactUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Contact.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}
