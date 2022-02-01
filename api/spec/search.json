@@ -1,6 +1,16 @@
 {
   "components": {
     "requestBodies": {
+      "SearchCreateIndexRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateIndexRequest"
+            }
+          }
+        },
+        "description": "SearchCreateIndexRequest"
+      },
       "SearchDeleteIndexRequest": {
         "content": {
           "application/json": {
@@ -75,6 +85,16 @@
         },
         "description": "Error from the Micro API"
       },
+      "SearchCreateIndexResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateIndexResponse"
+            }
+          }
+        },
+        "description": "SearchCreateIndexResponse"
+      },
       "SearchDeleteIndexResponse": {
         "content": {
           "application/json": {
@@ -118,26 +138,10 @@
     },
     "schemas": {
       "CreateIndexRequest": {
-        "description": "Create a search index by specifying which fields are to be queried",
+        "description": "Create an index by name",
         "properties": {
-          "fields": {
-            "items": {
-              "properties": {
-                "name": {
-                  "description": "The name of the field. Use a `.` separator to define nested fields e.g. foo.bar",
-                  "type": "string"
-                },
-                "type": {
-                  "description": "The type of the field - string, number",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
           "index": {
-            "description": "the name of the index",
+            "description": "The name of the index",
             "type": "string"
           }
         },
@@ -149,7 +153,7 @@
         "type": "object"
       },
       "DeleteIndexRequest": {
-        "description": "Delete an index.",
+        "description": "Delete an index by name",
         "properties": {
           "index": {
             "description": "The name of the index to delete",
@@ -304,6 +308,38 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/search/Search/CreateIndex": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SearchCreateIndexRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SearchCreateIndexResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Search.CreateIndex(CreateIndexRequest)"
+      }
+    },
     "/search/Search/Delete": {
       "parameters": [
         {

@@ -1,6 +1,16 @@
 {
   "components": {
     "requestBodies": {
+      "EmailParseRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ParseRequest"
+            }
+          }
+        },
+        "description": "EmailParseRequest"
+      },
       "EmailSendRequest": {
         "content": {
           "application/json": {
@@ -10,9 +20,29 @@
           }
         },
         "description": "EmailSendRequest"
+      },
+      "EmailValidateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidateRequest"
+            }
+          }
+        },
+        "description": "EmailValidateRequest"
       }
     },
     "responses": {
+      "EmailParseResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ParseResponse"
+            }
+          }
+        },
+        "description": "EmailParseResponse"
+      },
       "EmailSendResponse": {
         "content": {
           "application/json": {
@@ -22,6 +52,16 @@
           }
         },
         "description": "EmailSendResponse"
+      },
+      "EmailValidateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidateResponse"
+            }
+          }
+        },
+        "description": "EmailValidateResponse"
       },
       "MicroAPIError": {
         "content": {
@@ -57,6 +97,31 @@
       }
     },
     "schemas": {
+      "ParseRequest": {
+        "description": "Parse an RFC5322 address e.g \"Joe Blogs \u003cjoe@example.com\u003e\"",
+        "properties": {
+          "address": {
+            "description": "The address to parse. Can be of the format \"Joe Blogs \u003cjoe@example.com\u003e\" or \"joe@example.com\"",
+            "type": "string"
+          }
+        },
+        "title": "ParseRequest",
+        "type": "object"
+      },
+      "ParseResponse": {
+        "properties": {
+          "address": {
+            "description": "the email address",
+            "type": "string"
+          },
+          "name": {
+            "description": "associated name e.g Joe Blogs",
+            "type": "string"
+          }
+        },
+        "title": "ParseResponse",
+        "type": "object"
+      },
       "SendRequest": {
         "description": "Send an email by passing in from, to, subject, and a text or html body",
         "properties": {
@@ -91,6 +156,25 @@
       "SendResponse": {
         "title": "SendResponse",
         "type": "object"
+      },
+      "ValidateRequest": {
+        "description": "Validate an email address format",
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        },
+        "title": "ValidateRequest",
+        "type": "object"
+      },
+      "ValidateResponse": {
+        "properties": {
+          "is_valid": {
+            "type": "boolean"
+          }
+        },
+        "title": "ValidateResponse",
+        "type": "object"
       }
     },
     "securitySchemes": {
@@ -114,6 +198,38 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/email/Email/Parse": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmailParseRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EmailParseResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Email.Parse(ParseRequest)"
+      }
+    },
     "/email/Email/Send": {
       "parameters": [
         {
@@ -144,6 +260,38 @@
           }
         ],
         "summary": "Email.Send(SendRequest)"
+      }
+    },
+    "/email/Email/Validate": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmailValidateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EmailValidateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Email.Validate(ValidateRequest)"
       }
     }
   },
