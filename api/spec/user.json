@@ -805,13 +805,14 @@
         "type": "object"
       },
       "SendVerificationEmailRequest": {
-        "description": "Send a verification email\n to the user being signed up. Email from will be from 'noreply@email.m3ocontent.com',\n but you can provide the title and contents.\n The verification link will be injected in to the email as a template variable, $micro_verification_link.\n Example: 'Hi there, welcome onboard! Use the link below to verify your email: $micro_verification_link'\n The variable will be replaced with an actual url that will look similar to this:\n 'https://user.m3o.com/user/verify?token=a-verification-token\u0026redirectUrl=your-redir-url'",
+        "description": "Send a verification email to a user.\n Email \"from\" will be 'noreply@email.m3ocontent.com'.\n The verification link will be injected in the email \n as a template variable, $micro_verification_link e.g \n 'Welcome to M3O! Use the link below to verify your email: $micro_verification_link'\n The variable will be replaced with a url similar to:\n 'https://user.m3o.com/user/verify?token=a-verification-token\u0026redirectUrl=your-redir-url'",
         "properties": {
           "email": {
             "description": "email address to send the verification code",
             "type": "string"
           },
           "failureRedirectUrl": {
+            "description": "The url to redirect to incase of failure",
             "type": "string"
           },
           "fromName": {
@@ -819,6 +820,7 @@
             "type": "string"
           },
           "redirectUrl": {
+            "description": "The url to redirect to after successful verification",
             "type": "string"
           },
           "subject": {
@@ -921,10 +923,6 @@
       "VerifyEmailRequest": {
         "description": "Verify the email address of an account from a token sent in an email to the user.",
         "properties": {
-          "email": {
-            "description": "the email address to verify",
-            "type": "string"
-          },
           "token": {
             "description": "The token from the verification email",
             "type": "string"

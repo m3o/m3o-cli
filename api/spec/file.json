@@ -283,6 +283,7 @@
         "description": "Save a file",
         "properties": {
           "file": {
+            "description": "The file to save",
             "properties": {
               "content": {
                 "description": "File contents",
@@ -313,12 +314,22 @@
               }
             },
             "type": "object"
+          },
+          "public": {
+            "description": "Make the file public: true or false",
+            "type": "boolean"
           }
         },
         "title": "SaveRequest",
         "type": "object"
       },
       "SaveResponse": {
+        "properties": {
+          "url": {
+            "description": "The permalink for the file if made public",
+            "type": "string"
+          }
+        },
         "title": "SaveResponse",
         "type": "object"
       }

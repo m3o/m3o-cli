@@ -1,0 +1,309 @@
+{
+  "components": {
+    "requestBodies": {
+      "PingIpRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IpRequest"
+            }
+          }
+        },
+        "description": "PingIpRequest"
+      },
+      "PingTcpRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TcpRequest"
+            }
+          }
+        },
+        "description": "PingTcpRequest"
+      },
+      "PingUrlRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UrlRequest"
+            }
+          }
+        },
+        "description": "PingUrlRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "PingIpResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IpResponse"
+            }
+          }
+        },
+        "description": "PingIpResponse"
+      },
+      "PingTcpResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TcpResponse"
+            }
+          }
+        },
+        "description": "PingTcpResponse"
+      },
+      "PingUrlResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UrlResponse"
+            }
+          }
+        },
+        "description": "PingUrlResponse"
+      }
+    },
+    "schemas": {
+      "IpRequest": {
+        "description": "Ping an IP address",
+        "properties": {
+          "address": {
+            "description": "address to ping",
+            "type": "string"
+          }
+        },
+        "title": "IpRequest",
+        "type": "object"
+      },
+      "IpResponse": {
+        "properties": {
+          "latency": {
+            "description": "average latency e.g 10ms",
+            "type": "string"
+          },
+          "status": {
+            "description": "response status",
+            "type": "string"
+          }
+        },
+        "title": "IpResponse",
+        "type": "object"
+      },
+      "TcpRequest": {
+        "description": "Ping a TCP port is open",
+        "properties": {
+          "address": {
+            "description": "address to dial",
+            "type": "string"
+          },
+          "data": {
+            "description": "optional data to send",
+            "type": "string"
+          }
+        },
+        "title": "TcpRequest",
+        "type": "object"
+      },
+      "TcpResponse": {
+        "properties": {
+          "data": {
+            "description": "response data if any",
+            "type": "string"
+          },
+          "status": {
+            "description": "response status",
+            "type": "string"
+          }
+        },
+        "title": "TcpResponse",
+        "type": "object"
+      },
+      "UrlRequest": {
+        "description": "Ping a HTTP URL",
+        "properties": {
+          "address": {
+            "description": "address to use",
+            "type": "string"
+          },
+          "method": {
+            "description": "method of the call",
+            "type": "string"
+          }
+        },
+        "title": "UrlRequest",
+        "type": "object"
+      },
+      "UrlResponse": {
+        "properties": {
+          "code": {
+            "description": "the response code",
+            "format": "int32",
+            "type": "number"
+          },
+          "status": {
+            "description": "the response status",
+            "type": "string"
+          }
+        },
+        "title": "UrlResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Ping",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/ping/Ping/Ip": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PingIpRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PingIpResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Ping.Ip(IpRequest)"
+      }
+    },
+    "/ping/Ping/Tcp": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PingTcpRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PingTcpResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Ping.Tcp(TcpRequest)"
+      }
+    },
+    "/ping/Ping/Url": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PingUrlRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PingUrlResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Ping.Url(UrlRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

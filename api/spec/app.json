@@ -393,7 +393,7 @@
         "type": "object"
       },
       "RunRequest": {
-        "description": "Run an app from a source repo. Specify region etc.",
+        "description": "Run an app from source",
         "properties": {
           "branch": {
             "description": "branch. defaults to master",
@@ -403,7 +403,7 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "associatede env vars to pass in",
+            "description": "associated env vars to pass in",
             "type": "object"
           },
           "name": {
