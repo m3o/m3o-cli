@@ -1,0 +1,719 @@
+{
+  "components": {
+    "requestBodies": {
+      "ListsCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "ListsCreateRequest"
+      },
+      "ListsDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "ListsDeleteRequest"
+      },
+      "ListsEventsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsRequest"
+            }
+          }
+        },
+        "description": "ListsEventsRequest"
+      },
+      "ListsListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "ListsListRequest"
+      },
+      "ListsReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "ListsReadRequest"
+      },
+      "ListsUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "ListsUpdateRequest"
+      }
+    },
+    "responses": {
+      "ListsCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "ListsCreateResponse"
+      },
+      "ListsDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "ListsDeleteResponse"
+      },
+      "ListsEventsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsResponse"
+            }
+          }
+        },
+        "description": "ListsEventsResponse"
+      },
+      "ListsListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "ListsListResponse"
+      },
+      "ListsReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "ListsReadResponse"
+      },
+      "ListsUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "ListsUpdateResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "CreateRequest": {
+        "description": "Create a new list",
+        "properties": {
+          "items": {
+            "description": "list items",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "name": {
+            "description": "list name",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "list": {
+            "description": "The created list",
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a list",
+        "properties": {
+          "id": {
+            "description": "specify the id of the list",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "list": {
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "EventsRequest": {
+        "description": "Subscribe to lists events",
+        "properties": {
+          "id": {
+            "description": "optionally specify a list id",
+            "type": "string"
+          }
+        },
+        "title": "EventsRequest",
+        "type": "object"
+      },
+      "EventsResponse": {
+        "properties": {
+          "event": {
+            "description": "the event which occured; create, delete, update",
+            "type": "string"
+          },
+          "list": {
+            "description": "the list which the operation occured on",
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "EventsResponse",
+        "type": "object"
+      },
+      "List": {
+        "properties": {
+          "created": {
+            "description": "time at which the list was created",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id for the list, generated if not specified",
+            "type": "string"
+          },
+          "items": {
+            "description": "items within the list",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "name": {
+            "description": "name of the list",
+            "type": "string"
+          },
+          "updated": {
+            "description": "time at which the list was updated",
+            "type": "string"
+          }
+        },
+        "title": "List",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all the lists",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "lists": {
+            "description": "the list of lists",
+            "items": {
+              "properties": {
+                "created": {
+                  "description": "time at which the list was created",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique id for the list, generated if not specified",
+                  "type": "string"
+                },
+                "items": {
+                  "description": "items within the list",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "name": {
+                  "description": "name of the list",
+                  "type": "string"
+                },
+                "updated": {
+                  "description": "time at which the list was updated",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read a list",
+        "properties": {
+          "id": {
+            "description": "the list id",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "list": {
+            "description": "The list",
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update a list",
+        "properties": {
+          "list": {
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "properties": {
+          "list": {
+            "properties": {
+              "created": {
+                "description": "time at which the list was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the list, generated if not specified",
+                "type": "string"
+              },
+              "items": {
+                "description": "items within the list",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "description": "name of the list",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the list was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Lists",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/lists/Lists/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.Create(CreateRequest)"
+      }
+    },
+    "/lists/Lists/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.Delete(DeleteRequest)"
+      }
+    },
+    "/lists/Lists/Events": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsEventsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsEventsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          },
+          "stream": {
+            "$ref": "#/components/responses/ListsEventsResponse"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.Events(EventsRequest)"
+      }
+    },
+    "/lists/Lists/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.List(ListRequest)"
+      }
+    },
+    "/lists/Lists/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.Read(ReadRequest)"
+      }
+    },
+    "/lists/Lists/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ListsUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListsUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Lists.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

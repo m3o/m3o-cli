@@ -392,37 +392,6 @@
         "title": "ListResponse",
         "type": "object"
       },
-      "Object": {
-        "properties": {
-          "created": {
-            "description": "when was this created",
-            "type": "string"
-          },
-          "data": {
-            "description": "the data within the object",
-            "format": "byte",
-            "type": "string"
-          },
-          "modified": {
-            "description": "when was this last modified",
-            "type": "string"
-          },
-          "name": {
-            "description": "name of object",
-            "type": "string"
-          },
-          "url": {
-            "description": "URL to access the object if it is public",
-            "type": "string"
-          },
-          "visibility": {
-            "description": "is this public or private",
-            "type": "string"
-          }
-        },
-        "title": "Object",
-        "type": "object"
-      },
       "ReadRequest": {
         "description": "Read an object in space",
         "properties": {
@@ -470,6 +439,37 @@
           }
         },
         "title": "ReadResponse",
+        "type": "object"
+      },
+      "SpaceObject": {
+        "properties": {
+          "created": {
+            "description": "when was this created",
+            "type": "string"
+          },
+          "data": {
+            "description": "the data within the object",
+            "format": "byte",
+            "type": "string"
+          },
+          "modified": {
+            "description": "when was this last modified",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of object",
+            "type": "string"
+          },
+          "url": {
+            "description": "URL to access the object if it is public",
+            "type": "string"
+          },
+          "visibility": {
+            "description": "is this public or private",
+            "type": "string"
+          }
+        },
+        "title": "SpaceObject",
         "type": "object"
       },
       "UpdateRequest": {

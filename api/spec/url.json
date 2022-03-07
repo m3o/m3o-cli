@@ -120,6 +120,11 @@
                 "description": "destination url",
                 "type": "string"
               },
+              "hitCount": {
+                "description": "The number of times the short URL has been resolved",
+                "format": "int64",
+                "type": "number"
+              },
               "shortURL": {
                 "description": "shortened url",
                 "type": "string"
@@ -181,6 +186,11 @@
           "destinationURL": {
             "description": "destination url",
             "type": "string"
+          },
+          "hitCount": {
+            "description": "The number of times the short URL has been resolved",
+            "format": "int64",
+            "type": "number"
           },
           "shortURL": {
             "description": "shortened url",

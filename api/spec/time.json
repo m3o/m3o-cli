@@ -158,6 +158,11 @@
             "format": "double",
             "type": "number"
           },
+          "offset": {
+            "description": "UTC offset in hours",
+            "format": "int32",
+            "type": "number"
+          },
           "region": {
             "description": "region of timezone",
             "type": "string"

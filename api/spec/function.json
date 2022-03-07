@@ -81,6 +81,16 @@
         },
         "description": "FunctionReserveRequest"
       },
+      "FunctionRuntimesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RuntimesRequest"
+            }
+          }
+        },
+        "description": "FunctionRuntimesRequest"
+      },
       "FunctionUpdateRequest": {
         "content": {
           "application/json": {
@@ -172,6 +182,16 @@
           }
         },
         "description": "FunctionReserveResponse"
+      },
+      "FunctionRuntimesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RuntimesResponse"
+            }
+          }
+        },
+        "description": "FunctionRuntimesResponse"
       },
       "FunctionUpdateResponse": {
         "content": {
@@ -284,11 +304,15 @@
             "type": "string"
           },
           "repo": {
-            "description": "github url to repo",
+            "description": "github url for a repo",
             "type": "string"
           },
           "runtime": {
             "description": "runtime/lanaguage of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,\n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+            "type": "string"
+          },
+          "source": {
+            "description": "inline source code",
             "type": "string"
           },
           "subfolder": {
@@ -340,6 +364,10 @@
               },
               "runtime": {
                 "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+                "type": "string"
+              },
+              "source": {
+                "description": "the source code",
                 "type": "string"
               },
               "status": {
@@ -420,6 +448,10 @@
                 "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
                 "type": "string"
               },
+              "source": {
+                "description": "the source code",
+                "type": "string"
+              },
               "status": {
                 "description": "eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc",
                 "type": "string"
@@ -482,6 +514,10 @@
           },
           "runtime": {
             "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+            "type": "string"
+          },
+          "source": {
+            "description": "the source code",
             "type": "string"
           },
           "status": {
@@ -552,6 +588,10 @@
                 },
                 "runtime": {
                   "description": "runtime/language of the function e.g php74,\n nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16, \n dotnet3, java11, ruby26, ruby27, go111, go113, go116,\n python37, python38, python39",
+                  "type": "string"
+                },
+                "source": {
+                  "description": "the source code",
                   "type": "string"
                 },
                 "status": {
@@ -687,11 +727,32 @@
         "title": "ReserveResponse",
         "type": "object"
       },
+      "RuntimesRequest": {
+        "description": "Return a list of supported runtimes",
+        "title": "RuntimesRequest",
+        "type": "object"
+      },
+      "RuntimesResponse": {
+        "properties": {
+          "runtimes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "title": "RuntimesResponse",
+        "type": "object"
+      },
       "UpdateRequest": {
         "description": "Update a function. Downloads the source, builds and redeploys",
         "properties": {
           "name": {
             "description": "function name",
+            "type": "string"
+          },
+          "source": {
+            "description": "inline source code",
             "type": "string"
           }
         },
@@ -978,6 +1039,38 @@
           }
         ],
         "summary": "Function.Reserve(ReserveRequest)"
+      }
+    },
+    "/function/Function/Runtimes": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionRuntimesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionRuntimesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Runtimes(RuntimesRequest)"
       }
     },
     "/function/Function/Update": {

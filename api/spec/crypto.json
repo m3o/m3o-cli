@@ -40,6 +40,16 @@
           }
         },
         "description": "CryptoQuoteRequest"
+      },
+      "CryptoSymbolsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SymbolsRequest"
+            }
+          }
+        },
+        "description": "CryptoSymbolsRequest"
       }
     },
     "responses": {
@@ -82,6 +92,16 @@
           }
         },
         "description": "CryptoQuoteResponse"
+      },
+      "CryptoSymbolsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SymbolsResponse"
+            }
+          }
+        },
+        "description": "CryptoSymbolsResponse"
       },
       "MicroAPIError": {
         "content": {
@@ -313,6 +333,43 @@
         },
         "title": "QuoteResponse",
         "type": "object"
+      },
+      "Symbol": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "title": "Symbol",
+        "type": "object"
+      },
+      "SymbolsRequest": {
+        "description": "Returns the full list of supported symbols",
+        "title": "SymbolsRequest",
+        "type": "object"
+      },
+      "SymbolsResponse": {
+        "properties": {
+          "symbols": {
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "symbol": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "SymbolsResponse",
+        "type": "object"
       }
     },
     "securitySchemes": {
@@ -462,6 +519,38 @@
           }
         ],
         "summary": "Crypto.Quote(QuoteRequest)"
+      }
+    },
+    "/crypto/Crypto/Symbols": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CryptoSymbolsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CryptoSymbolsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Crypto.Symbols(SymbolsRequest)"
       }
     }
   },

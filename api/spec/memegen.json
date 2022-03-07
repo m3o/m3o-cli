@@ -1,0 +1,327 @@
+{
+  "components": {
+    "requestBodies": {
+      "MemegenGenerateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GenerateRequest"
+            }
+          }
+        },
+        "description": "MemegenGenerateRequest"
+      },
+      "MemegenTemplatesRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TemplatesRequest"
+            }
+          }
+        },
+        "description": "MemegenTemplatesRequest"
+      }
+    },
+    "responses": {
+      "MemegenGenerateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GenerateResponse"
+            }
+          }
+        },
+        "description": "MemegenGenerateResponse"
+      },
+      "MemegenTemplatesResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TemplatesResponse"
+            }
+          }
+        },
+        "description": "MemegenTemplatesResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Box": {
+        "properties": {
+          "color": {
+            "description": "colour hex code",
+            "type": "string"
+          },
+          "height": {
+            "description": "height in pixels",
+            "format": "int32",
+            "type": "number"
+          },
+          "outline": {
+            "description": "outline color hex code",
+            "type": "string"
+          },
+          "text": {
+            "description": "text to display",
+            "type": "string"
+          },
+          "width": {
+            "description": "width in pixels",
+            "format": "int32",
+            "type": "number"
+          },
+          "x": {
+            "description": "x axis position",
+            "format": "int32",
+            "type": "number"
+          },
+          "y": {
+            "description": "y axis position",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Box",
+        "type": "object"
+      },
+      "GenerateRequest": {
+        "description": "Generate a meme using a template",
+        "properties": {
+          "bottom_text": {
+            "description": "bottom text",
+            "type": "string"
+          },
+          "font": {
+            "description": "font: arial or impact",
+            "type": "string"
+          },
+          "id": {
+            "description": "the template id to use",
+            "type": "string"
+          },
+          "max_font_size": {
+            "description": "font size; defaults to 50px",
+            "type": "string"
+          },
+          "top_text": {
+            "description": "top text",
+            "type": "string"
+          }
+        },
+        "title": "GenerateRequest",
+        "type": "object"
+      },
+      "GenerateResponse": {
+        "properties": {
+          "url": {
+            "description": "url of the memegen",
+            "type": "string"
+          }
+        },
+        "title": "GenerateResponse",
+        "type": "object"
+      },
+      "Template": {
+        "properties": {
+          "box_count": {
+            "description": "number of boxes used",
+            "format": "int32",
+            "type": "number"
+          },
+          "height": {
+            "description": "height in pixels",
+            "format": "int32",
+            "type": "number"
+          },
+          "id": {
+            "description": "id of the memegen",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the memegen",
+            "type": "string"
+          },
+          "url": {
+            "description": "url of the memegen",
+            "type": "string"
+          },
+          "width": {
+            "description": "width in pixels",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Template",
+        "type": "object"
+      },
+      "TemplatesRequest": {
+        "description": "List the available templates",
+        "title": "TemplatesRequest",
+        "type": "object"
+      },
+      "TemplatesResponse": {
+        "properties": {
+          "templates": {
+            "items": {
+              "properties": {
+                "box_count": {
+                  "description": "number of boxes used",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "height": {
+                  "description": "height in pixels",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "id": {
+                  "description": "id of the memegen",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of the memegen",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "url of the memegen",
+                  "type": "string"
+                },
+                "width": {
+                  "description": "width in pixels",
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "TemplatesResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Memegen",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/memegen/Memegen/Generate": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/MemegenGenerateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MemegenGenerateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Memegen.Generate(GenerateRequest)"
+      }
+    },
+    "/memegen/Memegen/Templates": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/MemegenTemplatesRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MemegenTemplatesResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Memegen.Templates(TemplatesRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -30,16 +30,6 @@
           }
         },
         "description": "EmojiPrintRequest"
-      },
-      "EmojiSendRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/SendRequest"
-            }
-          }
-        },
-        "description": "EmojiSendRequest"
       }
     },
     "responses": {
@@ -72,16 +62,6 @@
           }
         },
         "description": "EmojiPrintResponse"
-      },
-      "EmojiSendResponse": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/SendResponse"
-            }
-          }
-        },
-        "description": "EmojiSendResponse"
       },
       "MicroAPIError": {
         "content": {
@@ -178,35 +158,6 @@
           }
         },
         "title": "PrintResponse",
-        "type": "object"
-      },
-      "SendRequest": {
-        "description": "Send an emoji to anyone via SMS. Messages are sent in the form '\u003cmessage\u003e Sent from \u003cfrom\u003e'",
-        "properties": {
-          "from": {
-            "description": "the name of the sender from e.g Alice",
-            "type": "string"
-          },
-          "message": {
-            "description": "message to send including emoji aliases",
-            "type": "string"
-          },
-          "to": {
-            "description": "phone number to send to (including international dialing code)",
-            "type": "string"
-          }
-        },
-        "title": "SendRequest",
-        "type": "object"
-      },
-      "SendResponse": {
-        "properties": {
-          "success": {
-            "description": "whether or not it succeeded",
-            "type": "boolean"
-          }
-        },
-        "title": "SendResponse",
         "type": "object"
       }
     },
@@ -325,38 +276,6 @@
           }
         ],
         "summary": "Emoji.Print(PrintRequest)"
-      }
-    },
-    "/emoji/Emoji/Send": {
-      "parameters": [
-        {
-          "in": "header",
-          "name": "Micro-Namespace",
-          "required": true,
-          "schema": {
-            "default": "micro",
-            "type": "string"
-          }
-        }
-      ],
-      "post": {
-        "requestBody": {
-          "$ref": "#/components/requestBodies/EmojiSendRequest"
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/EmojiSendResponse"
-          },
-          "default": {
-            "$ref": "#/components/responses/MicroAPIError"
-          }
-        },
-        "security": [
-          {
-            "MicroAPIToken": []
-          }
-        ],
-        "summary": "Emoji.Send(SendRequest)"
       }
     }
   },

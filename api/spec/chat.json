@@ -1,0 +1,1085 @@
+{
+  "components": {
+    "requestBodies": {
+      "ChatCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "ChatCreateRequest"
+      },
+      "ChatDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "ChatDeleteRequest"
+      },
+      "ChatHistoryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryRequest"
+            }
+          }
+        },
+        "description": "ChatHistoryRequest"
+      },
+      "ChatInviteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InviteRequest"
+            }
+          }
+        },
+        "description": "ChatInviteRequest"
+      },
+      "ChatJoinRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JoinRequest"
+            }
+          }
+        },
+        "description": "ChatJoinRequest"
+      },
+      "ChatKickRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/KickRequest"
+            }
+          }
+        },
+        "description": "ChatKickRequest"
+      },
+      "ChatLeaveRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LeaveRequest"
+            }
+          }
+        },
+        "description": "ChatLeaveRequest"
+      },
+      "ChatListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "ChatListRequest"
+      },
+      "ChatSendRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendRequest"
+            }
+          }
+        },
+        "description": "ChatSendRequest"
+      }
+    },
+    "responses": {
+      "ChatCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "ChatCreateResponse"
+      },
+      "ChatDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "ChatDeleteResponse"
+      },
+      "ChatHistoryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HistoryResponse"
+            }
+          }
+        },
+        "description": "ChatHistoryResponse"
+      },
+      "ChatInviteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InviteResponse"
+            }
+          }
+        },
+        "description": "ChatInviteResponse"
+      },
+      "ChatJoinResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JoinResponse"
+            }
+          }
+        },
+        "description": "ChatJoinResponse"
+      },
+      "ChatKickResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/KickResponse"
+            }
+          }
+        },
+        "description": "ChatKickResponse"
+      },
+      "ChatLeaveResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LeaveResponse"
+            }
+          }
+        },
+        "description": "ChatLeaveResponse"
+      },
+      "ChatListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "ChatListResponse"
+      },
+      "ChatSendResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SendResponse"
+            }
+          }
+        },
+        "description": "ChatSendResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "CreateRequest": {
+        "description": "Create a new chat room",
+        "properties": {
+          "description": {
+            "description": "chat description",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the room",
+            "type": "string"
+          },
+          "private": {
+            "description": "whether its a private room",
+            "type": "boolean"
+          },
+          "user_ids": {
+            "description": "optional list of user ids",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "room": {
+            "description": "the unique chat room",
+            "properties": {
+              "created_at": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of the that",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique room id",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the chat",
+                "type": "string"
+              },
+              "private": {
+                "description": "whether its a private room",
+                "type": "boolean"
+              },
+              "user_ids": {
+                "description": "list of users",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a chat room",
+        "properties": {
+          "room_id": {
+            "description": "the chat room id to delete",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "room": {
+            "properties": {
+              "created_at": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of the that",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique room id",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the chat",
+                "type": "string"
+              },
+              "private": {
+                "description": "whether its a private room",
+                "type": "boolean"
+              },
+              "user_ids": {
+                "description": "list of users",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "HistoryRequest": {
+        "description": "List the messages in a chat",
+        "properties": {
+          "room_id": {
+            "description": "the chat room id to get",
+            "type": "string"
+          }
+        },
+        "title": "HistoryRequest",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "description": "HistoryResponse contains the historical messages in a chat",
+        "properties": {
+          "messages": {
+            "description": "messages in the chat room",
+            "items": {
+              "properties": {
+                "client": {
+                  "description": "a client side id, should be validated by the server to make the request retry safe",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "id of the message, allocated by the server",
+                  "type": "string"
+                },
+                "room_id": {
+                  "description": "id of the chat the message is being sent to / from",
+                  "type": "string"
+                },
+                "sent_at": {
+                  "description": "time the message was sent in RFC3339 format",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "subject of the message",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "text of the message",
+                  "type": "string"
+                },
+                "user_id": {
+                  "description": "id of the user who sent the message",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "InviteRequest": {
+        "description": "Invite a user to a chat room",
+        "properties": {
+          "room_id": {
+            "description": "the room id",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "the user id",
+            "type": "string"
+          }
+        },
+        "title": "InviteRequest",
+        "type": "object"
+      },
+      "InviteResponse": {
+        "properties": {
+          "room": {
+            "properties": {
+              "created_at": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of the that",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique room id",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the chat",
+                "type": "string"
+              },
+              "private": {
+                "description": "whether its a private room",
+                "type": "boolean"
+              },
+              "user_ids": {
+                "description": "list of users",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "InviteResponse",
+        "type": "object"
+      },
+      "JoinRequest": {
+        "description": "Join a chat room",
+        "properties": {
+          "room_id": {
+            "description": "chat room to join",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "user id joining",
+            "type": "string"
+          }
+        },
+        "title": "JoinRequest",
+        "type": "object"
+      },
+      "JoinResponse": {
+        "properties": {
+          "message": {
+            "properties": {
+              "client": {
+                "description": "a client side id, should be validated by the server to make the request retry safe",
+                "type": "string"
+              },
+              "id": {
+                "description": "id of the message, allocated by the server",
+                "type": "string"
+              },
+              "room_id": {
+                "description": "id of the chat the message is being sent to / from",
+                "type": "string"
+              },
+              "sent_at": {
+                "description": "time the message was sent in RFC3339 format",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the message",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the message",
+                "type": "string"
+              },
+              "user_id": {
+                "description": "id of the user who sent the message",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "JoinResponse",
+        "type": "object"
+      },
+      "KickRequest": {
+        "description": "Kick a user from a chat room",
+        "properties": {
+          "room_id": {
+            "description": "the chat room id",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "the user id",
+            "type": "string"
+          }
+        },
+        "title": "KickRequest",
+        "type": "object"
+      },
+      "KickResponse": {
+        "properties": {
+          "room": {
+            "properties": {
+              "created_at": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of the that",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique room id",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the chat",
+                "type": "string"
+              },
+              "private": {
+                "description": "whether its a private room",
+                "type": "boolean"
+              },
+              "user_ids": {
+                "description": "list of users",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "KickResponse",
+        "type": "object"
+      },
+      "LeaveRequest": {
+        "description": "Leave a chat room",
+        "properties": {
+          "room_id": {
+            "description": "the chat room id",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "the user id",
+            "type": "string"
+          }
+        },
+        "title": "LeaveRequest",
+        "type": "object"
+      },
+      "LeaveResponse": {
+        "properties": {
+          "room": {
+            "properties": {
+              "created_at": {
+                "description": "time of creation",
+                "type": "string"
+              },
+              "description": {
+                "description": "description of the that",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique room id",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the chat",
+                "type": "string"
+              },
+              "private": {
+                "description": "whether its a private room",
+                "type": "boolean"
+              },
+              "user_ids": {
+                "description": "list of users",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "LeaveResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List available chats",
+        "properties": {
+          "user_id": {
+            "description": "optional user id to filter by",
+            "type": "string"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "rooms": {
+            "items": {
+              "properties": {
+                "created_at": {
+                  "description": "time of creation",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "description of the that",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique room id",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of the chat",
+                  "type": "string"
+                },
+                "private": {
+                  "description": "whether its a private room",
+                  "type": "boolean"
+                },
+                "user_ids": {
+                  "description": "list of users",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "Message": {
+        "description": "Message sent to a chat",
+        "properties": {
+          "client": {
+            "description": "a client side id, should be validated by the server to make the request retry safe",
+            "type": "string"
+          },
+          "id": {
+            "description": "id of the message, allocated by the server",
+            "type": "string"
+          },
+          "room_id": {
+            "description": "id of the chat the message is being sent to / from",
+            "type": "string"
+          },
+          "sent_at": {
+            "description": "time the message was sent in RFC3339 format",
+            "type": "string"
+          },
+          "subject": {
+            "description": "subject of the message",
+            "type": "string"
+          },
+          "text": {
+            "description": "text of the message",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "id of the user who sent the message",
+            "type": "string"
+          }
+        },
+        "title": "Message",
+        "type": "object"
+      },
+      "Room": {
+        "properties": {
+          "created_at": {
+            "description": "time of creation",
+            "type": "string"
+          },
+          "description": {
+            "description": "description of the that",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique room id",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the chat",
+            "type": "string"
+          },
+          "private": {
+            "description": "whether its a private room",
+            "type": "boolean"
+          },
+          "user_ids": {
+            "description": "list of users",
+            "type": "string"
+          }
+        },
+        "title": "Room",
+        "type": "object"
+      },
+      "SendRequest": {
+        "description": "Connect to a chat to receive a stream of messages\n Send a message to a chat",
+        "properties": {
+          "client": {
+            "description": "a client side id, should be validated by the server to make the request retry safe",
+            "type": "string"
+          },
+          "room_id": {
+            "description": "id of the chat room the message is being sent to / from",
+            "type": "string"
+          },
+          "subject": {
+            "description": "subject of the message",
+            "type": "string"
+          },
+          "text": {
+            "description": "text of the message",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "id of the user who sent the message",
+            "type": "string"
+          }
+        },
+        "title": "SendRequest",
+        "type": "object"
+      },
+      "SendResponse": {
+        "properties": {
+          "message": {
+            "description": "the message which was created",
+            "properties": {
+              "client": {
+                "description": "a client side id, should be validated by the server to make the request retry safe",
+                "type": "string"
+              },
+              "id": {
+                "description": "id of the message, allocated by the server",
+                "type": "string"
+              },
+              "room_id": {
+                "description": "id of the chat the message is being sent to / from",
+                "type": "string"
+              },
+              "sent_at": {
+                "description": "time the message was sent in RFC3339 format",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the message",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the message",
+                "type": "string"
+              },
+              "user_id": {
+                "description": "id of the user who sent the message",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "SendResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Chat",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/chat/Chat/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Create(CreateRequest)"
+      }
+    },
+    "/chat/Chat/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Delete(DeleteRequest)"
+      }
+    },
+    "/chat/Chat/History": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatHistoryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatHistoryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.History(HistoryRequest)"
+      }
+    },
+    "/chat/Chat/Invite": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatInviteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatInviteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Invite(InviteRequest)"
+      }
+    },
+    "/chat/Chat/Join": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatJoinRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatJoinResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          },
+          "stream": {
+            "$ref": "#/components/responses/ChatJoinResponse"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Join(JoinRequest)"
+      }
+    },
+    "/chat/Chat/Kick": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatKickRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatKickResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Kick(KickRequest)"
+      }
+    },
+    "/chat/Chat/Leave": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatLeaveRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatLeaveResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Leave(LeaveRequest)"
+      }
+    },
+    "/chat/Chat/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.List(ListRequest)"
+      }
+    },
+    "/chat/Chat/Send": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChatSendRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ChatSendResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Chat.Send(SendRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -1,0 +1,692 @@
+{
+  "components": {
+    "requestBodies": {
+      "CommentsCreateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateRequest"
+            }
+          }
+        },
+        "description": "CommentsCreateRequest"
+      },
+      "CommentsDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "CommentsDeleteRequest"
+      },
+      "CommentsEventsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsRequest"
+            }
+          }
+        },
+        "description": "CommentsEventsRequest"
+      },
+      "CommentsListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "CommentsListRequest"
+      },
+      "CommentsReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "CommentsReadRequest"
+      },
+      "CommentsUpdateRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateRequest"
+            }
+          }
+        },
+        "description": "CommentsUpdateRequest"
+      }
+    },
+    "responses": {
+      "CommentsCreateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateResponse"
+            }
+          }
+        },
+        "description": "CommentsCreateResponse"
+      },
+      "CommentsDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "CommentsDeleteResponse"
+      },
+      "CommentsEventsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EventsResponse"
+            }
+          }
+        },
+        "description": "CommentsEventsResponse"
+      },
+      "CommentsListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "CommentsListResponse"
+      },
+      "CommentsReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "CommentsReadResponse"
+      },
+      "CommentsUpdateResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateResponse"
+            }
+          }
+        },
+        "description": "CommentsUpdateResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Comment": {
+        "properties": {
+          "created": {
+            "description": "time at which the comment was created",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id for the comment, generated if not specified",
+            "type": "string"
+          },
+          "subject": {
+            "description": "subject of the comment",
+            "type": "string"
+          },
+          "text": {
+            "description": "text of the comment",
+            "type": "string"
+          },
+          "updated": {
+            "description": "time at which the comment was updated",
+            "type": "string"
+          }
+        },
+        "title": "Comment",
+        "type": "object"
+      },
+      "CreateRequest": {
+        "description": "Create a new comment",
+        "properties": {
+          "subject": {
+            "description": "comment subject",
+            "type": "string"
+          },
+          "text": {
+            "description": "comment items",
+            "type": "string"
+          }
+        },
+        "title": "CreateRequest",
+        "type": "object"
+      },
+      "CreateResponse": {
+        "properties": {
+          "comment": {
+            "description": "The created comment",
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "CreateResponse",
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "description": "Delete a comment",
+        "properties": {
+          "id": {
+            "description": "specify the id of the comment",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "comment": {
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "EventsRequest": {
+        "description": "Subscribe to comments events",
+        "properties": {
+          "id": {
+            "description": "optionally specify a comment id",
+            "type": "string"
+          }
+        },
+        "title": "EventsRequest",
+        "type": "object"
+      },
+      "EventsResponse": {
+        "properties": {
+          "comment": {
+            "description": "the comment which the operation occured on",
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "event": {
+            "description": "the event which occured; create, delete, update",
+            "type": "string"
+          }
+        },
+        "title": "EventsResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all the comments",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "comments": {
+            "description": "the comment of comments",
+            "items": {
+              "properties": {
+                "created": {
+                  "description": "time at which the comment was created",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "unique id for the comment, generated if not specified",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "subject of the comment",
+                  "type": "string"
+                },
+                "text": {
+                  "description": "text of the comment",
+                  "type": "string"
+                },
+                "updated": {
+                  "description": "time at which the comment was updated",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Read a comment",
+        "properties": {
+          "id": {
+            "description": "the comment id",
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "comment": {
+            "description": "The comment",
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "UpdateRequest": {
+        "description": "Update a comment",
+        "properties": {
+          "comment": {
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateRequest",
+        "type": "object"
+      },
+      "UpdateResponse": {
+        "properties": {
+          "comment": {
+            "properties": {
+              "created": {
+                "description": "time at which the comment was created",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique id for the comment, generated if not specified",
+                "type": "string"
+              },
+              "subject": {
+                "description": "subject of the comment",
+                "type": "string"
+              },
+              "text": {
+                "description": "text of the comment",
+                "type": "string"
+              },
+              "updated": {
+                "description": "time at which the comment was updated",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "UpdateResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Comments",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/comments/Comments/Create": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsCreateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsCreateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.Create(CreateRequest)"
+      }
+    },
+    "/comments/Comments/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.Delete(DeleteRequest)"
+      }
+    },
+    "/comments/Comments/Events": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsEventsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsEventsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          },
+          "stream": {
+            "$ref": "#/components/responses/CommentsEventsResponse"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.Events(EventsRequest)"
+      }
+    },
+    "/comments/Comments/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.List(ListRequest)"
+      }
+    },
+    "/comments/Comments/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.Read(ReadRequest)"
+      }
+    },
+    "/comments/Comments/Update": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CommentsUpdateRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommentsUpdateResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Comments.Update(UpdateRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

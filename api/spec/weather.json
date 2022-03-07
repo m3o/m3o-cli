@@ -116,6 +116,16 @@
             "format": "double",
             "type": "number"
           },
+          "max_wind_kph": {
+            "description": "max wind speed kph",
+            "format": "double",
+            "type": "number"
+          },
+          "max_wind_mph": {
+            "description": "max wind speed mph",
+            "format": "double",
+            "type": "number"
+          },
           "min_temp_c": {
             "description": "minimum temp in celsius",
             "format": "double",
@@ -202,6 +212,16 @@
                 },
                 "max_temp_f": {
                   "description": "max temp in fahrenheit",
+                  "format": "double",
+                  "type": "number"
+                },
+                "max_wind_kph": {
+                  "description": "max wind speed kph",
+                  "format": "double",
+                  "type": "number"
+                },
+                "max_wind_mph": {
+                  "description": "max wind speed mph",
                   "format": "double",
                   "type": "number"
                 },

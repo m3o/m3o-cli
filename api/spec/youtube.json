@@ -81,7 +81,7 @@
         "description": "Embed a YouTube video",
         "properties": {
           "url": {
-            "description": "provide the youtube url e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0",
+            "description": "provide the youtube url",
             "type": "string"
           }
         },
@@ -91,7 +91,7 @@
       "EmbedResponse": {
         "properties": {
           "embed_url": {
-            "description": "the embeddable link e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0",
+            "description": "the embeddable link",
             "type": "string"
           },
           "html_script": {
@@ -128,7 +128,7 @@
             "items": {
               "properties": {
                 "broadcasting": {
-                  "description": "if live broadcast then indicates activity. \n none, upcoming, live, completed",
+                  "description": "if live broadcast then indicates activity: \n none, upcoming, live, completed",
                   "type": "string"
                 },
                 "channel_id": {
@@ -148,7 +148,7 @@
                   "type": "string"
                 },
                 "kind": {
-                  "description": "kind of result; \"video\", \"channel\", \"playlist\"",
+                  "description": "kind of result: \"video\", \"channel\", \"playlist\"",
                   "type": "string"
                 },
                 "published_at": {
@@ -175,7 +175,7 @@
       "SearchResult": {
         "properties": {
           "broadcasting": {
-            "description": "if live broadcast then indicates activity. \n none, upcoming, live, completed",
+            "description": "if live broadcast then indicates activity: \n none, upcoming, live, completed",
             "type": "string"
           },
           "channel_id": {
@@ -195,7 +195,7 @@
             "type": "string"
           },
           "kind": {
-            "description": "kind of result; \"video\", \"channel\", \"playlist\"",
+            "description": "kind of result: \"video\", \"channel\", \"playlist\"",
             "type": "string"
           },
           "published_at": {

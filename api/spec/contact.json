@@ -264,6 +264,7 @@
         "type": "object"
       },
       "CreateRequest": {
+        "description": "Create a contact",
         "properties": {
           "addresses": {
             "description": "optional, location",
@@ -481,6 +482,7 @@
         "type": "object"
       },
       "DeleteRequest": {
+        "description": "Delete a contact",
         "properties": {
           "id": {
             "description": "the id of the contact",
@@ -523,6 +525,7 @@
         "type": "object"
       },
       "ListRequest": {
+        "description": "List contacts",
         "properties": {
           "limit": {
             "description": "optional, default is 30",
@@ -673,6 +676,7 @@
         "type": "object"
       },
       "ReadRequest": {
+        "description": "Read contact details",
         "properties": {
           "id": {
             "type": "string"
@@ -813,6 +817,7 @@
         "type": "object"
       },
       "UpdateRequest": {
+        "description": "Update a contact",
         "properties": {
           "addresses": {
             "description": "optional, addresses",

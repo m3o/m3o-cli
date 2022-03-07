@@ -368,7 +368,7 @@
             "description": "alphanumeric username",
             "type": "string"
           },
-          "verificationDate": {
+          "verification_date": {
             "description": "date of verification",
             "format": "int64",
             "type": "number"
@@ -444,7 +444,7 @@
                 "description": "alphanumeric username",
                 "type": "string"
               },
-              "verificationDate": {
+              "verification_date": {
                 "description": "date of verification",
                 "format": "int64",
                 "type": "number"
@@ -525,7 +525,7 @@
                   "description": "alphanumeric username",
                   "type": "string"
                 },
-                "verificationDate": {
+                "verification_date": {
                   "description": "date of verification",
                   "format": "int64",
                   "type": "number"
@@ -595,7 +595,7 @@
       "LogoutRequest": {
         "description": "Logout a user account",
         "properties": {
-          "sessionId": {
+          "session_id": {
             "description": "the session id for the user to logout",
             "type": "string"
           }
@@ -659,7 +659,7 @@
                 "description": "alphanumeric username",
                 "type": "string"
               },
-              "verificationDate": {
+              "verification_date": {
                 "description": "date of verification",
                 "format": "int64",
                 "type": "number"
@@ -678,7 +678,7 @@
       "ReadSessionRequest": {
         "description": "Read a session by the session id. In the event it has expired or is not found and error is returned.",
         "properties": {
-          "sessionId": {
+          "session_id": {
             "description": "The unique session id",
             "type": "string"
           }
@@ -717,13 +717,13 @@
         "type": "object"
       },
       "ResetPasswordRequest": {
-        "description": "Reset password with the code sent by the \"SendPasswordResetEmail\" endoint.",
+        "description": "Reset password with the code sent by the \"SendPasswordResetEmail\" endpoint.",
         "properties": {
           "code": {
             "description": "The code from the verification email",
             "type": "string"
           },
-          "confirmPassword": {
+          "confirm_password": {
             "description": "confirm new password",
             "type": "string"
           },
@@ -731,7 +731,7 @@
             "description": "the email to reset the password for",
             "type": "string"
           },
-          "newPassword": {
+          "new_password": {
             "description": "the new password",
             "type": "string"
           }
@@ -758,14 +758,14 @@
             "description": "Endpoint name where your http request handler handles MagicLink by \n calling M3O VerifyToken endpoint. You can return as a result a success, \n failed or redirect to another page.",
             "type": "string"
           },
-          "fromName": {
+          "from_name": {
             "description": "Display name of the sender for the email. Note: the email address will still be 'support@m3o.com'",
             "type": "string"
           },
           "subject": {
             "type": "string"
           },
-          "textContent": {
+          "text_content": {
             "description": "Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link\n HTML emails are not available currently.",
             "type": "string"
           }
@@ -784,7 +784,12 @@
             "description": "email address to send reset for",
             "type": "string"
           },
-          "fromName": {
+          "expiration": {
+            "description": "Number of secs that the password reset email is valid for, defaults to 1800 secs (30 mins)",
+            "format": "int64",
+            "type": "number"
+          },
+          "from_name": {
             "description": "Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'",
             "type": "string"
           },
@@ -792,7 +797,7 @@
             "description": "subject of the email",
             "type": "string"
           },
-          "textContent": {
+          "text_content": {
             "description": "Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link\n HTML emails are not available currently.",
             "type": "string"
           }
@@ -811,15 +816,15 @@
             "description": "email address to send the verification code",
             "type": "string"
           },
-          "failureRedirectUrl": {
+          "failure_redirect_url": {
             "description": "The url to redirect to incase of failure",
             "type": "string"
           },
-          "fromName": {
+          "from_name": {
             "description": "Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'",
             "type": "string"
           },
-          "redirectUrl": {
+          "redirect_url": {
             "description": "The url to redirect to after successful verification",
             "type": "string"
           },
@@ -827,7 +832,7 @@
             "description": "subject of the email",
             "type": "string"
           },
-          "textContent": {
+          "text_content": {
             "description": "Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link\n HTML emails are not available currently.",
             "type": "string"
           }
@@ -870,11 +875,11 @@
             "description": "confirm new password",
             "type": "string"
           },
-          "newPassword": {
+          "new_password": {
             "description": "the new password",
             "type": "string"
           },
-          "oldPassword": {
+          "old_password": {
             "description": "the old password",
             "type": "string"
           },

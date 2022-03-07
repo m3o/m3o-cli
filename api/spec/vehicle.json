@@ -92,6 +92,10 @@
             "description": "date of last v5 issue",
             "type": "string"
           },
+          "logo_url": {
+            "description": "url of logo for the make",
+            "type": "string"
+          },
           "make": {
             "description": "make of vehicle",
             "type": "string"

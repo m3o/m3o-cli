@@ -168,14 +168,14 @@
         "type": "object"
       },
       "DeleteRequest": {
-        "description": "Delete a document given its ID",
+        "description": "Delete a record given its ID",
         "properties": {
           "id": {
-            "description": "The ID of the document to delete",
+            "description": "The ID of the record to delete",
             "type": "string"
           },
           "index": {
-            "description": "The index the document belongs to",
+            "description": "The index the record belongs to",
             "type": "string"
           }
         },
@@ -184,20 +184,6 @@
       },
       "DeleteResponse": {
         "title": "DeleteResponse",
-        "type": "object"
-      },
-      "Document": {
-        "properties": {
-          "contents": {
-            "description": "The JSON contents of the document",
-            "type": "object"
-          },
-          "id": {
-            "description": "The ID for this document. If blank, one will be generated",
-            "type": "string"
-          }
-        },
-        "title": "Document",
         "type": "object"
       },
       "Field": {
@@ -215,24 +201,18 @@
         "type": "object"
       },
       "IndexRequest": {
-        "description": "Index a document i.e. insert a document to search for.",
+        "description": "Index a record i.e. insert a document to search for.",
         "properties": {
-          "document": {
-            "description": "The document to index",
-            "properties": {
-              "contents": {
-                "description": "The JSON contents of the document",
-                "type": "object"
-              },
-              "id": {
-                "description": "The ID for this document. If blank, one will be generated",
-                "type": "string"
-              }
-            },
+          "data": {
+            "description": "The data to index",
             "type": "object"
           },
+          "id": {
+            "description": "Optional ID for the record",
+            "type": "string"
+          },
           "index": {
-            "description": "The index this document belongs to",
+            "description": "The index this record belongs to",
             "type": "string"
           }
         },
@@ -241,18 +221,43 @@
       },
       "IndexResponse": {
         "properties": {
-          "id": {
-            "type": "string"
+          "record": {
+            "description": "the indexed record",
+            "properties": {
+              "data": {
+                "description": "The JSON contents of the record",
+                "type": "object"
+              },
+              "id": {
+                "description": "The ID for this record. If blank, one will be generated",
+                "type": "string"
+              }
+            },
+            "type": "object"
           }
         },
         "title": "IndexResponse",
         "type": "object"
       },
+      "Record": {
+        "properties": {
+          "data": {
+            "description": "The JSON contents of the record",
+            "type": "object"
+          },
+          "id": {
+            "description": "The ID for this record. If blank, one will be generated",
+            "type": "string"
+          }
+        },
+        "title": "Record",
+        "type": "object"
+      },
       "SearchRequest": {
-        "description": "Search for documents in a given in index",
+        "description": "Search for records in a given in index",
         "properties": {
           "index": {
-            "description": "The index the document belongs to",
+            "description": "The index the record belongs to",
             "type": "string"
           },
           "query": {
@@ -265,16 +270,16 @@
       },
       "SearchResponse": {
         "properties": {
-          "documents": {
-            "description": "The matching documents",
+          "records": {
+            "description": "The matching records",
             "items": {
               "properties": {
-                "contents": {
-                  "description": "The JSON contents of the document",
+                "data": {
+                  "description": "The JSON contents of the record",
                   "type": "object"
                 },
                 "id": {
-                  "description": "The ID for this document. If blank, one will be generated",
+                  "description": "The ID for this record. If blank, one will be generated",
                   "type": "string"
                 }
               },
