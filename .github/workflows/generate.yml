@@ -76,7 +76,7 @@ jobs:
       
       - name: Generate M3O CLI
         working-directory: services
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           rm -rf clients examples
           m3o-client-gen cli
