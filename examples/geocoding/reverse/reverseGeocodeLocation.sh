@@ -1,1 +1,1 @@
-m3o geocoding reverse--latitude=51.5123064 --longitude=-0.1216235 
+m3o geocoding reverse--longitude=-0.1216235 --latitude=51.5123064 
