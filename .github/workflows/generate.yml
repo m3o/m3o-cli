@@ -14,6 +14,14 @@ jobs:
           go-version: 1.13
         id: go
       
+      - name: Enable caching
+        uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+            
       - name: Install Protoc
         uses: arduino/setup-protoc@master
       
@@ -41,14 +49,6 @@ jobs:
         with:
           repository: 'm3o/m3o-cli'
           path: m3o-cli
-      
-      - name: Enable caching
-        uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
 
       - name: Install protoc gen micro plugin
         working-directory: micro/cmd/protoc-gen-micro
