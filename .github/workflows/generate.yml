@@ -83,7 +83,7 @@ jobs:
 
       - name: Adjust generated things before pushing
         working-directory: services
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/beta'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
         run: |
           # sync the examples to m3o-cli/examples
           rsync -avz examples/cli/* ../m3o-cli/examples/
