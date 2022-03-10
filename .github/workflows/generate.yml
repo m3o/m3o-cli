@@ -110,6 +110,6 @@ jobs:
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'examples/'
           git_server: 'github.com'
-          user_name: 'm3o-actions'
+          user_name: $API_TOKEN_GITHUB
           use_rsync: true
           commit_message: 'Commit from m3o/m3o-cli action'
