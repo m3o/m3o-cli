@@ -101,7 +101,7 @@ jobs:
 
       - name: Push M3O CLI examples
         uses: dmnemec/copy_file_to_another_repo_action@main
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/beta'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
         env:
           API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
