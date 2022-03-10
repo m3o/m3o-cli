@@ -1,1 +1,1 @@
-m3o sunnah chapters--book=1 --collection="bukhari" 
+m3o sunnah chapters--collection="bukhari" --book=1 

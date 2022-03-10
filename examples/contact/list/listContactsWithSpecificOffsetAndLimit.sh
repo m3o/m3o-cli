@@ -1,1 +1,1 @@
-m3o contact list--offset=1 --limit=1 
+m3o contact list--limit=1 --offset=1 
