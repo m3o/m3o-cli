@@ -103,13 +103,13 @@ jobs:
         uses: dmnemec/copy_file_to_another_repo_action@main
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/beta'
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
           source_file: 'm3o-cli/examples/'
           destination_repo: 'm3o/m3o-cli'
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'examples/'
           git_server: 'github.com'
-          user_name: $API_TOKEN_GITHUB
+          user_name: $GITHUB_ACTOR
           use_rsync: true
           commit_message: 'Commit from m3o/m3o-cli action'
