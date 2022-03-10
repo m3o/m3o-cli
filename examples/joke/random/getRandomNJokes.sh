@@ -1,1 +1,1 @@
-m3o joke random--count=3 
+m3o joke random --count=3 

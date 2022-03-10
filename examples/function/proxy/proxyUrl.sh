@@ -1,1 +1,1 @@
-m3o function proxy--id="helloworld" 
+m3o function proxy --id="helloworld" 

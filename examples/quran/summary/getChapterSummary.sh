@@ -1,1 +1,1 @@
-m3o quran summary--chapter=1 
+m3o quran summary --chapter=1 

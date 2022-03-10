@@ -1,1 +1,1 @@
-m3o qr generate--text="https://m3o.com/qr" --size=300 
+m3o qr generate --size=300 --text="https://m3o.com/qr" 

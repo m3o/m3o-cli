@@ -1,1 +1,1 @@
-m3o twitter search--query="cats" 
+m3o twitter search --query="cats" 

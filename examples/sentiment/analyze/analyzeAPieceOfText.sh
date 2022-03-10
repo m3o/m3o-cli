@@ -1,1 +1,1 @@
-m3o sentiment analyze--text="this is amazing" 
+m3o sentiment analyze --text="this is amazing" 

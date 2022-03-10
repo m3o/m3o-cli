@@ -1,1 +1,1 @@
-m3o quran search--query="messenger" 
+m3o quran search --query="messenger" 

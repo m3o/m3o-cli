@@ -1,1 +1,1 @@
-m3o crypto quote--symbol="BTCUSD" 
+m3o crypto quote --symbol="BTCUSD" 

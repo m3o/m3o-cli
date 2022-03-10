@@ -1,5 +1,5 @@
-m3o mq publish--message='{
+m3o mq publish --topic="events" --message='{
   "id": "1",
   "type": "signup",
   "user": "john"
-}' --topic="events" 
+}' 

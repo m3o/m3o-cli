@@ -1,1 +1,1 @@
-m3o db count--table="example" 
+m3o db count --table="example" 

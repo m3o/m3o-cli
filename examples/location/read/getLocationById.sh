@@ -1,1 +1,1 @@
-m3o location read--id="1" 
+m3o location read --id="1" 

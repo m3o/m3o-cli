@@ -1,1 +1,1 @@
-m3o forex history--symbol="GBPUSD" 
+m3o forex history --symbol="GBPUSD" 

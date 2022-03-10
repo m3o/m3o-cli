@@ -1,1 +1,1 @@
-m3o prayer times--location="london" 
+m3o prayer times --location="london" 

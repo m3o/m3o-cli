@@ -1,1 +1,1 @@
-m3o user read--username="joe" 
+m3o user read --username="joe" 

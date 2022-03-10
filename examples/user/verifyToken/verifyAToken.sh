@@ -1,1 +1,1 @@
-m3o user verifyToken--token="EdsUiidouJJJLldjlloofUiorkojflsWWdld" 
+m3o user verifyToken --token="EdsUiidouJJJLldjlloofUiorkojflsWWdld" 

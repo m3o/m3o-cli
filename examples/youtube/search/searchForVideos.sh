@@ -1,1 +1,1 @@
-m3o youtube search--query="donuts" 
+m3o youtube search --query="donuts" 

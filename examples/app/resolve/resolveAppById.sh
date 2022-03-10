@@ -1,1 +1,1 @@
-m3o app resolve--id="helloworld" 
+m3o app resolve --id="helloworld" 

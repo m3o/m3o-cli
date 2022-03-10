@@ -1,1 +1,1 @@
-m3o rss feed--name="bbc" 
+m3o rss feed --name="bbc" 

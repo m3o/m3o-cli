@@ -1,1 +1,1 @@
-m3o stock quote--symbol="AAPL" 
+m3o stock quote --symbol="AAPL" 

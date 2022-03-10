@@ -1,1 +1,1 @@
-m3o currency rates--code="USD" 
+m3o currency rates --code="USD" 

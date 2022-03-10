@@ -1,1 +1,1 @@
-m3o space list--prefix="images/" 
+m3o space list --prefix="images/" 

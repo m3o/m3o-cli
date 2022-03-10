@@ -1,4 +1,4 @@
-m3o routing route--origin='{
+m3o routing route --origin='{
   "latitude": 52.517037,
   "longitude": 13.38886
 }' --destination='{

@@ -1,1 +1,1 @@
-m3o rss remove--name="bbc" 
+m3o rss remove --name="bbc" 

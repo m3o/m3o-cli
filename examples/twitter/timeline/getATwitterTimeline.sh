@@ -1,1 +1,1 @@
-m3o twitter timeline--username="m3oservices" --limit=1 
+m3o twitter timeline --username="m3oservices" --limit=1 

@@ -1,1 +1,1 @@
-m3o forex price--symbol="GBPUSD" 
+m3o forex price --symbol="GBPUSD" 

@@ -1,1 +1,1 @@
-m3o password generate--length=16 --lowercase='true' --numbers='true' --special='false' --uppercase='true' 
+m3o password generate --length=16 --lowercase='true' --numbers='true' --special='false' --uppercase='true' 

@@ -1,1 +1,1 @@
-m3o chat create--description="The general chat room" --name="general" 
+m3o chat create --name="general" --description="The general chat room" 

@@ -1,1 +1,1 @@
-m3o mq subscribe--topic="events" 
+m3o mq subscribe --topic="events" 

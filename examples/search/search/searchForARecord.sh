@@ -1,1 +1,1 @@
-m3o search search--index="customers" --query="name == 'John'" 
+m3o search search --query="name == 'John'" --index="customers" 

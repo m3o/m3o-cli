@@ -1,1 +1,1 @@
-m3o id generate--type="shortid" 
+m3o id generate --type="shortid" 

@@ -1,1 +1,1 @@
-m3o search deleteIndex--index="customers" 
+m3o search deleteIndex --index="customers" 
