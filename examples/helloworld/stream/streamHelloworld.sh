@@ -1,2 +1,1 @@
-m3o helloworld stream 
---name="John" --messages=10 
+m3o helloworld stream--name="John" --messages=10 

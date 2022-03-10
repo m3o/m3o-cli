@@ -1,2 +1,1 @@
-m3o answer question 
---query="microsoft" 
+m3o answer question--query="microsoft" 

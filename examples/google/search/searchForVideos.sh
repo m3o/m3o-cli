@@ -1,2 +1,1 @@
-m3o google search 
---query="how to make donuts" 
+m3o google search--query="how to make donuts" 

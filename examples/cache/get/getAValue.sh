@@ -1,2 +1,1 @@
-m3o cache get 
---key="foo" 
+m3o cache get--key="foo" 

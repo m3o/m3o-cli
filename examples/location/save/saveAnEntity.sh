@@ -1,5 +1,4 @@
-m3o location save 
---entity='{
+m3o location save--entity='{
   "id": "1",
   "location": {
     "latitude": 51.511061,

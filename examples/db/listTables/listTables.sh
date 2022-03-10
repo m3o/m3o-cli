@@ -1,1 +1,1 @@
-m3o db listTables 
+m3o db listTables

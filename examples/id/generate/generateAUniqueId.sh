@@ -1,2 +1,1 @@
-m3o id generate 
---type="uuid" 
+m3o id generate--type="uuid" 

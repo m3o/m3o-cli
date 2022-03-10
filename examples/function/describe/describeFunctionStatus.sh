@@ -1,2 +1,1 @@
-m3o function describe 
---name="helloworld" 
+m3o function describe--name="helloworld" 

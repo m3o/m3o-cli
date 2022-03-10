@@ -1,2 +1,1 @@
-m3o helloworld call 
---name="John" 
+m3o helloworld call--name="John" 

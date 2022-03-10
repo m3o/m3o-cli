@@ -1,2 +1,1 @@
-m3o emoji flag 
---alias="GB" 
+m3o emoji flag--alias="GB" 

@@ -1,2 +1,1 @@
-m3o cache delete 
---key="foo" 
+m3o cache delete--key="foo" 

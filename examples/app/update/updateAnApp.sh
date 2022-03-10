@@ -1,2 +1,1 @@
-m3o app update 
---name="helloworld" 
+m3o app update--name="helloworld" 

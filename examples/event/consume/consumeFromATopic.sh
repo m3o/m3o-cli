@@ -1,2 +1,1 @@
-m3o event consume 
---topic="user" 
+m3o event consume--topic="user" 

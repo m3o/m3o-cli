@@ -1,2 +1,1 @@
-m3o nft collections 
---limit=1 
+m3o nft collections--limit=1 

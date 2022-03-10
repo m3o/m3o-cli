@@ -1,2 +1,1 @@
-m3o user read 
---email="joe@example.com" 
+m3o user read--email="joe@example.com" 

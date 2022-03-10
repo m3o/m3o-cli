@@ -1,2 +1,1 @@
-m3o function update 
---name="helloworld" 
+m3o function update--name="helloworld" 

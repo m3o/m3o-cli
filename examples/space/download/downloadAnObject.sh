@@ -1,2 +1,1 @@
-m3o space download 
---name="images/file.jpg" 
+m3o space download--name="images/file.jpg" 

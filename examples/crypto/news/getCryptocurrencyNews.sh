@@ -1,2 +1,1 @@
-m3o crypto news 
---symbol="BTCUSD" 
+m3o crypto news--symbol="BTCUSD" 

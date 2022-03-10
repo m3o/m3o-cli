@@ -1,2 +1,1 @@
-m3o app delete 
---name="helloworld" 
+m3o app delete--name="helloworld" 

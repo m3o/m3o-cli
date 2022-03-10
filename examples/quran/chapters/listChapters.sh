@@ -1,2 +1,1 @@
-m3o quran chapters 
---language="en" 
+m3o quran chapters--language="en" 

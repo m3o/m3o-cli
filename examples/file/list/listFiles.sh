@@ -1,2 +1,1 @@
-m3o file list 
---project="examples" 
+m3o file list--project="examples" 

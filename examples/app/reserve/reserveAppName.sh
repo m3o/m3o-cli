@@ -1,2 +1,1 @@
-m3o app reserve 
---name="helloworld" 
+m3o app reserve--name="helloworld" 

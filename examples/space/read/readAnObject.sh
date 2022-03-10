@@ -1,2 +1,1 @@
-m3o space read 
---name="images/file.jpg" 
+m3o space read--name="images/file.jpg" 

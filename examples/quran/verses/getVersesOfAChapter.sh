@@ -1,2 +1,1 @@
-m3o quran verses 
---chapter=1 
+m3o quran verses--chapter=1 

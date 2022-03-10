@@ -1,5 +1,4 @@
-m3o evchargers search 
---box='{
+m3o evchargers search--box='{
   "bottom_left": {
     "latitude": 51.52627543859447,
     "longitude": -0.03635349400295168

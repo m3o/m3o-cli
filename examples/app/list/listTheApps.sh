@@ -1,1 +1,1 @@
-m3o app list 
+m3o app list

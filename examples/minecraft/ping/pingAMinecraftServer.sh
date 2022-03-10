@@ -1,2 +1,1 @@
-m3o minecraft ping 
---address="funcraft.net" 
+m3o minecraft ping--address="funcraft.net" 

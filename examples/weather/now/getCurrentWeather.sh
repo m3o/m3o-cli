@@ -1,2 +1,1 @@
-m3o weather now 
---location="london" 
+m3o weather now--location="london" 

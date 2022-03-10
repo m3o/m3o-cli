@@ -1,2 +1,1 @@
-m3o id generate 
---type="bigflake" 
+m3o id generate--type="bigflake" 

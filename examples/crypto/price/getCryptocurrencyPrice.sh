@@ -1,2 +1,1 @@
-m3o crypto price 
---symbol="BTCUSD" 
+m3o crypto price--symbol="BTCUSD" 

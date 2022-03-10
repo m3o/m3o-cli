@@ -1,2 +1,1 @@
-m3o db truncate 
---table="example" 
+m3o db truncate--table="example" 

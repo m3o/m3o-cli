@@ -1,2 +1,1 @@
-m3o id generate 
---type="snowflake" 
+m3o id generate--type="snowflake" 

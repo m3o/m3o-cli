@@ -1,2 +1,1 @@
-m3o event read 
---topic="user" 
+m3o event read--topic="user" 

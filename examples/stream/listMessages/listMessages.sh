@@ -1,2 +1,1 @@
-m3o stream listMessages 
---channel="general" 
+m3o stream listMessages--channel="general" 

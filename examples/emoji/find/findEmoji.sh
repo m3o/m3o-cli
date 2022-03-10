@@ -1,2 +1,1 @@
-m3o emoji find 
---alias=":beer:" 
+m3o emoji find--alias=":beer:" 

@@ -1,5 +1,4 @@
-m3o spam classify 
---email_body="Subject: Welcome
+m3o spam classify--email_body="Subject: Welcome
 To: hello@emaple.com
 From: noreply@m3o.com
 

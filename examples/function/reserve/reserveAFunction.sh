@@ -1,2 +1,1 @@
-m3o function reserve 
---name="helloworld" 
+m3o function reserve--name="helloworld" 

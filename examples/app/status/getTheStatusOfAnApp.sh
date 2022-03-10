@@ -1,2 +1,1 @@
-m3o app status 
---name="helloworld" 
+m3o app status--name="helloworld" 
