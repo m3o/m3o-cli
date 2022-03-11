@@ -1,1 +1,1 @@
-m3o thumbnail screenshot --height=600 --url="https://google.com" --width=600 
+m3o thumbnail screenshot --url="https://google.com" --width=600 --height=600 
