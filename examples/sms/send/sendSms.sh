@@ -1,1 +1,1 @@
-m3o sms send --message="Hi there!" --to="+447681129" --from="Alice" 
+m3o sms send --from="Alice" --message="Hi there!" --to="+447681129" 
