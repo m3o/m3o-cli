@@ -1,1 +1,1 @@
-m3o space update --name="images/file.jpg" --visibility="public" --object="<file bytes>" 
+m3o space update --visibility="public" --object="<file bytes>" --name="images/file.jpg" 

@@ -7,7 +7,17 @@ m3o contact update --emails='[
     "address": "work@example.com",
     "label": "work"
   }
-]' --birthday="1995-01-01" --social_medias='[
+]' --links='[
+  {
+    "label": "blog",
+    "url": "https://blog.joe.me"
+  }
+]' --addresses='[
+  {
+    "label": "company address",
+    "location": "123 street address"
+  }
+]' --social_medias='[
   {
     "label": "twitter",
     "username": "joe-twitter"
@@ -25,14 +35,4 @@ m3o contact update --emails='[
     "label": "work",
     "number": "010-87654321"
   }
-]' --links='[
-  {
-    "label": "blog",
-    "url": "https://blog.joe.me"
-  }
-]' --addresses='[
-  {
-    "label": "company address",
-    "location": "123 street address"
-  }
-]' --note="this person is very important" --name="joe" 
+]' --birthday="1995-01-01" --note="this person is very important" --name="joe" 
