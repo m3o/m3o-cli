@@ -1,1 +1,1 @@
-m3o user verifyEmail --token="012345" --email="joe@example.com" 
+m3o user verifyEmail --email="joe@example.com" --token="012345" 
