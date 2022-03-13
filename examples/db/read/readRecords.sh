@@ -1,1 +1,1 @@
-m3o db read --table="example" --query="age == 43" 
+m3o db read --query="age == 43" --table="example" 
