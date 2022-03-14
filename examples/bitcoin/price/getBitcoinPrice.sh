@@ -1,0 +1,1 @@
+m3o bitcoin price --symbol="BTCUSD" 
