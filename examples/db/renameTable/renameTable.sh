@@ -1,1 +1,1 @@
-m3o db renameTable --from="examples2" --to="examples3" 
+m3o db renameTable --to="examples3" --from="examples2" 
