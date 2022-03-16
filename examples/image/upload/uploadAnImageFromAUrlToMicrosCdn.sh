@@ -1,1 +1,1 @@
-m3o image upload --name="cat.jpeg" --url="somewebsite.com/cat.png" 
+m3o image upload --url="somewebsite.com/cat.png" --name="cat.jpeg" 
