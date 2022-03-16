@@ -1,0 +1,1 @@
+m3o analytics delete --name="click" 
