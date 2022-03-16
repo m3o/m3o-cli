@@ -1,1 +1,1 @@
-m3o news headlines --language="en" --locale="us" --date="2021-11-24" 
+m3o news headlines --locale="us" --date="2021-11-24" --language="en" 
