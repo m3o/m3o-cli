@@ -1,0 +1,411 @@
+{
+  "components": {
+    "requestBodies": {
+      "AnalyticsDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "AnalyticsDeleteRequest"
+      },
+      "AnalyticsListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "AnalyticsListRequest"
+      },
+      "AnalyticsReadRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadRequest"
+            }
+          }
+        },
+        "description": "AnalyticsReadRequest"
+      },
+      "AnalyticsTrackRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrackRequest"
+            }
+          }
+        },
+        "description": "AnalyticsTrackRequest"
+      }
+    },
+    "responses": {
+      "AnalyticsDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "AnalyticsDeleteResponse"
+      },
+      "AnalyticsListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "AnalyticsListResponse"
+      },
+      "AnalyticsReadResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReadResponse"
+            }
+          }
+        },
+        "description": "AnalyticsReadResponse"
+      },
+      "AnalyticsTrackResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrackResponse"
+            }
+          }
+        },
+        "description": "AnalyticsTrackResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "DeleteRequest": {
+        "description": "Delete an event",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "event": {
+            "properties": {
+              "created": {
+                "description": "time at which the event was created",
+                "type": "string"
+              },
+              "name": {
+                "description": "event name",
+                "type": "string"
+              },
+              "value": {
+                "description": "the amount of times the event was triggered",
+                "format": "int64",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "Event": {
+        "properties": {
+          "created": {
+            "description": "time at which the event was created",
+            "type": "string"
+          },
+          "name": {
+            "description": "event name",
+            "type": "string"
+          },
+          "value": {
+            "description": "the amount of times the event was triggered",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "Event",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List all events",
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "events": {
+            "items": {
+              "properties": {
+                "created": {
+                  "description": "time at which the event was created",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "event name",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "the amount of times the event was triggered",
+                  "format": "int64",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "ReadRequest": {
+        "description": "Get a single event",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "title": "ReadRequest",
+        "type": "object"
+      },
+      "ReadResponse": {
+        "properties": {
+          "event": {
+            "properties": {
+              "created": {
+                "description": "time at which the event was created",
+                "type": "string"
+              },
+              "name": {
+                "description": "event name",
+                "type": "string"
+              },
+              "value": {
+                "description": "the amount of times the event was triggered",
+                "format": "int64",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ReadResponse",
+        "type": "object"
+      },
+      "TrackRequest": {
+        "description": "Track an event, it will be created if it doesn't exist",
+        "properties": {
+          "name": {
+            "description": "event name",
+            "type": "string"
+          }
+        },
+        "title": "TrackRequest",
+        "type": "object"
+      },
+      "TrackResponse": {
+        "title": "TrackResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Analytics",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/analytics/Analytics/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AnalyticsDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AnalyticsDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Analytics.Delete(DeleteRequest)"
+      }
+    },
+    "/analytics/Analytics/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AnalyticsListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AnalyticsListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Analytics.List(ListRequest)"
+      }
+    },
+    "/analytics/Analytics/Read": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AnalyticsReadRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AnalyticsReadResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Analytics.Read(ReadRequest)"
+      }
+    },
+    "/analytics/Analytics/Track": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AnalyticsTrackRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AnalyticsTrackResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Analytics.Track(TrackRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

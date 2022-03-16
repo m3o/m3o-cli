@@ -627,6 +627,13 @@
       "UpdateRequest": {
         "description": "Update the app. The latest source code will be downloaded, built and deployed.",
         "properties": {
+          "env_vars": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional env vars to update",
+            "type": "object"
+          },
           "name": {
             "description": "name of the app",
             "type": "string"

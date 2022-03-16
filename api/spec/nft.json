@@ -517,6 +517,7 @@
         "type": "object"
       },
       "AssetRequest": {
+        "description": "Get a single asset by the contract",
         "properties": {
           "contract_address": {
             "type": "string"
@@ -919,13 +920,17 @@
             "description": "limit to members of a collection by slug name (case sensitive)",
             "type": "string"
           },
+          "cursor": {
+            "description": "A cursor pointing to the page to retrieve",
+            "type": "string"
+          },
           "limit": {
             "description": "limit returned assets",
             "format": "int32",
             "type": "number"
           },
           "offset": {
-            "description": "offset for pagination",
+            "description": "DEPRECATED offset for pagination, please use cursor instead",
             "format": "int32",
             "type": "number"
           },
@@ -1324,6 +1329,14 @@
               "type": "object"
             },
             "type": "array"
+          },
+          "next": {
+            "description": "A cursor to be supplied to retrieve the next page of results",
+            "type": "string"
+          },
+          "previous": {
+            "description": "A cursor to be supplied to retrieve the previous page of results",
+            "type": "string"
           }
         },
         "title": "AssetsResponse",
@@ -1470,6 +1483,7 @@
         "type": "object"
       },
       "CollectionRequest": {
+        "description": "Get a collection by its slug",
         "properties": {
           "slug": {
             "type": "string"

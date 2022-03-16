@@ -41,6 +41,16 @@
         },
         "description": "UserLoginRequest"
       },
+      "UserLogoutAllRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogoutAllRequest"
+            }
+          }
+        },
+        "description": "UserLogoutAllRequest"
+      },
       "UserLogoutRequest": {
         "content": {
           "application/json": {
@@ -224,6 +234,16 @@
           }
         },
         "description": "UserLoginResponse"
+      },
+      "UserLogoutAllResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogoutAllResponse"
+            }
+          }
+        },
+        "description": "UserLogoutAllResponse"
       },
       "UserLogoutResponse": {
         "content": {
@@ -590,6 +610,21 @@
           }
         },
         "title": "LoginResponse",
+        "type": "object"
+      },
+      "LogoutAllRequest": {
+        "description": "Logout of all user's sessions",
+        "properties": {
+          "user_id": {
+            "description": "the user to logout",
+            "type": "string"
+          }
+        },
+        "title": "LogoutAllRequest",
+        "type": "object"
+      },
+      "LogoutAllResponse": {
+        "title": "LogoutAllResponse",
         "type": "object"
       },
       "LogoutRequest": {
@@ -1165,6 +1200,38 @@
           }
         ],
         "summary": "User.Logout(LogoutRequest)"
+      }
+    },
+    "/user/User/LogoutAll": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserLogoutAllRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UserLogoutAllResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "User.LogoutAll(LogoutAllRequest)"
       }
     },
     "/user/User/Read": {
