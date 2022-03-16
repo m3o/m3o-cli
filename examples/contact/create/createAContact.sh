@@ -1,4 +1,18 @@
-m3o contact create --addresses='[
+m3o contact create --emails='[
+  {
+    "address": "home@example.com",
+    "label": "home"
+  },
+  {
+    "address": "work@example.com",
+    "label": "work"
+  }
+]' --links='[
+  {
+    "label": "blog",
+    "url": "https://blog.joe.me"
+  }
+]' --birthday="1995-01-01" --addresses='[
   {
     "label": "company address",
     "location": "123 street address"
@@ -21,18 +35,4 @@ m3o contact create --addresses='[
     "label": "work",
     "number": "010-87654321"
   }
-]' --emails='[
-  {
-    "address": "home@example.com",
-    "label": "home"
-  },
-  {
-    "address": "work@example.com",
-    "label": "work"
-  }
-]' --links='[
-  {
-    "label": "blog",
-    "url": "https://blog.joe.me"
-  }
-]' --birthday="1995-01-01" 
+]' 
