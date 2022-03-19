@@ -1,1 +1,1 @@
-m3o sunnah hadiths --book=1 --collection="bukhari" 
+m3o sunnah hadiths --collection="bukhari" --book=1 
