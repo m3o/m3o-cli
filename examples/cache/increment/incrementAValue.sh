@@ -1,1 +1,1 @@
-m3o cache increment --key="counter" --value=2 
+m3o cache increment --value=2 --key="counter" 

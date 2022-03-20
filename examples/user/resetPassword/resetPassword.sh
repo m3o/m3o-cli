@@ -1,1 +1,1 @@
-m3o user resetPassword --code="012345" --newPassword="NewPassword1" --confirmPassword="NewPassword1" --email="joe@example.com" 
+m3o user resetPassword --newPassword="NewPassword1" --confirmPassword="NewPassword1" --email="joe@example.com" --code="012345" 
