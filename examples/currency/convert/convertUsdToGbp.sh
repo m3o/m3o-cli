@@ -1,1 +1,1 @@
-m3o currency convert --to="GBP" --from="USD" 
+m3o currency convert --from="USD" --to="GBP" 
