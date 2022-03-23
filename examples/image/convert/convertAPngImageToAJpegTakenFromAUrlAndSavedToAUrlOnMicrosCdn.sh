@@ -1,1 +1,1 @@
-m3o image convert --outputURL='true' --url="somewebsite.com/cat.png" --name="cat.jpeg" 
+m3o image convert --url="somewebsite.com/cat.png" --name="cat.jpeg" --outputURL='true' 
