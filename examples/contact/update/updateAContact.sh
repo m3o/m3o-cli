@@ -1,9 +1,4 @@
-m3o contact update --addresses='[
-  {
-    "label": "company address",
-    "location": "123 street address"
-  }
-]' --social_medias='[
+m3o contact update --note="this person is very important" --birthday="1995-01-01" --social_medias='[
   {
     "label": "twitter",
     "username": "joe-twitter"
@@ -12,7 +7,7 @@ m3o contact update --addresses='[
     "label": "facebook",
     "username": "joe-facebook"
   }
-]' --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" --phones='[
+]' --phones='[
   {
     "label": "home",
     "number": "010-12345678"
@@ -21,12 +16,7 @@ m3o contact update --addresses='[
     "label": "work",
     "number": "010-87654321"
   }
-]' --links='[
-  {
-    "label": "blog",
-    "url": "https://blog.joe.me"
-  }
-]' --birthday="1995-01-01" --emails='[
+]' --emails='[
   {
     "address": "home@example.com",
     "label": "home"
@@ -35,4 +25,14 @@ m3o contact update --addresses='[
     "address": "work@example.com",
     "label": "work"
   }
-]' --note="this person is very important" 
+]' --links='[
+  {
+    "label": "blog",
+    "url": "https://blog.joe.me"
+  }
+]' --addresses='[
+  {
+    "label": "company address",
+    "location": "123 street address"
+  }
+]' --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" 
