@@ -1,1 +1,1 @@
-m3o search createIndex --index="customers" 
+m3o search create index --index="customers" 

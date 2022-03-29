@@ -1,1 +1,1 @@
-m3o stream listChannels 
+m3o stream list channels 

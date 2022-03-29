@@ -1,1 +1,1 @@
-m3o stream createChannel --name="general" --description="The channel for all things" 
+m3o stream create channel --description="The channel for all things" --name="general" 

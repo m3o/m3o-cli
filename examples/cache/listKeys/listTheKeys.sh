@@ -1,1 +1,1 @@
-m3o cache listKeys 
+m3o cache list keys 

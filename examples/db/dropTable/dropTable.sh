@@ -1,1 +1,1 @@
-m3o db dropTable --table="example" 
+m3o db drop table --table="example" 
