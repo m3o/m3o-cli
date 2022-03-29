@@ -1,1 +1,1 @@
-m3o app run --branch="master" --port=8080 --region="europe-west1" --name="helloworld" --repo="github.com/asim/helloworld" 
+m3o app run --name="helloworld" --repo="github.com/asim/helloworld" --branch="master" --port=8080 --region="europe-west1" 
