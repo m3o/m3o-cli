@@ -5,7 +5,7 @@ on:
 
 jobs:
   generate:
-    name: generate M3O CLI examples
+    name: Generate M3O CLI examples
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.17
