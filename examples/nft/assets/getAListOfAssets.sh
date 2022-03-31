@@ -1,1 +1,1 @@
-m3o nft assets --limit=1 --order_by="sale_date" 
+m3o nft assets --order_by="sale_date" --limit=1 
