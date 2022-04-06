@@ -1,1 +1,1 @@
-m3o weather forecast --days=2 --location="London" 
+m3o weather forecast --location="London" --days=2 
