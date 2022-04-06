@@ -1,1 +1,1 @@
-m3o comments create --text="This is my comment" --title="New Comment" 
+m3o comments create --title="New Comment" --text="This is my comment" 
