@@ -845,7 +845,7 @@
         "type": "object"
       },
       "SendVerificationEmailRequest": {
-        "description": "Send a verification email to a user.\n Email \"from\" will be 'noreply@email.m3ocontent.com'.\n The verification link will be injected in the email \n as a template variable, $micro_verification_link e.g \n 'Welcome to M3O! Use the link below to verify your email: $micro_verification_link'\n The variable will be replaced with a url similar to:\n 'https://user.m3o.com/user/verify?token=a-verification-token\u0026redirectUrl=your-redir-url'",
+        "description": "Send a verification email to a user.",
         "properties": {
           "email": {
             "description": "email address to send the verification code",
@@ -868,7 +868,7 @@
             "type": "string"
           },
           "text_content": {
-            "description": "Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link\n HTML emails are not available currently.",
+            "description": "Text content of the email. Include '$micro_verification_link' which will be replaced by a verification link",
             "type": "string"
           }
         },

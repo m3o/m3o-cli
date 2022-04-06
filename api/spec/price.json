@@ -1,0 +1,652 @@
+{
+  "components": {
+    "requestBodies": {
+      "PriceAddRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AddRequest"
+            }
+          }
+        },
+        "description": "PriceAddRequest"
+      },
+      "PriceGetRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetRequest"
+            }
+          }
+        },
+        "description": "PriceGetRequest"
+      },
+      "PriceIndexRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IndexRequest"
+            }
+          }
+        },
+        "description": "PriceIndexRequest"
+      },
+      "PriceListRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            }
+          }
+        },
+        "description": "PriceListRequest"
+      },
+      "PriceReportRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReportRequest"
+            }
+          }
+        },
+        "description": "PriceReportRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "PriceAddResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AddResponse"
+            }
+          }
+        },
+        "description": "PriceAddResponse"
+      },
+      "PriceGetResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetResponse"
+            }
+          }
+        },
+        "description": "PriceGetResponse"
+      },
+      "PriceIndexResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IndexResponse"
+            }
+          }
+        },
+        "description": "PriceIndexResponse"
+      },
+      "PriceListResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListResponse"
+            }
+          }
+        },
+        "description": "PriceListResponse"
+      },
+      "PriceReportResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReportResponse"
+            }
+          }
+        },
+        "description": "PriceReportResponse"
+      }
+    },
+    "schemas": {
+      "AddRequest": {
+        "description": "Add a price",
+        "properties": {
+          "author": {
+            "description": "author of the price",
+            "type": "string"
+          },
+          "currency": {
+            "description": "currency e.g USD",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the thing e.g bitcoin",
+            "type": "string"
+          },
+          "price": {
+            "description": "price of the thing e.g 10001.00",
+            "format": "double",
+            "type": "number"
+          },
+          "source": {
+            "description": "source of the price",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "symbol of value",
+            "type": "string"
+          }
+        },
+        "title": "AddRequest",
+        "type": "object"
+      },
+      "AddResponse": {
+        "properties": {
+          "value": {
+            "properties": {
+              "author": {
+                "description": "who added it",
+                "type": "string"
+              },
+              "currency": {
+                "description": "currency of thing",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of thing",
+                "type": "string"
+              },
+              "price": {
+                "description": "price of thing",
+                "format": "double",
+                "type": "number"
+              },
+              "source": {
+                "description": "where it came from",
+                "type": "string"
+              },
+              "symbol": {
+                "description": "symbol of value",
+                "type": "string"
+              },
+              "timestamp": {
+                "description": "time it was added",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "AddResponse",
+        "type": "object"
+      },
+      "GetRequest": {
+        "description": "Get the price of anything",
+        "properties": {
+          "currency": {
+            "description": "currency to get",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the value",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "symbol of value",
+            "type": "string"
+          }
+        },
+        "title": "GetRequest",
+        "type": "object"
+      },
+      "GetResponse": {
+        "properties": {
+          "values": {
+            "items": {
+              "properties": {
+                "author": {
+                  "description": "who added it",
+                  "type": "string"
+                },
+                "currency": {
+                  "description": "currency of thing",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of thing",
+                  "type": "string"
+                },
+                "price": {
+                  "description": "price of thing",
+                  "format": "double",
+                  "type": "number"
+                },
+                "source": {
+                  "description": "where it came from",
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "symbol of value",
+                  "type": "string"
+                },
+                "timestamp": {
+                  "description": "time it was added",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "GetResponse",
+        "type": "object"
+      },
+      "Index": {
+        "properties": {
+          "currency": {
+            "description": "currency of value",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of item",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "symbol of item",
+            "type": "string"
+          }
+        },
+        "title": "Index",
+        "type": "object"
+      },
+      "IndexRequest": {
+        "description": "Get the index for available prices",
+        "title": "IndexRequest",
+        "type": "object"
+      },
+      "IndexResponse": {
+        "properties": {
+          "index": {
+            "items": {
+              "properties": {
+                "currency": {
+                  "description": "currency of value",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of item",
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "symbol of item",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "IndexResponse",
+        "type": "object"
+      },
+      "ListRequest": {
+        "description": "List prices for a given currency",
+        "properties": {
+          "currency": {
+            "description": "currency to get",
+            "type": "string"
+          },
+          "limit": {
+            "description": "limit number of values",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "description": "offset to read from",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "ListRequest",
+        "type": "object"
+      },
+      "ListResponse": {
+        "properties": {
+          "values": {
+            "items": {
+              "properties": {
+                "author": {
+                  "description": "who added it",
+                  "type": "string"
+                },
+                "currency": {
+                  "description": "currency of thing",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of thing",
+                  "type": "string"
+                },
+                "price": {
+                  "description": "price of thing",
+                  "format": "double",
+                  "type": "number"
+                },
+                "source": {
+                  "description": "where it came from",
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "symbol of value",
+                  "type": "string"
+                },
+                "timestamp": {
+                  "description": "time it was added",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "ListResponse",
+        "type": "object"
+      },
+      "Report": {
+        "properties": {
+          "author": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "title": "Report",
+        "type": "object"
+      },
+      "ReportRequest": {
+        "description": "Report an invalid price",
+        "properties": {
+          "comment": {
+            "description": "additional comment",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of value",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "symbol of value",
+            "type": "string"
+          }
+        },
+        "title": "ReportRequest",
+        "type": "object"
+      },
+      "ReportResponse": {
+        "title": "ReportResponse",
+        "type": "object"
+      },
+      "Value": {
+        "properties": {
+          "author": {
+            "description": "who added it",
+            "type": "string"
+          },
+          "currency": {
+            "description": "currency of thing",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of thing",
+            "type": "string"
+          },
+          "price": {
+            "description": "price of thing",
+            "format": "double",
+            "type": "number"
+          },
+          "source": {
+            "description": "where it came from",
+            "type": "string"
+          },
+          "symbol": {
+            "description": "symbol of value",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "time it was added",
+            "type": "string"
+          }
+        },
+        "title": "Value",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Price",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/price/Price/Add": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PriceAddRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PriceAddResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Price.Add(AddRequest)"
+      }
+    },
+    "/price/Price/Get": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PriceGetRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PriceGetResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Price.Get(GetRequest)"
+      }
+    },
+    "/price/Price/Index": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PriceIndexRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PriceIndexResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Price.Index(IndexRequest)"
+      }
+    },
+    "/price/Price/List": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PriceListRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PriceListResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Price.List(ListRequest)"
+      }
+    },
+    "/price/Price/Report": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PriceReportRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PriceReportResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Price.Report(ReportRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

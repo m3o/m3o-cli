@@ -234,7 +234,10 @@
           },
           "user_ids": {
             "description": "optional list of user ids",
-            "type": "string"
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "title": "CreateRequest",
@@ -267,7 +270,10 @@
               },
               "user_ids": {
                 "description": "list of users",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               }
             },
             "type": "object"
@@ -313,7 +319,10 @@
               },
               "user_ids": {
                 "description": "list of users",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               }
             },
             "type": "object"
@@ -418,7 +427,10 @@
               },
               "user_ids": {
                 "description": "list of users",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               }
             },
             "type": "object"
@@ -522,7 +534,10 @@
               },
               "user_ids": {
                 "description": "list of users",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               }
             },
             "type": "object"
@@ -572,7 +587,10 @@
               },
               "user_ids": {
                 "description": "list of users",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               }
             },
             "type": "object"
@@ -619,7 +637,10 @@
                 },
                 "user_ids": {
                   "description": "list of users",
-                  "type": "string"
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
                 }
               },
               "type": "object"
@@ -689,7 +710,10 @@
           },
           "user_ids": {
             "description": "list of users",
-            "type": "string"
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "title": "Room",

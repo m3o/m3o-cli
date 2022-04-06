@@ -674,61 +674,70 @@
         "properties": {
           "charger_types": {
             "description": "The types of charger",
-            "properties": {
-              "comments": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "is_fast_charge_capable": {
+                  "description": "Is this 40KW+",
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "id": {
-                "type": "string"
-              },
-              "is_fast_charge_capable": {
-                "description": "Is this 40KW+",
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "checkin_status_types": {
             "description": "The types of checkin status",
-            "properties": {
-              "id": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "is_automated": {
+                  "type": "boolean"
+                },
+                "is_positive": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "is_automated": {
-                "type": "boolean"
-              },
-              "is_positive": {
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "connection_types": {
             "description": "The types of connection",
-            "properties": {
-              "formal_name": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "formal_name": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "is_discontinued": {
+                  "type": "boolean"
+                },
+                "is_obsolete": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "id": {
-                "type": "string"
-              },
-              "is_discontinued": {
-                "type": "boolean"
-              },
-              "is_obsolete": {
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "countries": {
             "description": "The countries",
@@ -753,54 +762,60 @@
           },
           "current_types": {
             "description": "The types of current",
-            "properties": {
-              "description": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "id": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "data_providers": {
             "description": "The providers of the charger data",
-            "properties": {
-              "comments": {
-                "type": "string"
-              },
-              "data_provider_status_type": {
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "is_provider_enabled": {
-                    "type": "boolean"
-                  },
-                  "title": {
-                    "type": "string"
-                  }
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
                 },
-                "type": "object"
+                "data_provider_status_type": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_provider_enabled": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "license": {
+                  "description": "How is this data licensed",
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "website": {
+                  "type": "string"
+                }
               },
-              "id": {
-                "type": "string"
-              },
-              "license": {
-                "description": "How is this data licensed",
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "website": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "operators": {
             "description": "The companies operating the chargers",
@@ -841,66 +856,78 @@
           },
           "status_types": {
             "description": "The status of the charger",
-            "properties": {
-              "id": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "is_operational": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "is_operational": {
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "submission_status_types": {
             "description": "The status of a submission",
-            "properties": {
-              "id": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "is_live": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "is_live": {
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "usage_types": {
             "description": "The different types of usage",
-            "properties": {
-              "id": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "is_access_key_required": {
+                  "type": "boolean"
+                },
+                "is_membership_required": {
+                  "type": "boolean"
+                },
+                "is_pay_at_location": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "is_access_key_required": {
-                "type": "boolean"
-              },
-              "is_membership_required": {
-                "type": "boolean"
-              },
-              "is_pay_at_location": {
-                "type": "boolean"
-              },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "user_comment_types": {
             "description": "The types of user comment",
-            "properties": {
-              "id": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
               },
-              "title": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           }
         },
         "title": "ReferenceDataResponse",
@@ -943,7 +970,10 @@
           },
           "connection_types": {
             "description": "IDs of the connection type",
-            "type": "string"
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           },
           "country_id": {
             "description": "Country ID",
@@ -994,7 +1024,10 @@
           },
           "usage_types": {
             "description": "Usage of the charge point (is it public, membership required, etc)",
-            "type": "string"
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "title": "SearchRequest",

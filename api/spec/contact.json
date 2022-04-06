@@ -243,17 +243,20 @@
           },
           "social_medias": {
             "description": "the social media username",
-            "properties": {
-              "label": {
-                "description": "the label of the social",
-                "type": "string"
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the social",
+                  "type": "string"
+                },
+                "username": {
+                  "description": "the username of social media",
+                  "type": "string"
+                }
               },
-              "username": {
-                "description": "the username of social media",
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "updated_at": {
             "description": "update date string in RFC3339",
@@ -348,17 +351,20 @@
           },
           "social_medias": {
             "description": "optional, social media",
-            "properties": {
-              "label": {
-                "description": "the label of the social",
-                "type": "string"
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the social",
+                  "type": "string"
+                },
+                "username": {
+                  "description": "the username of social media",
+                  "type": "string"
+                }
               },
-              "username": {
-                "description": "the username of social media",
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           }
         },
         "title": "CreateRequest",
@@ -458,17 +464,20 @@
               },
               "social_medias": {
                 "description": "the social media username",
-                "properties": {
-                  "label": {
-                    "description": "the label of the social",
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the social",
+                      "type": "string"
+                    },
+                    "username": {
+                      "description": "the username of social media",
+                      "type": "string"
+                    }
                   },
-                  "username": {
-                    "description": "the username of social media",
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "updated_at": {
                 "description": "update date string in RFC3339",
@@ -636,17 +645,20 @@
                 },
                 "social_medias": {
                   "description": "the social media username",
-                  "properties": {
-                    "label": {
-                      "description": "the label of the social",
-                      "type": "string"
+                  "items": {
+                    "properties": {
+                      "label": {
+                        "description": "the label of the social",
+                        "type": "string"
+                      },
+                      "username": {
+                        "description": "the username of social media",
+                        "type": "string"
+                      }
                     },
-                    "username": {
-                      "description": "the username of social media",
-                      "type": "string"
-                    }
+                    "type": "object"
                   },
-                  "type": "object"
+                  "type": "array"
                 },
                 "updated_at": {
                   "description": "update date string in RFC3339",
@@ -779,17 +791,20 @@
               },
               "social_medias": {
                 "description": "the social media username",
-                "properties": {
-                  "label": {
-                    "description": "the label of the social",
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the social",
+                      "type": "string"
+                    },
+                    "username": {
+                      "description": "the username of social media",
+                      "type": "string"
+                    }
                   },
-                  "username": {
-                    "description": "the username of social media",
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "updated_at": {
                 "description": "update date string in RFC3339",
@@ -905,17 +920,20 @@
           },
           "social_medias": {
             "description": "optional, social media",
-            "properties": {
-              "label": {
-                "description": "the label of the social",
-                "type": "string"
+            "items": {
+              "properties": {
+                "label": {
+                  "description": "the label of the social",
+                  "type": "string"
+                },
+                "username": {
+                  "description": "the username of social media",
+                  "type": "string"
+                }
               },
-              "username": {
-                "description": "the username of social media",
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           }
         },
         "title": "UpdateRequest",
@@ -1015,17 +1033,20 @@
               },
               "social_medias": {
                 "description": "the social media username",
-                "properties": {
-                  "label": {
-                    "description": "the label of the social",
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "label": {
+                      "description": "the label of the social",
+                      "type": "string"
+                    },
+                    "username": {
+                      "description": "the username of social media",
+                      "type": "string"
+                    }
                   },
-                  "username": {
-                    "description": "the username of social media",
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "updated_at": {
                 "description": "update date string in RFC3339",

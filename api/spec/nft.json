@@ -175,35 +175,38 @@
               },
               "payment_tokens": {
                 "description": "the payment tokens accepted for this collection",
-                "properties": {
-                  "address": {
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "decimals": {
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "eth_price": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "image_url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "usd_price": {
+                      "type": "string"
+                    }
                   },
-                  "decimals": {
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "eth_price": {
-                    "type": "string"
-                  },
-                  "id": {
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "image_url": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "symbol": {
-                    "type": "string"
-                  },
-                  "usd_price": {
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "payout_address": {
                 "description": "payout address for the collection's royalties",
@@ -211,50 +214,53 @@
               },
               "primary_asset_contracts": {
                 "description": "a list of the contracts associated with this collection",
-                "properties": {
-                  "address": {
-                    "description": "ethereum address",
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "address": {
+                      "description": "ethereum address",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "timestamp of creation",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "description of contract",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "name of contract",
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "owner id",
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "payout_address": {
+                      "description": "payout address",
+                      "type": "string"
+                    },
+                    "schema": {
+                      "description": "aka \"ERC1155\"",
+                      "type": "string"
+                    },
+                    "seller_fees": {
+                      "description": "seller fees",
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "description": "related symbol",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "type of contract e.g \"semi-fungible\"",
+                      "type": "string"
+                    }
                   },
-                  "created_at": {
-                    "description": "timestamp of creation",
-                    "type": "string"
-                  },
-                  "description": {
-                    "description": "description of contract",
-                    "type": "string"
-                  },
-                  "name": {
-                    "description": "name of contract",
-                    "type": "string"
-                  },
-                  "owner": {
-                    "description": "owner id",
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "payout_address": {
-                    "description": "payout address",
-                    "type": "string"
-                  },
-                  "schema": {
-                    "description": "aka \"ERC1155\"",
-                    "type": "string"
-                  },
-                  "seller_fees": {
-                    "description": "seller fees",
-                    "type": "string"
-                  },
-                  "symbol": {
-                    "description": "related symbol",
-                    "type": "string"
-                  },
-                  "type": {
-                    "description": "type of contract e.g \"semi-fungible\"",
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "safelist_request_status": {
                 "description": "the collection's approval status on OpenSea",
@@ -569,35 +575,38 @@
                   },
                   "payment_tokens": {
                     "description": "the payment tokens accepted for this collection",
-                    "properties": {
-                      "address": {
-                        "type": "string"
+                    "items": {
+                      "properties": {
+                        "address": {
+                          "type": "string"
+                        },
+                        "decimals": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "eth_price": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "image_url": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "usd_price": {
+                          "type": "string"
+                        }
                       },
-                      "decimals": {
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "eth_price": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "image_url": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "type": "string"
-                      },
-                      "usd_price": {
-                        "type": "string"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
+                    "type": "array"
                   },
                   "payout_address": {
                     "description": "payout address for the collection's royalties",
@@ -605,50 +614,53 @@
                   },
                   "primary_asset_contracts": {
                     "description": "a list of the contracts associated with this collection",
-                    "properties": {
-                      "address": {
-                        "description": "ethereum address",
-                        "type": "string"
+                    "items": {
+                      "properties": {
+                        "address": {
+                          "description": "ethereum address",
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "description": "timestamp of creation",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "description of contract",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "name of contract",
+                          "type": "string"
+                        },
+                        "owner": {
+                          "description": "owner id",
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "payout_address": {
+                          "description": "payout address",
+                          "type": "string"
+                        },
+                        "schema": {
+                          "description": "aka \"ERC1155\"",
+                          "type": "string"
+                        },
+                        "seller_fees": {
+                          "description": "seller fees",
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "description": "related symbol",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "type of contract e.g \"semi-fungible\"",
+                          "type": "string"
+                        }
                       },
-                      "created_at": {
-                        "description": "timestamp of creation",
-                        "type": "string"
-                      },
-                      "description": {
-                        "description": "description of contract",
-                        "type": "string"
-                      },
-                      "name": {
-                        "description": "name of contract",
-                        "type": "string"
-                      },
-                      "owner": {
-                        "description": "owner id",
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "payout_address": {
-                        "description": "payout address",
-                        "type": "string"
-                      },
-                      "schema": {
-                        "description": "aka \"ERC1155\"",
-                        "type": "string"
-                      },
-                      "seller_fees": {
-                        "description": "seller fees",
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "description": "related symbol",
-                        "type": "string"
-                      },
-                      "type": {
-                        "description": "type of contract e.g \"semi-fungible\"",
-                        "type": "string"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
+                    "type": "array"
                   },
                   "safelist_request_status": {
                     "description": "the collection's approval status on OpenSea",
@@ -988,35 +1000,38 @@
                     },
                     "payment_tokens": {
                       "description": "the payment tokens accepted for this collection",
-                      "properties": {
-                        "address": {
-                          "type": "string"
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "decimals": {
+                            "format": "int32",
+                            "type": "number"
+                          },
+                          "eth_price": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "format": "int32",
+                            "type": "number"
+                          },
+                          "image_url": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "symbol": {
+                            "type": "string"
+                          },
+                          "usd_price": {
+                            "type": "string"
+                          }
                         },
-                        "decimals": {
-                          "format": "int32",
-                          "type": "number"
-                        },
-                        "eth_price": {
-                          "type": "string"
-                        },
-                        "id": {
-                          "format": "int32",
-                          "type": "number"
-                        },
-                        "image_url": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "symbol": {
-                          "type": "string"
-                        },
-                        "usd_price": {
-                          "type": "string"
-                        }
+                        "type": "object"
                       },
-                      "type": "object"
+                      "type": "array"
                     },
                     "payout_address": {
                       "description": "payout address for the collection's royalties",
@@ -1024,50 +1039,53 @@
                     },
                     "primary_asset_contracts": {
                       "description": "a list of the contracts associated with this collection",
-                      "properties": {
-                        "address": {
-                          "description": "ethereum address",
-                          "type": "string"
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "description": "ethereum address",
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "description": "timestamp of creation",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "description of contract",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "name of contract",
+                            "type": "string"
+                          },
+                          "owner": {
+                            "description": "owner id",
+                            "format": "int32",
+                            "type": "number"
+                          },
+                          "payout_address": {
+                            "description": "payout address",
+                            "type": "string"
+                          },
+                          "schema": {
+                            "description": "aka \"ERC1155\"",
+                            "type": "string"
+                          },
+                          "seller_fees": {
+                            "description": "seller fees",
+                            "type": "string"
+                          },
+                          "symbol": {
+                            "description": "related symbol",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "type of contract e.g \"semi-fungible\"",
+                            "type": "string"
+                          }
                         },
-                        "created_at": {
-                          "description": "timestamp of creation",
-                          "type": "string"
-                        },
-                        "description": {
-                          "description": "description of contract",
-                          "type": "string"
-                        },
-                        "name": {
-                          "description": "name of contract",
-                          "type": "string"
-                        },
-                        "owner": {
-                          "description": "owner id",
-                          "format": "int32",
-                          "type": "number"
-                        },
-                        "payout_address": {
-                          "description": "payout address",
-                          "type": "string"
-                        },
-                        "schema": {
-                          "description": "aka \"ERC1155\"",
-                          "type": "string"
-                        },
-                        "seller_fees": {
-                          "description": "seller fees",
-                          "type": "string"
-                        },
-                        "symbol": {
-                          "description": "related symbol",
-                          "type": "string"
-                        },
-                        "type": {
-                          "description": "type of contract e.g \"semi-fungible\"",
-                          "type": "string"
-                        }
+                        "type": "object"
                       },
-                      "type": "object"
+                      "type": "array"
                     },
                     "safelist_request_status": {
                       "description": "the collection's approval status on OpenSea",
@@ -1377,35 +1395,38 @@
           },
           "payment_tokens": {
             "description": "the payment tokens accepted for this collection",
-            "properties": {
-              "address": {
-                "type": "string"
+            "items": {
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "decimals": {
+                  "format": "int32",
+                  "type": "number"
+                },
+                "eth_price": {
+                  "type": "string"
+                },
+                "id": {
+                  "format": "int32",
+                  "type": "number"
+                },
+                "image_url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "symbol": {
+                  "type": "string"
+                },
+                "usd_price": {
+                  "type": "string"
+                }
               },
-              "decimals": {
-                "format": "int32",
-                "type": "number"
-              },
-              "eth_price": {
-                "type": "string"
-              },
-              "id": {
-                "format": "int32",
-                "type": "number"
-              },
-              "image_url": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "symbol": {
-                "type": "string"
-              },
-              "usd_price": {
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "payout_address": {
             "description": "payout address for the collection's royalties",
@@ -1413,50 +1434,53 @@
           },
           "primary_asset_contracts": {
             "description": "a list of the contracts associated with this collection",
-            "properties": {
-              "address": {
-                "description": "ethereum address",
-                "type": "string"
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "ethereum address",
+                  "type": "string"
+                },
+                "created_at": {
+                  "description": "timestamp of creation",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "description of contract",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name of contract",
+                  "type": "string"
+                },
+                "owner": {
+                  "description": "owner id",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "payout_address": {
+                  "description": "payout address",
+                  "type": "string"
+                },
+                "schema": {
+                  "description": "aka \"ERC1155\"",
+                  "type": "string"
+                },
+                "seller_fees": {
+                  "description": "seller fees",
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "related symbol",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "type of contract e.g \"semi-fungible\"",
+                  "type": "string"
+                }
               },
-              "created_at": {
-                "description": "timestamp of creation",
-                "type": "string"
-              },
-              "description": {
-                "description": "description of contract",
-                "type": "string"
-              },
-              "name": {
-                "description": "name of contract",
-                "type": "string"
-              },
-              "owner": {
-                "description": "owner id",
-                "format": "int32",
-                "type": "number"
-              },
-              "payout_address": {
-                "description": "payout address",
-                "type": "string"
-              },
-              "schema": {
-                "description": "aka \"ERC1155\"",
-                "type": "string"
-              },
-              "seller_fees": {
-                "description": "seller fees",
-                "type": "string"
-              },
-              "symbol": {
-                "description": "related symbol",
-                "type": "string"
-              },
-              "type": {
-                "description": "type of contract e.g \"semi-fungible\"",
-                "type": "string"
-              }
+              "type": "object"
             },
-            "type": "object"
+            "type": "array"
           },
           "safelist_request_status": {
             "description": "the collection's approval status on OpenSea",
@@ -1529,35 +1553,38 @@
               },
               "payment_tokens": {
                 "description": "the payment tokens accepted for this collection",
-                "properties": {
-                  "address": {
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "decimals": {
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "eth_price": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "image_url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "usd_price": {
+                      "type": "string"
+                    }
                   },
-                  "decimals": {
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "eth_price": {
-                    "type": "string"
-                  },
-                  "id": {
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "image_url": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "symbol": {
-                    "type": "string"
-                  },
-                  "usd_price": {
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "payout_address": {
                 "description": "payout address for the collection's royalties",
@@ -1565,50 +1592,53 @@
               },
               "primary_asset_contracts": {
                 "description": "a list of the contracts associated with this collection",
-                "properties": {
-                  "address": {
-                    "description": "ethereum address",
-                    "type": "string"
+                "items": {
+                  "properties": {
+                    "address": {
+                      "description": "ethereum address",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "timestamp of creation",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "description of contract",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "name of contract",
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "owner id",
+                      "format": "int32",
+                      "type": "number"
+                    },
+                    "payout_address": {
+                      "description": "payout address",
+                      "type": "string"
+                    },
+                    "schema": {
+                      "description": "aka \"ERC1155\"",
+                      "type": "string"
+                    },
+                    "seller_fees": {
+                      "description": "seller fees",
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "description": "related symbol",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "type of contract e.g \"semi-fungible\"",
+                      "type": "string"
+                    }
                   },
-                  "created_at": {
-                    "description": "timestamp of creation",
-                    "type": "string"
-                  },
-                  "description": {
-                    "description": "description of contract",
-                    "type": "string"
-                  },
-                  "name": {
-                    "description": "name of contract",
-                    "type": "string"
-                  },
-                  "owner": {
-                    "description": "owner id",
-                    "format": "int32",
-                    "type": "number"
-                  },
-                  "payout_address": {
-                    "description": "payout address",
-                    "type": "string"
-                  },
-                  "schema": {
-                    "description": "aka \"ERC1155\"",
-                    "type": "string"
-                  },
-                  "seller_fees": {
-                    "description": "seller fees",
-                    "type": "string"
-                  },
-                  "symbol": {
-                    "description": "related symbol",
-                    "type": "string"
-                  },
-                  "type": {
-                    "description": "type of contract e.g \"semi-fungible\"",
-                    "type": "string"
-                  }
+                  "type": "object"
                 },
-                "type": "object"
+                "type": "array"
               },
               "safelist_request_status": {
                 "description": "the collection's approval status on OpenSea",
@@ -1690,35 +1720,38 @@
                 },
                 "payment_tokens": {
                   "description": "the payment tokens accepted for this collection",
-                  "properties": {
-                    "address": {
-                      "type": "string"
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "decimals": {
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "eth_price": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "image_url": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "usd_price": {
+                        "type": "string"
+                      }
                     },
-                    "decimals": {
-                      "format": "int32",
-                      "type": "number"
-                    },
-                    "eth_price": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "format": "int32",
-                      "type": "number"
-                    },
-                    "image_url": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "symbol": {
-                      "type": "string"
-                    },
-                    "usd_price": {
-                      "type": "string"
-                    }
+                    "type": "object"
                   },
-                  "type": "object"
+                  "type": "array"
                 },
                 "payout_address": {
                   "description": "payout address for the collection's royalties",
@@ -1726,50 +1759,53 @@
                 },
                 "primary_asset_contracts": {
                   "description": "a list of the contracts associated with this collection",
-                  "properties": {
-                    "address": {
-                      "description": "ethereum address",
-                      "type": "string"
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "description": "ethereum address",
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "description": "timestamp of creation",
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "description of contract",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "name of contract",
+                        "type": "string"
+                      },
+                      "owner": {
+                        "description": "owner id",
+                        "format": "int32",
+                        "type": "number"
+                      },
+                      "payout_address": {
+                        "description": "payout address",
+                        "type": "string"
+                      },
+                      "schema": {
+                        "description": "aka \"ERC1155\"",
+                        "type": "string"
+                      },
+                      "seller_fees": {
+                        "description": "seller fees",
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "description": "related symbol",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "type of contract e.g \"semi-fungible\"",
+                        "type": "string"
+                      }
                     },
-                    "created_at": {
-                      "description": "timestamp of creation",
-                      "type": "string"
-                    },
-                    "description": {
-                      "description": "description of contract",
-                      "type": "string"
-                    },
-                    "name": {
-                      "description": "name of contract",
-                      "type": "string"
-                    },
-                    "owner": {
-                      "description": "owner id",
-                      "format": "int32",
-                      "type": "number"
-                    },
-                    "payout_address": {
-                      "description": "payout address",
-                      "type": "string"
-                    },
-                    "schema": {
-                      "description": "aka \"ERC1155\"",
-                      "type": "string"
-                    },
-                    "seller_fees": {
-                      "description": "seller fees",
-                      "type": "string"
-                    },
-                    "symbol": {
-                      "description": "related symbol",
-                      "type": "string"
-                    },
-                    "type": {
-                      "description": "type of contract e.g \"semi-fungible\"",
-                      "type": "string"
-                    }
+                    "type": "object"
                   },
-                  "type": "object"
+                  "type": "array"
                 },
                 "safelist_request_status": {
                   "description": "the collection's approval status on OpenSea",
@@ -1912,35 +1948,38 @@
                   },
                   "payment_tokens": {
                     "description": "the payment tokens accepted for this collection",
-                    "properties": {
-                      "address": {
-                        "type": "string"
+                    "items": {
+                      "properties": {
+                        "address": {
+                          "type": "string"
+                        },
+                        "decimals": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "eth_price": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "image_url": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "usd_price": {
+                          "type": "string"
+                        }
                       },
-                      "decimals": {
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "eth_price": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "image_url": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "type": "string"
-                      },
-                      "usd_price": {
-                        "type": "string"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
+                    "type": "array"
                   },
                   "payout_address": {
                     "description": "payout address for the collection's royalties",
@@ -1948,50 +1987,53 @@
                   },
                   "primary_asset_contracts": {
                     "description": "a list of the contracts associated with this collection",
-                    "properties": {
-                      "address": {
-                        "description": "ethereum address",
-                        "type": "string"
+                    "items": {
+                      "properties": {
+                        "address": {
+                          "description": "ethereum address",
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "description": "timestamp of creation",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "description of contract",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "name of contract",
+                          "type": "string"
+                        },
+                        "owner": {
+                          "description": "owner id",
+                          "format": "int32",
+                          "type": "number"
+                        },
+                        "payout_address": {
+                          "description": "payout address",
+                          "type": "string"
+                        },
+                        "schema": {
+                          "description": "aka \"ERC1155\"",
+                          "type": "string"
+                        },
+                        "seller_fees": {
+                          "description": "seller fees",
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "description": "related symbol",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "type of contract e.g \"semi-fungible\"",
+                          "type": "string"
+                        }
                       },
-                      "created_at": {
-                        "description": "timestamp of creation",
-                        "type": "string"
-                      },
-                      "description": {
-                        "description": "description of contract",
-                        "type": "string"
-                      },
-                      "name": {
-                        "description": "name of contract",
-                        "type": "string"
-                      },
-                      "owner": {
-                        "description": "owner id",
-                        "format": "int32",
-                        "type": "number"
-                      },
-                      "payout_address": {
-                        "description": "payout address",
-                        "type": "string"
-                      },
-                      "schema": {
-                        "description": "aka \"ERC1155\"",
-                        "type": "string"
-                      },
-                      "seller_fees": {
-                        "description": "seller fees",
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "description": "related symbol",
-                        "type": "string"
-                      },
-                      "type": {
-                        "description": "type of contract e.g \"semi-fungible\"",
-                        "type": "string"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
+                    "type": "array"
                   },
                   "safelist_request_status": {
                     "description": "the collection's approval status on OpenSea",

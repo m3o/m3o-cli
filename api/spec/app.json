@@ -21,6 +21,16 @@
         },
         "description": "AppListRequest"
       },
+      "AppLogsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogsRequest"
+            }
+          }
+        },
+        "description": "AppLogsRequest"
+      },
       "AppRegionsRequest": {
         "content": {
           "application/json": {
@@ -102,6 +112,16 @@
           }
         },
         "description": "AppListResponse"
+      },
+      "AppLogsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogsResponse"
+            }
+          }
+        },
+        "description": "AppLogsResponse"
       },
       "AppRegionsResponse": {
         "content": {
@@ -233,7 +253,10 @@
                 },
                 "custom_domains": {
                   "description": "custom domains",
-                  "type": "string"
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
                 },
                 "env_vars": {
                   "additionalProperties": {
@@ -282,6 +305,30 @@
           }
         },
         "title": "ListResponse",
+        "type": "object"
+      },
+      "LogsRequest": {
+        "description": "Get the logs for an app",
+        "properties": {
+          "logs_type": {
+            "description": "type of logs to retrieve, currently supported options - \"build\"",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the app",
+            "type": "string"
+          }
+        },
+        "title": "LogsRequest",
+        "type": "object"
+      },
+      "LogsResponse": {
+        "properties": {
+          "logs": {
+            "type": "string"
+          }
+        },
+        "title": "LogsResponse",
         "type": "object"
       },
       "RegionsRequest": {
@@ -442,7 +489,10 @@
               },
               "custom_domains": {
                 "description": "custom domains",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               },
               "env_vars": {
                 "additionalProperties": {
@@ -503,7 +553,10 @@
           },
           "custom_domains": {
             "description": "custom domains",
-            "type": "string"
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           },
           "env_vars": {
             "additionalProperties": {
@@ -575,7 +628,10 @@
               },
               "custom_domains": {
                 "description": "custom domains",
-                "type": "string"
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               },
               "env_vars": {
                 "additionalProperties": {
@@ -730,6 +786,38 @@
           }
         ],
         "summary": "App.List(ListRequest)"
+      }
+    },
+    "/app/App/Logs": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AppLogsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AppLogsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "App.Logs(LogsRequest)"
       }
     },
     "/app/App/Regions": {

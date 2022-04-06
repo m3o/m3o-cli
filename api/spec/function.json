@@ -51,6 +51,16 @@
         },
         "description": "FunctionListRequest"
       },
+      "FunctionLogsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogsRequest"
+            }
+          }
+        },
+        "description": "FunctionLogsRequest"
+      },
       "FunctionProxyRequest": {
         "content": {
           "application/json": {
@@ -152,6 +162,16 @@
           }
         },
         "description": "FunctionListResponse"
+      },
+      "FunctionLogsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LogsResponse"
+            }
+          }
+        },
+        "description": "FunctionLogsResponse"
       },
       "FunctionProxyResponse": {
         "content": {
@@ -619,6 +639,30 @@
         "title": "ListResponse",
         "type": "object"
       },
+      "LogsRequest": {
+        "description": "Get the logs for a function",
+        "properties": {
+          "logs_type": {
+            "description": "type of logs to retrieve, currently supported options - \"build\"",
+            "type": "string"
+          },
+          "name": {
+            "description": "the name of the function",
+            "type": "string"
+          }
+        },
+        "title": "LogsRequest",
+        "type": "object"
+      },
+      "LogsResponse": {
+        "properties": {
+          "logs": {
+            "type": "string"
+          }
+        },
+        "title": "LogsResponse",
+        "type": "object"
+      },
       "ProxyRequest": {
         "description": "Return the backend url for proxying",
         "properties": {
@@ -943,6 +987,38 @@
           }
         ],
         "summary": "Function.List(ListRequest)"
+      }
+    },
+    "/function/Function/Logs": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FunctionLogsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FunctionLogsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Function.Logs(LogsRequest)"
       }
     },
     "/function/Function/Proxy": {
