@@ -1,0 +1,1 @@
+m3o dns query --name="google.com" 
