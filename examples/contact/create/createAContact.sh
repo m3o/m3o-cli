@@ -1,9 +1,4 @@
-m3o contact create --birthday="1995-01-01" --addresses='[
-  {
-    "label": "company address",
-    "location": "123 street address"
-  }
-]' --social_medias='[
+m3o contact create --social_medias='[
   {
     "label": "twitter",
     "username": "joe-twitter"
@@ -34,5 +29,10 @@ m3o contact create --birthday="1995-01-01" --addresses='[
   {
     "label": "blog",
     "url": "https://blog.joe.me"
+  }
+]' --birthday="1995-01-01" --addresses='[
+  {
+    "label": "company address",
+    "location": "123 street address"
   }
 ]' 
