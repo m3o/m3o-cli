@@ -1,1 +1,1 @@
-m3o translate text --model="nmt" --format="text" --source="en" --target="fr" --content="hello" 
+m3o translate text --format="text" --source="en" --target="fr" --content="hello" --model="nmt" 
