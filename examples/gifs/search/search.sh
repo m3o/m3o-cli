@@ -1,1 +1,1 @@
-m3o gifs search --limit=2 --query="dogs" 
+m3o gifs search --query="dogs" --limit=2 
