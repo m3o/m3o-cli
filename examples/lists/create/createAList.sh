@@ -1,1 +1,1 @@
-m3o lists create --text="This is my list" --title="New List" 
+m3o lists create --title="New List" --text="This is my list" 
