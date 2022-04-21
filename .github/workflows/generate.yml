@@ -8,108 +8,32 @@ jobs:
     name: Generate M3O CLI examples
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.17
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17
-        id: go
-      
-      - name: Enable caching
-        uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-            
-      - name: Install Protoc
-        uses: arduino/setup-protoc@master
-      
-      - name: Check m3o repo
+      - name: Check m3o-cli repo
         uses: actions/checkout@v2
         with:
-          repository: 'm3o/m3o'
-          path: m3o
-
+          path: m3o-cli
+        
       - name: Check micro/services repo
         uses: actions/checkout@v2
         with:
           repository: 'micro/services'
           path: services
 
-      - name: Check micro repo
-        uses: actions/checkout@v2
+      - name: Generate m3o-cli examples
+        uses: m3o/m3o-generator-action@v0.2.0
         with:
-          repository: 'micro/micro'
-          path: 'micro'
-          ref: 'master'
-      
-      - name: Check m3o-cli repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'm3o/m3o-cli'
-          path: m3o-cli
-
-      - name: Install protoc gen micro plugin
-        working-directory: micro/cmd/protoc-gen-micro
-        run: |
-          go get -u github.com/golang/protobuf/protoc-gen-go
-          go install
-      
-      - name: Install openapi plugin
-        working-directory: m3o/cmd/protoc-gen-openapi
-        run: |
-          go install
-
-      - name: Install generator
-        working-directory: m3o
-        run: |
-          # build the client generator
-          pwd
-          cd cmd/m3o-client-gen;
-          go install
-          cd ../../
-          # delete existing cmd directory
-          rm -rf ../services/cmd
-          # copy our command directory in
-          cp -r cmd ../services/
-      
-      - name: Generate M3O CLI
-        working-directory: services
-        if: github.ref == 'refs/heads/main'
-        run: |
-          rm -rf clients examples
-          m3o-client-gen cli
+          target: 'cli'
+          services_path: services
 
       - name: Adjust generated things before pushing
-        working-directory: services
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
+        working-directory: services 
         run: |
           # sync the examples to m3o-cli/examples
           rsync -avz examples/cli/* ../m3o-cli/examples/
       
-      - name: house cleaning remove unnecessary files/folders
-        working-directory: m3o-cli
-        run: |
-          # rm -rf .git .gitignore
-      
-      # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
-      - name: Push M3O CLI examples
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.0.0
         with:
-          source_file: 'm3o-cli/examples/'
-          destination_repo: 'm3o/m3o-cli'
-          destination_branch: ${{ steps.extract_branch.outputs.branch }}
-          destination_folder: 'examples/'
-          git_server: 'github.com'
-          user_name: $GITHUB_ACTOR
-          use_rsync: true
-          commit_message: 'Commit from m3o/m3o-cli action'
+          cwd: m3o-cli
+          message: Push to M3O-Cli repo
+          pathspec_error_handling: exitImmediately
