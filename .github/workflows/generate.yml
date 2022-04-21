@@ -20,7 +20,7 @@ jobs:
           path: services
 
       - name: Generate m3o-cli examples
-        uses: m3o/m3o-generator-action@v0.2.0
+        uses: m3o/m3o-generator-action@main
         with:
           target: 'cli'
           services_path: services
