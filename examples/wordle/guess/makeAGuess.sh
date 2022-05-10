@@ -1,0 +1,1 @@
+m3o wordle guess --word="noise" 
