@@ -1,2 +1,2 @@
-m3o user send password reset email --email="joe@example.com" --subject="Password reset" --textContent="Hi there,
- click here to reset your password: myapp.com/reset/code?=$code" --fromName="Awesome Dot Com" 
+m3o user send password reset email --fromName="Awesome Dot Com" --email="joe@example.com" --subject="Password reset" --textContent="Hi there,
+ click here to reset your password: myapp.com/reset/code?=$code" 
