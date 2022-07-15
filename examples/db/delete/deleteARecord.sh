@@ -1,1 +1,1 @@
-m3o db delete --table="example" --id="1" 
+m3o db delete --id="1" --table="example" 
