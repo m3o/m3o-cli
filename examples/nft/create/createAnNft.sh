@@ -1,1 +1,1 @@
-m3o nft create --name="Guybrush Threepwood" --description="The epic monkey island character" 
+m3o nft create --description="The epic monkey island character" --name="Guybrush Threepwood" 
