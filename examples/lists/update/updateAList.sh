@@ -3,5 +3,5 @@ m3o lists update --list='{
   "items": [
     "Updated list text"
   ],
-  "title": "Update List"
+  "name": "Update List"
 }' 
