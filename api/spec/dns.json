@@ -1,0 +1,246 @@
+{
+  "components": {
+    "requestBodies": {
+      "DnsQueryRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QueryRequest"
+            }
+          }
+        },
+        "description": "DnsQueryRequest"
+      }
+    },
+    "responses": {
+      "DnsQueryResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/QueryResponse"
+            }
+          }
+        },
+        "description": "DnsQueryResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "Answer": {
+        "properties": {
+          "TTL": {
+            "description": "time to live",
+            "format": "int32",
+            "type": "number"
+          },
+          "data": {
+            "description": "the answer",
+            "type": "string"
+          },
+          "name": {
+            "description": "name resolved",
+            "type": "string"
+          },
+          "type": {
+            "description": "type of record",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Answer",
+        "type": "object"
+      },
+      "QueryRequest": {
+        "description": "Query an addresss",
+        "properties": {
+          "name": {
+            "description": "name to resolve",
+            "type": "string"
+          },
+          "type": {
+            "description": "type of query e.g A, AAAA, MX, SRV",
+            "type": "string"
+          }
+        },
+        "title": "QueryRequest",
+        "type": "object"
+      },
+      "QueryResponse": {
+        "properties": {
+          "AD": {
+            "type": "boolean"
+          },
+          "CD": {
+            "type": "boolean"
+          },
+          "RA": {
+            "type": "boolean"
+          },
+          "RD": {
+            "type": "boolean"
+          },
+          "TC": {
+            "type": "boolean"
+          },
+          "answer": {
+            "items": {
+              "properties": {
+                "TTL": {
+                  "description": "time to live",
+                  "format": "int32",
+                  "type": "number"
+                },
+                "data": {
+                  "description": "the answer",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name resolved",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "type of record",
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "question": {
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "name to query",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "type of record",
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "status": {
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "QueryResponse",
+        "type": "object"
+      },
+      "Question": {
+        "properties": {
+          "name": {
+            "description": "name to query",
+            "type": "string"
+          },
+          "type": {
+            "description": "type of record",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Question",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Dns",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/dns/Dns/Query": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DnsQueryRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DnsQueryResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Dns.Query(QueryRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

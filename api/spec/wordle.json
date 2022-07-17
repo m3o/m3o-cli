@@ -1,0 +1,337 @@
+{
+  "components": {
+    "requestBodies": {
+      "WordleGuessRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GuessRequest"
+            }
+          }
+        },
+        "description": "WordleGuessRequest"
+      },
+      "WordleNextRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NextRequest"
+            }
+          }
+        },
+        "description": "WordleNextRequest"
+      }
+    },
+    "responses": {
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      },
+      "WordleGuessResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GuessResponse"
+            }
+          }
+        },
+        "description": "WordleGuessResponse"
+      },
+      "WordleNextResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NextResponse"
+            }
+          }
+        },
+        "description": "WordleNextResponse"
+      }
+    },
+    "schemas": {
+      "Char": {
+        "properties": {
+          "correct": {
+            "description": "whether it was correct",
+            "type": "boolean"
+          },
+          "in_word": {
+            "description": "whether it's in the word",
+            "type": "boolean"
+          },
+          "letter": {
+            "description": "the character itself",
+            "type": "string"
+          },
+          "position": {
+            "description": "position in the string",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "Char",
+        "type": "object"
+      },
+      "Guess": {
+        "properties": {
+          "chars": {
+            "description": "individual characters",
+            "items": {
+              "properties": {
+                "correct": {
+                  "description": "whether it was correct",
+                  "type": "boolean"
+                },
+                "in_word": {
+                  "description": "whether it's in the word",
+                  "type": "boolean"
+                },
+                "letter": {
+                  "description": "the character itself",
+                  "type": "string"
+                },
+                "position": {
+                  "description": "position in the string",
+                  "format": "int32",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "highlight": {
+            "description": "the highlighted word e.g n[o]is{e}\n where [ ] is correct, { } is in word",
+            "type": "string"
+          },
+          "word": {
+            "description": "the full guess word",
+            "type": "string"
+          }
+        },
+        "title": "Guess",
+        "type": "object"
+      },
+      "GuessRequest": {
+        "description": "Make a guess",
+        "properties": {
+          "player": {
+            "description": "player",
+            "type": "string"
+          },
+          "word": {
+            "description": "guess word",
+            "type": "string"
+          }
+        },
+        "title": "GuessRequest",
+        "type": "object"
+      },
+      "GuessResponse": {
+        "properties": {
+          "answer": {
+            "description": "the actual word if failed",
+            "type": "string"
+          },
+          "correct": {
+            "description": "whether it was correct",
+            "type": "boolean"
+          },
+          "guesses": {
+            "description": "the guess words tried",
+            "items": {
+              "properties": {
+                "chars": {
+                  "description": "individual characters",
+                  "items": {
+                    "properties": {
+                      "correct": {
+                        "description": "whether it was correct",
+                        "type": "boolean"
+                      },
+                      "in_word": {
+                        "description": "whether it's in the word",
+                        "type": "boolean"
+                      },
+                      "letter": {
+                        "description": "the character itself",
+                        "type": "string"
+                      },
+                      "position": {
+                        "description": "position in the string",
+                        "format": "int32",
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "highlight": {
+                  "description": "the highlighted word e.g n[o]is{e}\n where [ ] is correct, { } is in word",
+                  "type": "string"
+                },
+                "word": {
+                  "description": "the full guess word",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "status": {
+            "description": "informational message",
+            "type": "string"
+          },
+          "tries_left": {
+            "description": "number of tries left",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "GuessResponse",
+        "type": "object"
+      },
+      "NextRequest": {
+        "description": "When does the next game start",
+        "title": "NextRequest",
+        "type": "object"
+      },
+      "NextResponse": {
+        "properties": {
+          "duration": {
+            "description": "in hh:mm:ss",
+            "type": "string"
+          },
+          "seconds": {
+            "description": "number of seconds",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "NextResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Wordle",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/wordle/Wordle/Guess": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/WordleGuessRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/WordleGuessResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Wordle.Guess(GuessRequest)"
+      }
+    },
+    "/wordle/Wordle/Next": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/WordleNextRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/WordleNextResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Wordle.Next(NextRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

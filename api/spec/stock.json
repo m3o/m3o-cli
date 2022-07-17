@@ -11,16 +11,6 @@
         },
         "description": "StockHistoryRequest"
       },
-      "StockOrderBookRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/OrderBookRequest"
-            }
-          }
-        },
-        "description": "StockOrderBookRequest"
-      },
       "StockPriceRequest": {
         "content": {
           "application/json": {
@@ -84,16 +74,6 @@
           }
         },
         "description": "StockHistoryResponse"
-      },
-      "StockOrderBookResponse": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/OrderBookResponse"
-            }
-          }
-        },
-        "description": "StockOrderBookResponse"
       },
       "StockPriceResponse": {
         "content": {
@@ -169,111 +149,6 @@
           }
         },
         "title": "HistoryResponse",
-        "type": "object"
-      },
-      "Order": {
-        "properties": {
-          "ask_price": {
-            "description": "the asking price",
-            "format": "double",
-            "type": "number"
-          },
-          "ask_size": {
-            "description": "the ask size",
-            "format": "int32",
-            "type": "number"
-          },
-          "bid_price": {
-            "description": "the bidding price",
-            "format": "double",
-            "type": "number"
-          },
-          "bid_size": {
-            "description": "the bid size",
-            "format": "int32",
-            "type": "number"
-          },
-          "timestamp": {
-            "description": "the UTC timestamp of the quote",
-            "type": "string"
-          }
-        },
-        "title": "Order",
-        "type": "object"
-      },
-      "OrderBookRequest": {
-        "description": "Get the historic order book and each trade by timestamp",
-        "properties": {
-          "date": {
-            "description": "the date in format YYYY-MM-dd",
-            "type": "string"
-          },
-          "end": {
-            "description": "optional RFC3339Nano end time e.g 2006-01-02T15:04:05.999999999Z07:00",
-            "type": "string"
-          },
-          "limit": {
-            "description": "limit number of prices",
-            "format": "int32",
-            "type": "number"
-          },
-          "start": {
-            "description": "optional RFC3339Nano start time e.g 2006-01-02T15:04:05.999999999Z07:00",
-            "type": "string"
-          },
-          "stock": {
-            "description": "stock to retrieve e.g AAPL",
-            "type": "string"
-          }
-        },
-        "title": "OrderBookRequest",
-        "type": "object"
-      },
-      "OrderBookResponse": {
-        "properties": {
-          "date": {
-            "description": "date of the request",
-            "type": "string"
-          },
-          "orders": {
-            "description": "list of orders",
-            "items": {
-              "properties": {
-                "ask_price": {
-                  "description": "the asking price",
-                  "format": "double",
-                  "type": "number"
-                },
-                "ask_size": {
-                  "description": "the ask size",
-                  "format": "int32",
-                  "type": "number"
-                },
-                "bid_price": {
-                  "description": "the bidding price",
-                  "format": "double",
-                  "type": "number"
-                },
-                "bid_size": {
-                  "description": "the bid size",
-                  "format": "int32",
-                  "type": "number"
-                },
-                "timestamp": {
-                  "description": "the UTC timestamp of the quote",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "symbol": {
-            "description": "the stock symbol",
-            "type": "string"
-          }
-        },
-        "title": "OrderBookResponse",
         "type": "object"
       },
       "PriceRequest": {
@@ -399,38 +274,6 @@
           }
         ],
         "summary": "Stock.History(HistoryRequest)"
-      }
-    },
-    "/stock/Stock/OrderBook": {
-      "parameters": [
-        {
-          "in": "header",
-          "name": "Micro-Namespace",
-          "required": true,
-          "schema": {
-            "default": "micro",
-            "type": "string"
-          }
-        }
-      ],
-      "post": {
-        "requestBody": {
-          "$ref": "#/components/requestBodies/StockOrderBookRequest"
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/StockOrderBookResponse"
-          },
-          "default": {
-            "$ref": "#/components/responses/MicroAPIError"
-          }
-        },
-        "security": [
-          {
-            "MicroAPIToken": []
-          }
-        ],
-        "summary": "Stock.OrderBook(OrderBookRequest)"
       }
     },
     "/stock/Stock/Price": {

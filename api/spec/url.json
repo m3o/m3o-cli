@@ -1,6 +1,16 @@
 {
   "components": {
     "requestBodies": {
+      "UrlDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "UrlDeleteRequest"
+      },
       "UrlListRequest": {
         "content": {
           "application/json": {
@@ -65,6 +75,16 @@
         },
         "description": "Error from the Micro API"
       },
+      "UrlDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "UrlDeleteResponse"
+      },
       "UrlListResponse": {
         "content": {
           "application/json": {
@@ -97,6 +117,20 @@
       }
     },
     "schemas": {
+      "DeleteRequest": {
+        "description": "Delete a URL",
+        "properties": {
+          "shortURL": {
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
       "ListRequest": {
         "description": "List all the shortened URLs",
         "properties": {
@@ -222,6 +256,38 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/url/Url/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UrlDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UrlDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Url.Delete(DeleteRequest)"
+      }
+    },
     "/url/Url/List": {
       "parameters": [
         {
