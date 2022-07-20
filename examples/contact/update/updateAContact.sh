@@ -1,18 +1,4 @@
-m3o contact update --birthday="1995-01-01" --addresses='[
-  {
-    "label": "company address",
-    "location": "123 street address"
-  }
-]' --note="this person is very important" --name="joe" --emails='[
-  {
-    "address": "home@example.com",
-    "label": "home"
-  },
-  {
-    "address": "work@example.com",
-    "label": "work"
-  }
-]' --links='[
+m3o contact update --links='[
   {
     "label": "blog",
     "url": "https://blog.joe.me"
@@ -34,5 +20,19 @@ m3o contact update --birthday="1995-01-01" --addresses='[
   {
     "label": "work",
     "number": "010-87654321"
+  }
+]' --birthday="1995-01-01" --addresses='[
+  {
+    "label": "company address",
+    "location": "123 street address"
+  }
+]' --note="this person is very important" --name="joe" --emails='[
+  {
+    "address": "home@example.com",
+    "label": "home"
+  },
+  {
+    "address": "work@example.com",
+    "label": "work"
   }
 ]' 
