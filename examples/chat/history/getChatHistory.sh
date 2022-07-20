@@ -1,1 +1,1 @@
-m3o chat history --room_id="d8057208-f81a-4e14-ad7f-c29daa2bb910" 
+m3o chat history --group_id="d8057208-f81a-4e14-ad7f-c29daa2bb910" 

@@ -1,1 +1,1 @@
-m3o cache set --key="foo" --value="bar" 
+m3o cache set --value="bar" --key="foo" 
