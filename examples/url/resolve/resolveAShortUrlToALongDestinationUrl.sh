@@ -1,0 +1,1 @@
+m3o url resolve --shortURL="https://m3o.one/u/ck6SGVkYp" 
