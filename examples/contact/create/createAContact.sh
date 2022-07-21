@@ -1,4 +1,4 @@
-m3o contact create --phones='[
+m3o contact create --note="this person is very important" --name="joe" --phones='[
   {
     "label": "home",
     "number": "010-12345678"
@@ -35,4 +35,4 @@ m3o contact create --phones='[
     "label": "facebook",
     "username": "joe-facebook"
   }
-]' --note="this person is very important" --name="joe" 
+]' 
