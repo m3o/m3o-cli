@@ -1,1 +1,1 @@
-m3o file delete --path="/document/text-files/file.txt" --project="examples" 
+m3o file delete --project="examples" --path="/document/text-files/file.txt" 
