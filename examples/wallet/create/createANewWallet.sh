@@ -1,1 +1,1 @@
-m3o wallet create --name="Greatness" --description="No explanation needed" 
+m3o wallet create --description="No explanation needed" --name="Greatness" 
