@@ -1,1 +1,1 @@
-m3o user list --limit=100 --offset=0 
+m3o user list --offset=0 --limit=100 
