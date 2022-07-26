@@ -1,0 +1,1 @@
+m3o wallet delete --id="b6407edd-2e26-45c0-9e2c-343689bbe5f6" 

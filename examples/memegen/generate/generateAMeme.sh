@@ -1,1 +1,1 @@
-m3o memegen generate --top_text="WTF" --bottom_text="Huh?" --id="444501" 
+m3o memegen generate --id="444501" --top_text="WTF" --bottom_text="Huh?" 
