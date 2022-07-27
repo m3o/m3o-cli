@@ -1,1 +1,1 @@
-m3o geocoding lookup --country="uk" --address="10 russell st" --postcode="wc2b" --city="london" 
+m3o geocoding lookup --postcode="wc2b" --city="london" --country="uk" --address="10 russell st" 
