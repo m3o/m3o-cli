@@ -1,1 +1,1 @@
-m3o chat leave --user_id="user-1" --group_id="d8057208-f81a-4e14-ad7f-c29daa2bb910" 
+m3o chat leave --group_id="d8057208-f81a-4e14-ad7f-c29daa2bb910" --user_id="user-1" 
