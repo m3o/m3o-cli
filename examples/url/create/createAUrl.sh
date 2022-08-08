@@ -1,1 +1,1 @@
-m3o url create --destinationURL="https://mysite.com/this-is-a-rather-long-web-address" --id="my-site" 
+m3o url create --id="my-site" --destinationURL="https://mysite.com/this-is-a-rather-long-web-address" 
