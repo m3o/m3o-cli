@@ -1,3 +1,3 @@
-m3o lists create --name="New List" --items='[
+m3o lists create --items='[
   "This is my list"
-]' 
+]' --name="New List" 
