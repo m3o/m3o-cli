@@ -21,10 +21,10 @@ curl -fssl https://install.m3o.com/cli | /bin/bash
 From source
 
 ```
-go get github.com/m3o/m3o-cli/cmd/m3o
+go get github.com/m3o/m3o/cmd/m3o
 ```
 
-Otherwise download the latest [release](https://github.com/m3o/m3o-cli/releases/latest) binary.
+Otherwise download the latest [release](https://github.com/m3o/m3o/releases/latest) binary.
 
 ## Usage
 
