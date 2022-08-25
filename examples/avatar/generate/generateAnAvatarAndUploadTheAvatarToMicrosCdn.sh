@@ -1,1 +1,1 @@
-m3o avatar generate --username="" --format="png" --upload='true' --gender="female" 
+m3o avatar generate --format="png" --upload='true' --gender="female" --username="" 
