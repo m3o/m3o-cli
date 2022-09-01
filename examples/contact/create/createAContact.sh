@@ -1,4 +1,9 @@
-m3o contact create --addresses='[
+m3o contact create --links='[
+  {
+    "label": "blog",
+    "url": "https://blog.joe.me"
+  }
+]' --birthday="1995-01-01" --addresses='[
   {
     "label": "company address",
     "location": "123 street address"
@@ -30,9 +35,4 @@ m3o contact create --addresses='[
     "address": "work@example.com",
     "label": "work"
   }
-]' --links='[
-  {
-    "label": "blog",
-    "url": "https://blog.joe.me"
-  }
-]' --birthday="1995-01-01" 
+]' 
