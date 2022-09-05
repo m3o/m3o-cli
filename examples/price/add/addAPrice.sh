@@ -1,1 +1,1 @@
-m3o price add --name="bitcoin" --price=39037.97 --currency="USD" 
+m3o price add --price=39037.97 --currency="USD" --name="bitcoin" 
