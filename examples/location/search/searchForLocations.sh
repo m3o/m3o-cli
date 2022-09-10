@@ -1,4 +1,4 @@
-m3o location search --limit=10 --radius=100 --type="bike" --center='{
+m3o location search --type="bike" --center='{
   "latitude": 51.511061,
   "longitude": -0.120022
-}' 
+}' --limit=10 --radius=100 
