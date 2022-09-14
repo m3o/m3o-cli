@@ -1,7 +1,7 @@
-m3o routing eta --destination='{
-  "latitude": 52.529407,
-  "longitude": 13.397634
-}' --origin='{
+m3o routing eta --origin='{
   "latitude": 52.517037,
   "longitude": 13.38886
+}' --destination='{
+  "latitude": 52.529407,
+  "longitude": 13.397634
 }' 
