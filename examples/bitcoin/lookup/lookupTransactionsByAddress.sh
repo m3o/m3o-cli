@@ -1,0 +1,1 @@
+m3o bitcoin lookup --address="1MDUoxL1bGvMxhuoDYx6i11ePytECAk9QK" 
