@@ -402,6 +402,11 @@ func callService(service, endpoint string, vals map[string]interface{}) func(*co
 				if len(*val) > 0 {
 					req[k] = *val
 				}
+			case *map[string]string:
+				val := v.(*map[string]string)
+				if *val != nil {
+					req[k] = *val
+				}
 			case nil:
 				continue
 			}
@@ -454,6 +459,9 @@ func setFlags(cmd *cobra.Command, schema *openapi3.Schema) map[string]interface{
 				val := cmd.Flags().Float64(name, 0.0, property.Value.Description)
 				vals[name] = val
 			}
+		case "object":
+			val := cmd.Flags().StringToString(name, nil, property.Value.Description)
+			vals[name] = val
 		default:
 			val := cmd.Flags().String(name, "", property.Value.Description)
 			vals[name] = val
