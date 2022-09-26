@@ -243,6 +243,10 @@
             "description": "all the apps",
             "items": {
               "properties": {
+                "backend": {
+                  "description": "raw backend endpoint",
+                  "type": "string"
+                },
                 "branch": {
                   "description": "branch of code",
                   "type": "string"
@@ -376,7 +380,7 @@
         "type": "object"
       },
       "ReserveRequest": {
-        "description": "Reserve apps beyond the free quota. Call Run after.",
+        "description": "Reserve app names",
         "properties": {
           "name": {
             "description": "name of your app e.g helloworld",
@@ -479,6 +483,10 @@
           "service": {
             "description": "The running service",
             "properties": {
+              "backend": {
+                "description": "raw backend endpoint",
+                "type": "string"
+              },
               "branch": {
                 "description": "branch of code",
                 "type": "string"
@@ -543,6 +551,10 @@
       },
       "Service": {
         "properties": {
+          "backend": {
+            "description": "raw backend endpoint",
+            "type": "string"
+          },
           "branch": {
             "description": "branch of code",
             "type": "string"
@@ -618,6 +630,10 @@
           "service": {
             "description": "running service info",
             "properties": {
+              "backend": {
+                "description": "raw backend endpoint",
+                "type": "string"
+              },
               "branch": {
                 "description": "branch of code",
                 "type": "string"

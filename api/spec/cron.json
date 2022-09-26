@@ -1,0 +1,364 @@
+{
+  "components": {
+    "requestBodies": {
+      "CronDeleteRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteRequest"
+            }
+          }
+        },
+        "description": "CronDeleteRequest"
+      },
+      "CronJobsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JobsRequest"
+            }
+          }
+        },
+        "description": "CronJobsRequest"
+      },
+      "CronScheduleRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScheduleRequest"
+            }
+          }
+        },
+        "description": "CronScheduleRequest"
+      }
+    },
+    "responses": {
+      "CronDeleteResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteResponse"
+            }
+          }
+        },
+        "description": "CronDeleteResponse"
+      },
+      "CronJobsResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JobsResponse"
+            }
+          }
+        },
+        "description": "CronJobsResponse"
+      },
+      "CronScheduleResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScheduleResponse"
+            }
+          }
+        },
+        "description": "CronScheduleResponse"
+      },
+      "MicroAPIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Code": {
+                  "description": "Error code",
+                  "example": 500,
+                  "type": "number"
+                },
+                "Detail": {
+                  "description": "Error detail",
+                  "example": "service not found",
+                  "type": "string"
+                },
+                "Id": {
+                  "description": "Error ID",
+                  "type": "string"
+                },
+                "Status": {
+                  "description": "Error status message",
+                  "example": "Internal Server Error",
+                  "type": "string"
+                }
+              },
+              "title": "MicroAPIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error from the Micro API"
+      }
+    },
+    "schemas": {
+      "DeleteRequest": {
+        "description": "Delete a cron job",
+        "properties": {
+          "id": {
+            "description": "id of the cron job",
+            "type": "string"
+          }
+        },
+        "title": "DeleteRequest",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "Job": {
+        "description": "a cron job",
+        "properties": {
+          "callback": {
+            "description": "callback url",
+            "type": "string"
+          },
+          "description": {
+            "description": "description",
+            "type": "string"
+          },
+          "id": {
+            "description": "job id",
+            "type": "string"
+          },
+          "interval": {
+            "description": "scheduled interval",
+            "type": "string"
+          },
+          "name": {
+            "description": "name",
+            "type": "string"
+          }
+        },
+        "title": "Job",
+        "type": "object"
+      },
+      "JobsRequest": {
+        "description": "List all cron jobs",
+        "title": "JobsRequest",
+        "type": "object"
+      },
+      "JobsResponse": {
+        "properties": {
+          "jobs": {
+            "items": {
+              "properties": {
+                "callback": {
+                  "description": "callback url",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "description",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "job id",
+                  "type": "string"
+                },
+                "interval": {
+                  "description": "scheduled interval",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "name",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "JobsResponse",
+        "type": "object"
+      },
+      "ScheduleRequest": {
+        "description": "Schedule a cron job",
+        "properties": {
+          "callback": {
+            "description": "callback url",
+            "type": "string"
+          },
+          "description": {
+            "description": "description",
+            "type": "string"
+          },
+          "id": {
+            "description": "unique id of job",
+            "type": "string"
+          },
+          "interval": {
+            "description": "interval e.g * * * *",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of cron",
+            "type": "string"
+          }
+        },
+        "title": "ScheduleRequest",
+        "type": "object"
+      },
+      "ScheduleResponse": {
+        "properties": {
+          "job": {
+            "properties": {
+              "callback": {
+                "description": "callback url",
+                "type": "string"
+              },
+              "description": {
+                "description": "description",
+                "type": "string"
+              },
+              "id": {
+                "description": "job id",
+                "type": "string"
+              },
+              "interval": {
+                "description": "scheduled interval",
+                "type": "string"
+              },
+              "name": {
+                "description": "name",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "ScheduleResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "M3OAPIToken": {
+        "bearerFormat": "token",
+        "description": "M3O API token",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by protoc-gen-openapi",
+    "title": "Cron",
+    "version": "1",
+    "x-logo": {
+      "altText": "M3O logo",
+      "backgroundColor": "#000000",
+      "url": "https://raw.githubusercontent.com/m3o/m3o/main/images/logo.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/cron/Cron/Delete": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CronDeleteRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CronDeleteResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cron.Delete(DeleteRequest)"
+      }
+    },
+    "/cron/Cron/Jobs": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CronJobsRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CronJobsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cron.Jobs(JobsRequest)"
+      }
+    },
+    "/cron/Cron/Schedule": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CronScheduleRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CronScheduleResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Cron.Schedule(ScheduleRequest)"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.m3o.com/v1",
+      "description": "M3O platform"
+    }
+  ]
+}

@@ -276,6 +276,21 @@
           "reference": {
             "type": "string"
           },
+          "status": {
+            "description": "status of the connection",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "is_operational": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
           "voltage": {
             "description": "The voltage offered",
             "format": "double",
@@ -570,6 +585,21 @@
                 },
                 "reference": {
                   "type": "string"
+                },
+                "status": {
+                  "description": "status of the connection",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_operational": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
                 },
                 "voltage": {
                   "description": "The voltage offered",
@@ -1168,6 +1198,21 @@
                       },
                       "reference": {
                         "type": "string"
+                      },
+                      "status": {
+                        "description": "status of the connection",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "is_operational": {
+                            "type": "boolean"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
                       },
                       "voltage": {
                         "description": "The voltage offered",

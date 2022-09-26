@@ -11,6 +11,16 @@
         },
         "description": "BitcoinBalanceRequest"
       },
+      "BitcoinLookupRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupRequest"
+            }
+          }
+        },
+        "description": "BitcoinLookupRequest"
+      },
       "BitcoinPriceRequest": {
         "content": {
           "application/json": {
@@ -42,6 +52,16 @@
           }
         },
         "description": "BitcoinBalanceResponse"
+      },
+      "BitcoinLookupResponse": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LookupResponse"
+            }
+          }
+        },
+        "description": "BitcoinLookupResponse"
       },
       "BitcoinPriceResponse": {
         "content": {
@@ -154,6 +174,214 @@
         "title": "Input",
         "type": "object"
       },
+      "LookupRequest": {
+        "description": "Get details for a bitcoin address",
+        "properties": {
+          "address": {
+            "description": "bitcoin address",
+            "type": "string"
+          },
+          "limit": {
+            "description": "limit num transactions (max: 50)",
+            "format": "int32",
+            "type": "number"
+          },
+          "offset": {
+            "description": "offset transactions",
+            "format": "int32",
+            "type": "number"
+          }
+        },
+        "title": "LookupRequest",
+        "type": "object"
+      },
+      "LookupResponse": {
+        "properties": {
+          "address": {
+            "description": "address requested",
+            "type": "string"
+          },
+          "final_balance": {
+            "description": "final balanace",
+            "format": "int64",
+            "type": "number"
+          },
+          "hash": {
+            "description": "hash160",
+            "type": "string"
+          },
+          "num_tx": {
+            "description": "number of transactions",
+            "format": "int64",
+            "type": "number"
+          },
+          "num_unredeemed": {
+            "description": "number of unredeemed",
+            "format": "int64",
+            "type": "number"
+          },
+          "total_received": {
+            "description": "total received",
+            "format": "int64",
+            "type": "number"
+          },
+          "total_sent": {
+            "description": "total sent",
+            "format": "int64",
+            "type": "number"
+          },
+          "transactions": {
+            "description": "list of transactions",
+            "items": {
+              "properties": {
+                "balance": {
+                  "description": "balance after transaction",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "block_height": {
+                  "description": "block height",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "block_index": {
+                  "description": "blck index",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "double_spend": {
+                  "description": "double spend",
+                  "type": "boolean"
+                },
+                "fee": {
+                  "description": "fees",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "hash": {
+                  "description": "transaction hash",
+                  "type": "string"
+                },
+                "inputs": {
+                  "description": "inputs",
+                  "items": {
+                    "properties": {
+                      "prev_out": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "format": "int64",
+                            "type": "number"
+                          },
+                          "script": {
+                            "type": "string"
+                          },
+                          "spent": {
+                            "type": "boolean"
+                          },
+                          "tx_index": {
+                            "format": "int64",
+                            "type": "number"
+                          },
+                          "value": {
+                            "format": "int64",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "script": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "lock_time": {
+                  "description": "lock time",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "outputs": {
+                  "description": "outputs",
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "hash": {
+                        "type": "string"
+                      },
+                      "script": {
+                        "type": "string"
+                      },
+                      "spent": {
+                        "type": "boolean"
+                      },
+                      "tx_index": {
+                        "format": "int64",
+                        "type": "number"
+                      },
+                      "value": {
+                        "format": "int64",
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "relay": {
+                  "description": "relay",
+                  "type": "string"
+                },
+                "result": {
+                  "description": "result of transaction",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "size": {
+                  "description": "transaction size",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "tx_index": {
+                  "description": "tx index",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "version": {
+                  "description": "the version",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "vin_sz": {
+                  "description": "vin",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "vout_sz": {
+                  "description": "vout",
+                  "format": "int64",
+                  "type": "number"
+                },
+                "weight": {
+                  "description": "weight",
+                  "format": "int64",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "title": "LookupResponse",
+        "type": "object"
+      },
       "Output": {
         "properties": {
           "address": {
@@ -233,8 +461,153 @@
         "title": "PriceResponse",
         "type": "object"
       },
+      "Transaction": {
+        "properties": {
+          "balance": {
+            "description": "balance after transaction",
+            "format": "int64",
+            "type": "number"
+          },
+          "block_height": {
+            "description": "block height",
+            "format": "int64",
+            "type": "number"
+          },
+          "block_index": {
+            "description": "blck index",
+            "format": "int64",
+            "type": "number"
+          },
+          "double_spend": {
+            "description": "double spend",
+            "type": "boolean"
+          },
+          "fee": {
+            "description": "fees",
+            "format": "int64",
+            "type": "number"
+          },
+          "hash": {
+            "description": "transaction hash",
+            "type": "string"
+          },
+          "inputs": {
+            "description": "inputs",
+            "items": {
+              "properties": {
+                "prev_out": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "n": {
+                      "format": "int64",
+                      "type": "number"
+                    },
+                    "script": {
+                      "type": "string"
+                    },
+                    "spent": {
+                      "type": "boolean"
+                    },
+                    "tx_index": {
+                      "format": "int64",
+                      "type": "number"
+                    },
+                    "value": {
+                      "format": "int64",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "script": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "lock_time": {
+            "description": "lock time",
+            "format": "int64",
+            "type": "number"
+          },
+          "outputs": {
+            "description": "outputs",
+            "items": {
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "hash": {
+                  "type": "string"
+                },
+                "script": {
+                  "type": "string"
+                },
+                "spent": {
+                  "type": "boolean"
+                },
+                "tx_index": {
+                  "format": "int64",
+                  "type": "number"
+                },
+                "value": {
+                  "format": "int64",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "relay": {
+            "description": "relay",
+            "type": "string"
+          },
+          "result": {
+            "description": "result of transaction",
+            "format": "int64",
+            "type": "number"
+          },
+          "size": {
+            "description": "transaction size",
+            "format": "int64",
+            "type": "number"
+          },
+          "tx_index": {
+            "description": "tx index",
+            "format": "int64",
+            "type": "number"
+          },
+          "version": {
+            "description": "the version",
+            "format": "int64",
+            "type": "number"
+          },
+          "vin_sz": {
+            "description": "vin",
+            "format": "int64",
+            "type": "number"
+          },
+          "vout_sz": {
+            "description": "vout",
+            "format": "int64",
+            "type": "number"
+          },
+          "weight": {
+            "description": "weight",
+            "format": "int64",
+            "type": "number"
+          }
+        },
+        "title": "Transaction",
+        "type": "object"
+      },
       "TransactionRequest": {
-        "description": "Get the details of a transaction",
+        "description": "Get transaction details by hash",
         "properties": {
           "hash": {
             "description": "the transaction hash",
@@ -431,6 +804,38 @@
           }
         ],
         "summary": "Bitcoin.Balance(BalanceRequest)"
+      }
+    },
+    "/bitcoin/Bitcoin/Lookup": {
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Micro-Namespace",
+          "required": true,
+          "schema": {
+            "default": "micro",
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/BitcoinLookupRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/BitcoinLookupResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/MicroAPIError"
+          }
+        },
+        "security": [
+          {
+            "MicroAPIToken": []
+          }
+        ],
+        "summary": "Bitcoin.Lookup(LookupRequest)"
       }
     },
     "/bitcoin/Bitcoin/Price": {

@@ -269,6 +269,10 @@
       "ResolveRequest": {
         "description": "Resolve returns the destination URL of a short URL.",
         "properties": {
+          "id": {
+            "description": "resolve by id",
+            "type": "string"
+          },
           "shortURL": {
             "description": "short url to resolve",
             "type": "string"
