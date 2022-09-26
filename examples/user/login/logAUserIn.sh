@@ -1,1 +1,1 @@
-m3o user login --email="joe@example.com" --password="Password1" 
+m3o user login --password="Password1" --email="joe@example.com" 

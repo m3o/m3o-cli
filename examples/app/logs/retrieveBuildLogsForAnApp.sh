@@ -1,1 +1,1 @@
-m3o app logs --logs_type="build" --name="helloworld" 
+m3o app logs --name="helloworld" --logs_type="build" 
