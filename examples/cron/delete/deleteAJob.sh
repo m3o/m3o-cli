@@ -1,0 +1,1 @@
+m3o cron delete --id="0c8cf9f7-3a61-4e91-b249-00a970044c95" 
