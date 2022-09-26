@@ -1,1 +1,1 @@
-m3o wallet transfer --visible='true' --from_id="b6407edd-2e26-45c0-9e2c-343689bbe5f6" --to_id="default" --amount="5" --reference="transfer money" 
+m3o wallet transfer --from_id="b6407edd-2e26-45c0-9e2c-343689bbe5f6" --to_id="default" --amount="5" --reference="transfer money" --visible='true' 
