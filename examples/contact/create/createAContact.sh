@@ -1,4 +1,13 @@
-m3o contact create --links='[
+m3o contact create --emails='[
+  {
+    "address": "home@example.com",
+    "label": "home"
+  },
+  {
+    "address": "work@example.com",
+    "label": "work"
+  }
+]' --links='[
   {
     "label": "blog",
     "url": "https://blog.joe.me"
@@ -25,14 +34,5 @@ m3o contact create --links='[
   {
     "label": "work",
     "number": "010-87654321"
-  }
-]' --emails='[
-  {
-    "address": "home@example.com",
-    "label": "home"
-  },
-  {
-    "address": "work@example.com",
-    "label": "work"
   }
 ]' 
