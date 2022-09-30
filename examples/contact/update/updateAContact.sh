@@ -1,13 +1,13 @@
-m3o contact update --social_medias='[
+m3o contact update --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" --phones='[
   {
-    "label": "twitter",
-    "username": "joe-twitter"
+    "label": "home",
+    "number": "010-12345678"
   },
   {
-    "label": "facebook",
-    "username": "joe-facebook"
+    "label": "work",
+    "number": "010-87654321"
   }
-]' --note="this person is very important" --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" --emails='[
+]' --note="this person is very important" --emails='[
   {
     "address": "home@example.com",
     "label": "home"
@@ -26,13 +26,13 @@ m3o contact update --social_medias='[
     "label": "company address",
     "location": "123 street address"
   }
-]' --phones='[
+]' --social_medias='[
   {
-    "label": "home",
-    "number": "010-12345678"
+    "label": "twitter",
+    "username": "joe-twitter"
   },
   {
-    "label": "work",
-    "number": "010-87654321"
+    "label": "facebook",
+    "username": "joe-facebook"
   }
 ]' 
