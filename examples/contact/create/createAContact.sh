@@ -1,22 +1,4 @@
-m3o contact create --name="joe" --phones='[
-  {
-    "label": "home",
-    "number": "010-12345678"
-  },
-  {
-    "label": "work",
-    "number": "010-87654321"
-  }
-]' --emails='[
-  {
-    "address": "home@example.com",
-    "label": "home"
-  },
-  {
-    "address": "work@example.com",
-    "label": "work"
-  }
-]' --links='[
+m3o contact create --links='[
   {
     "label": "blog",
     "url": "https://blog.joe.me"
@@ -35,4 +17,22 @@ m3o contact create --name="joe" --phones='[
     "label": "facebook",
     "username": "joe-facebook"
   }
-]' --note="this person is very important" 
+]' --note="this person is very important" --name="joe" --phones='[
+  {
+    "label": "home",
+    "number": "010-12345678"
+  },
+  {
+    "label": "work",
+    "number": "010-87654321"
+  }
+]' --emails='[
+  {
+    "address": "home@example.com",
+    "label": "home"
+  },
+  {
+    "address": "work@example.com",
+    "label": "work"
+  }
+]' 

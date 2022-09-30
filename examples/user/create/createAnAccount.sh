@@ -1,1 +1,1 @@
-m3o user create --email="joe@example.com" --password="Password1" --id="user-1" --username="joe" 
+m3o user create --username="joe" --email="joe@example.com" --password="Password1" --id="user-1" 
