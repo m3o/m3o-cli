@@ -1,1 +1,1 @@
-m3o price get --name="bitcoin" --currency="USD" 
+m3o price get --currency="USD" --name="bitcoin" 

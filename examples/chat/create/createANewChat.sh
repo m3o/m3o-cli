@@ -1,1 +1,1 @@
-m3o chat create --name="general" --description="The general group" 
+m3o chat create --description="The general group" --name="general" 
