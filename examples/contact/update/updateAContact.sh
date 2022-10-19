@@ -1,11 +1,11 @@
-m3o contact update --note="this person is very important" --phones='[
+m3o contact update --emails='[
   {
-    "label": "home",
-    "number": "010-12345678"
+    "address": "home@example.com",
+    "label": "home"
   },
   {
-    "label": "work",
-    "number": "010-87654321"
+    "address": "work@example.com",
+    "label": "work"
   }
 ]' --links='[
   {
@@ -17,14 +17,14 @@ m3o contact update --note="this person is very important" --phones='[
     "label": "company address",
     "location": "123 street address"
   }
-]' --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" --emails='[
+]' --note="this person is very important" --id="42e48a3c-6221-11ec-96d2-acde48001122" --name="joe" --phones='[
   {
-    "address": "home@example.com",
-    "label": "home"
+    "label": "home",
+    "number": "010-12345678"
   },
   {
-    "address": "work@example.com",
-    "label": "work"
+    "label": "work",
+    "number": "010-87654321"
   }
 ]' --social_medias='[
   {
