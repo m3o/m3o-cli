@@ -1,0 +1,1 @@
+m3o ai check --text="What day of the wek is it?" 
