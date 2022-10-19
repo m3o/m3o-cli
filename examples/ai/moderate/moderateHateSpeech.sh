@@ -1,0 +1,1 @@
+m3o ai moderate --text="I want to kill him" 

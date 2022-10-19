@@ -1,0 +1,1 @@
+m3o ai call --text="who is leonardo davinci" 

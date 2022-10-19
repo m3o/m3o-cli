@@ -1,1 +1,1 @@
-m3o cron schedule --interval="* * * * *" --callback="https://google.com" --name="test" --description="testing" 
+m3o cron schedule --description="testing" --interval="* * * * *" --callback="https://google.com" --name="test" 
