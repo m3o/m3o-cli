@@ -1,1 +1,1 @@
-m3o function logs --logs_type="build" --name="helloworld" 
+m3o function logs --name="helloworld" --logs_type="build" 
