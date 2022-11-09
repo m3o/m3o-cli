@@ -1,1 +1,1 @@
-m3o url update --destinationURL="https://mynewsite.com/this-is-a-rather-long-web-address" --shortURL="https://m3o.one/u/f8f3f83f3f83g" 
+m3o url update --shortURL="https://m3o.one/u/f8f3f83f3f83g" --destinationURL="https://mynewsite.com/this-is-a-rather-long-web-address" 
