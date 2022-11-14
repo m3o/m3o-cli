@@ -1,0 +1,1 @@
+m3o dns whois --name="google.com" 
