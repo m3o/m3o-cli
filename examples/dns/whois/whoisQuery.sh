@@ -1,1 +1,1 @@
-m3o dns whois --domaine="x.com" 
+m3o dns whois --domain="x.com" 
