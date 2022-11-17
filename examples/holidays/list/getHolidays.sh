@@ -1,1 +1,1 @@
-m3o holidays list --year=2022 --country_code="GB" 
+m3o holidays list --country_code="GB" --year=2022 

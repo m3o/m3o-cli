@@ -1,0 +1,1 @@
+m3o secret set --key="foo" --value="bar" 
