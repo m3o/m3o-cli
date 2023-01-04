@@ -34,6 +34,14 @@ Export your API token as found in the UI
 export M3O_API_TOKEN=xxxxxx
 ```
 
+### API Address
+
+Set the API address
+
+```
+export M3O_API_ADDRESS=http://localhost:8080
+```
+
 ### List services
 
 ```

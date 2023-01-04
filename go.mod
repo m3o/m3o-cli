@@ -6,7 +6,7 @@ require (
 	github.com/fatih/camelcase v1.0.0
 	github.com/getkin/kin-openapi v0.86.0
 	github.com/spf13/cobra v1.2.1
-	go.m3o.com v0.4.0
+	go.m3o.com v1.1.0
 )
 
 require (

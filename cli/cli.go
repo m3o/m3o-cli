@@ -18,6 +18,11 @@ import (
 	"go.m3o.com/client"
 )
 
+var (
+	// API address
+	Address = "https://api.m3o.com"
+)
+
 var usage = `m3o call [service] [endpoint] [request] e.g m3o call helloworld Call '{"name": "Alice"}'`
 
 var rootCmd = &cobra.Command{
@@ -63,6 +68,7 @@ var callCmd = &cobra.Command{
 
 		c := client.NewClient(nil)
 		c.SetToken(token)
+		c.SetAddress(Address)
 
 		var rsp json.RawMessage
 
@@ -93,7 +99,7 @@ var exploreListCmd = &cobra.Command{
 	Short: "List M3O services",
 	Long:  `List available M3O services`,
 	Run: func(cmd *cobra.Command, args []string) {
-		rsp, err := http.Get("https://api.m3o.com/publicapi/explore/index")
+		rsp, err := http.Get(Address + "/publicapi/explore/index")
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error listing services: %v\n", err)
 			os.Exit(1)
@@ -133,7 +139,7 @@ var exploreSearchCmd = &cobra.Command{
 	Short: "Search for M3O services",
 	Long:  `Search available M3O services`,
 	Run: func(cmd *cobra.Command, args []string) {
-		rsp, err := http.Get("https://api.m3o.com/publicapi/explore/Search?search_term=" + Query)
+		rsp, err := http.Get(Address + "/publicapi/explore/Search?search_term=" + Query)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error searching services: %v\n", err)
 			os.Exit(1)
@@ -229,9 +235,16 @@ var (
 	Query string
 )
 
+func init() {
+	// set api address
+	if v := os.Getenv("M3O_API_ADDRESS"); len(v) > 0 {
+		Address = v
+	}
+}
+
 // generate a list of commands from the public cli
 func generateCLI() []*cobra.Command {
-	rsp, err := http.Get("https://api.m3o.com/publicapi/explore/index")
+	rsp, err := http.Get(Address + "/publicapi/explore/index")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error listing services: %v\n", err)
 		os.Exit(1)
@@ -275,7 +288,7 @@ func generateCLI() []*cobra.Command {
 		// if we can't find the file we need to fetch the def
 		if file == nil {
 			// TODO: cache this data locally
-			rsp, err := http.Get("https://api.m3o.com/publicapi/explore/API?name=" + name)
+			rsp, err := http.Get(Address + "/publicapi/explore/API?name=" + name)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Error getting service %s: %v\n", name, err)
 				os.Exit(1)
@@ -472,7 +485,6 @@ func setFlags(cmd *cobra.Command, schema *openapi3.Schema) map[string]interface{
 }
 
 func Execute() {
-
 	// static command list
 	exploreSearchCmd.Flags().StringVarP(&Query, "query", "q", "", "The query to search for")
 	exploreSearchCmd.MarkFlagRequired("query")
